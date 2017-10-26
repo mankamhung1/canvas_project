@@ -23,8 +23,8 @@
 
 
         var text = function () {
-            this.color = "#000";
-            this.backcolor = "#fff";
+            this.color = [ 0, 128, 255 ];
+            this.backcolor = [ 0, 128, 255, 0.3 ];
             this.tool = "pencil";
             this.shape = "square";
             this.strokesize = 1;
@@ -35,8 +35,8 @@ window.onload = function() {
             "remembered": {
                 "Default": {
                     "0": {
-                        "color": "#000",
-                        "backcolor" : "#fff",
+                        "color": [ 0, 128, 255 ],
+                        "backcolor" : [ 0, 128, 255, 0.3 ],
                         "tool" : "pencil",
                         "shape" : "square",
                         "strokesize" : 1
@@ -44,8 +44,8 @@ window.onload = function() {
                     },
                 "new": {
                     "0": {
-                        "color": "#000",
-                        "backcolor" : "#fff",
+                        "color": [ 0, 128, 255 ],
+                        "backcolor" : [ 0, 128, 255, 0.3 ],
                         "tool" : "marker",
                         "shape" : "circle",
                         "strokesize" : 2
@@ -76,7 +76,7 @@ window.onload = function() {
         /*canvas_backgroundcolor.onChange(function (value) {
             backgroundcolor = value;
         });*/
-        f2.add(canvas, 'tool', ['pen', 'crayon', 'marker' ]);
+        f2.add(canvas, 'tool', ['pen', 'crayon', 'marker']);
         /*canvas_tool.onChange(function (value) {
             tool = value;
         });*/
@@ -89,7 +89,7 @@ window.onload = function() {
             strokesize = value;
         });*/
         
-    }
+    };
     </script>
 </body>
 
