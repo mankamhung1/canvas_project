@@ -12,7 +12,7 @@
 
     <body>
       <div class="buttons">
-          <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
+          <span class="btn btn-primary fa fa-square" id="rubber" onclick="rubber()">Rubber</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
           <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
@@ -29,6 +29,7 @@
 <script type='text/javascript' src="js/drawing-line.js"></script>
 <script type='text/javascript' src="js/drawing-rectangle.js"></script>
 <script type='text/javascript' src="js/circle.js"></script>
+<script type='text/javascript' src="js/rubber.js"></script>
 
 <script type='text/javascript'>
 
@@ -42,6 +43,9 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   }
   function drawCircle(){
       currentFunction = new DrawingCircle(contextReal,contextDraft);
+  }
+  function rubber(){
+      currentFunction = new Rubber(contextReal,contextDraft);
   }
 
 </script>
