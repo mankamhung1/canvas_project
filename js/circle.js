@@ -20,6 +20,7 @@ class DrawingCircle extends PaintFunction{
 
     onMouseMove(){}
     onMouseUp(coord){
+        this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
         this.contextReal.beginPath();
         this.contextReal.strokeStyle = "#000000";
         this.contextReal.lineWidth = 1;
