@@ -7,8 +7,8 @@
     <meta name="description" content="html css javascript canvas online design">
     <meta name="keywords" content="html, css, javascript canvas, design,">
     <meta name="author" content="Jason,Man,Michelle">
-    <link type="text/css" href="UI.css" rel="stylesheet" />
-    <link type="text/css" href="dat.gui.css" rel="stylesheet" />
+    <link type="text/css" href="css/UI.css" rel="stylesheet" />
+    <link type="text/css" href="css/dat.gui.css" rel="stylesheet" />
 
 </head>
 
@@ -17,14 +17,14 @@
 
 
 
-    <script type="text/javascript" src="dat.gui.js"></script>
+    <script type="text/javascript" src="js/dat.gui.js"></script>
     <script>
 
 
 
         var text = function () {
-            this.color = [ 0, 128, 255 ];
-            this.backcolor = [ 0, 128, 255, 0.3 ];
+            this.color = "#ffae23";
+            this.backgroundColor = "#c45454";
             this.tool = "pencil";
             this.shape = "square";
             this.strokesize = 1;
@@ -35,21 +35,22 @@ window.onload = function() {
             "remembered": {
                 "Default": {
                     "0": {
-                        "color": [ 0, 128, 255 ],
-                        "backcolor" : [ 0, 128, 255, 0.3 ],
+                        "color": "#ffae23",
+                        "backgroundColor" : "#c45454",
                         "tool" : "pencil",
                         "shape" : "square",
-                        "strokesize" : 1
+                        "strokesize" : 1,
+                        "eraser" : false
                     }
                     },
                 "new": {
                     "0": {
-                        "color": [ 0, 128, 255 ],
-                        "backcolor" : [ 0, 128, 255, 0.3 ],
+                        "color": "#ffae23",
+                        "backgroundColor" : "#c45454",
                         "tool" : "marker",
                         "shape" : "circle",
-                        "strokesize" : 2
-
+                        "strokesize" : 2,
+                        "eraser" : false
 
                     }
                   }
@@ -68,26 +69,30 @@ window.onload = function() {
         var f1 = gui.addFolder('Color');
         var f2 = gui.addFolder('Drawing Tools');
 
-        f1.add(canvas, 'color');
-       /* canvas_color.onChange(function (value) {
+        var canvas_color = f1.add(canvas, 'color');
+        canvas_color.onChange(function (value) {
             color = value;
-        }); */
-        f1.add(canvas, 'backgroundcolor');
-        /*canvas_backgroundcolor.onChange(function (value) {
+        }); 
+        var canvas_backgroundColor = f1.add(canvas, 'backgroundColor');
+        canvas_backgroundColor.onChange(function (value) {
             backgroundcolor = value;
-        });*/
-        f2.add(canvas, 'tool', ['pen', 'crayon', 'marker']);
-        /*canvas_tool.onChange(function (value) {
+        });
+        var canvas_tool = f2.add(canvas, 'tool', ['pen', 'crayon', 'marker']);
+        canvas_tool.onChange(function (value) {
             tool = value;
-        });*/
-        f2.add(canvas, 'shape', ['rectangle', 'circle', 'triangle']);
-        /*canvas_shape.onChange(function (value) {
+        });
+        var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'triangle']);
+        canvas_shape.onChange(function (value) {
             shape = value;
-        });*/
-        f2.add(canvas, 'strokesize', 1, 5);
-        /*canvas_strokesize.onChange(function (value) {
+        });
+        var canvas_strokesize = f2.add(canvas, 'strokesize', 1, 5);
+        canvas_strokesize.onChange(function (value) {
             strokesize = value;
-        });*/
+        });
+        var canvas_eraser = f2.add(canvas, 'eraser', false);
+        canvas_eraser.onChange(function (value) {
+            eraser = value;
+        })
         
     };
     </script>
