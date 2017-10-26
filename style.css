@@ -1,0 +1,10 @@
+#wrapper{
+    position:relative;
+    width:800px;
+    height:600px;
+}
+#canvas-real, #canvas-draft{
+    position:absolute; top:0px; left:0px;
+    width:800px;
+    height:600px;
+}

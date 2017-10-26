@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet" type='text/css'>
+    </head>
+
+
+    <body>
+        <div id="canvas-container">
+            <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
+            <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
+        </div>
+        <div class="buttons">
+            <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
+            <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
+            <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
+            <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
+        </div>
+    </body>
+
+<script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type='text/javascript' src="canvas-common.js"></script>
+<script type='text/javascript' src="drawing-line.js"></script>
+<script type='text/javascript' src="drawing-rectangle.js"></script>
+<script type='text/javascript' src="circle.js"></script>
+
+<script type='text/javascript'>
+
+//currentFunction = new DrawingLine(contextReal,contextDraft);
+currentFunction = new DrawingCircle(contextReal,contextDraft);
+  function drawLine(){
+      currentFunction = new DrawingLine(contextReal,contextDraft);
+  }
+  function drawRect(){
+      currentFunction = new DrawingRectangle(contextReal,contextDraft);
+  }
+  function drawCircle(){
+      currentFunction = new DrawingCircle(contextReal,contextDraft);
+  }
+
+</script>
