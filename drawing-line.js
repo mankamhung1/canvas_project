@@ -25,7 +25,8 @@ class DrawingLine extends PaintFunction{
     draw(x,y){
         this.context.lineTo(x,y);
         this.context.moveTo(x,y);
-        this.context.closePath();
+      //  this.context.closePath();
         this.context.stroke();
+        this.context.closePath();
     }
 }
