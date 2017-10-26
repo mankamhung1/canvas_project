@@ -1,1 +1,96 @@
-<canvas id="canvas" width="800" height="800"></canvas>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jason, Man, and Michelle's Canvas</title>
+    <meta name="description" content="html css javascript canvas online design">
+    <meta name="keywords" content="html, css, javascript canvas, design,">
+    <meta name="author" content="Jason,Man,Michelle">
+    <link type="text/css" href="UI.css" rel="stylesheet" />
+    <link type="text/css" href="dat.gui.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <canvas id="canvas" width="900" height="800"></canvas>
+
+
+
+    <script type="text/javascript" src="dat.gui.js"></script>
+    <script>
+
+
+
+        var text = function () {
+            this.color = "#000";
+            this.backcolor = "#fff";
+            this.tool = "pencil";
+            this.shape = "square";
+            this.strokesize = 1;
+        };
+window.onload = function() {
+        var json = `{
+            "preset": "new",
+            "remembered": {
+                "Default": {
+                    "0": {
+                        "color": "#000",
+                        "backcolor" : "#fff",
+                        "tool" : "pencil",
+                        "shape" : "square",
+                        "strokesize" : 1
+                    }
+                    },
+                "new": {
+                    "0": {
+                        "color": "#000",
+                        "backcolor" : "#fff",
+                        "tool" : "marker",
+                        "shape" : "circle",
+                        "strokesize" : 2
+
+
+                    }
+                  }
+                
+            },
+            "closed": false,
+            "folders": {}
+        }`;
+
+        // create dat-gui controls
+        var canvas = new text();
+        // create GUI
+        var gui = new dat.GUI({ load: JSON.parse(json)});
+        gui.remember(canvas);
+
+        var f1 = gui.addFolder('Color');
+        var f2 = gui.addFolder('Drawing Tools');
+
+        f1.add(canvas, 'color');
+       /* canvas_color.onChange(function (value) {
+            color = value;
+        }); */
+        f1.add(canvas, 'backgroundcolor');
+        /*canvas_backgroundcolor.onChange(function (value) {
+            backgroundcolor = value;
+        });*/
+        f2.add(canvas, 'tool', ['pen', 'crayon', 'marker' ]);
+        /*canvas_tool.onChange(function (value) {
+            tool = value;
+        });*/
+        f2.add(canvas, 'shape', ['rectangle', 'circle', 'triangle']);
+        /*canvas_shape.onChange(function (value) {
+            shape = value;
+        });*/
+        f2.add(canvas, 'strokesize', 1, 5);
+        /*canvas_strokesize.onChange(function (value) {
+            strokesize = value;
+        });*/
+        
+    }
+    </script>
+</body>
+
+</html>
