@@ -2,9 +2,9 @@ class DrawingCircle extends PaintFunction{
     constructor(contextReal,contextDraft){
         super();
         this.contextReal = contextReal;
-        this.contextDraft = contextDraft;            
+        this.contextDraft = contextDraft;
     }
-    
+
     onMouseDown(coord,event){
         this.contextReal.fillStyle = "#f44";
         this.origX = coord[0];
@@ -22,7 +22,6 @@ class DrawingCircle extends PaintFunction{
         let r=Math.sqrt(Math.pow((this.origX-coord[0]),2)+Math.pow((this.origY-coord[1]),2));
         this.contextReal.arc(this.origX,this.origY,r,0,2*Math.PI);
         contextReal.stroke();
-
     }
     onMouseLeave(){}
     onMouseEnter(){}
