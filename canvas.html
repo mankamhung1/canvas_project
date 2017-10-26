@@ -12,16 +12,17 @@
 
 
     <body>
-        <div id="canvas-container">
-            <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
-            <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
-        </div>
-        <div class="buttons">
-            <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
-            <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-        </div>
+      <div class="buttons">
+          <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
+          <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
+      </div>
+
+      <div id="canvas-container">
+          <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
+          <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
+      </div>
     </body>
 
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
