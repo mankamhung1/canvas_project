@@ -150,116 +150,124 @@ f3.open();
 f4.open();
 f5.open();
 
-
+// Folder 1 = Color 
 var canvas_color = f1.addColor(canvas, 'color').listen();
-canvas_color.onChange(function (value) {
-  console.log(value);
-  changelineColor(value);
-}); 
-canvas_color.onFinishChange(function (value) {
-  console.log(value);
-  changeColor(value);
-});
+    canvas_color.onChange(function (value) {
+        console.log(value);
+        changelineColor(value);
+    }); 
+    canvas_color.onFinishChange(function (value) {
+        console.log(value);
+        changeColor(value);
+    });
 
 var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
-canvas_fillColor.onChange(function (value) {
-  console.log(value);
-}); 
-canvas_fillColor.onFinishChange(function (value) {
-  console.log(value);
-});
+    canvas_fillColor.onChange(function (value) {
+        console.log(value);
+    }); 
+    canvas_fillColor.onFinishChange(function (value) {
+        console.log(value);
+    });
 
 var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
-canvas_borderColor.onChange(function (value) {
-  console.log(value);
-}); 
-canvas_borderColor.onFinishChange(function (value) {
-  console.log(value);
-});
+    canvas_borderColor.onChange(function (value) {
+        console.log(value);
+    }); 
+    canvas_borderColor.onFinishChange(function (value) {
+        console.log(value);
+    });
 var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
-canvas_opacity.onChange(function (value) {
-  opacity = value;
-});
-canvas_opacity.onFinishChange(function (value) {
-  console.log(value);
-});
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
-canvas_brushTool.onChange(function (value) {
-  tool = draw(value);
-});
-var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'eclipse']);
-canvas_shape.onChange(function (value) {
-  shape = value;
-}); 
-var canvas_textBox = f2.add(canvas, 'textBox', false);
-canvas_textBox.onChange(function (value) {
-  textBox = value;
-})
+    canvas_opacity.onChange(function (value) {
+        opacity = value;
+    });
+    canvas_opacity.onFinishChange(function (value) {
+        console.log(value);
+    });
 
+// Folder 2 = Tools     
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
+    canvas_brushTool.onChange(function (value) {
+        tool = draw(value);
+    });
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'eclipse']);
+    canvas_shape.onChange(function (value) {
+        shape = value;
+    }); 
+var canvas_textBox = f2.add(canvas, 'textBox', false);
+    canvas_textBox.onChange(function (value) {
+        textBox = value;
+    });
 var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5);
-canvas_brushSize.onChange(function (value) {
-brushSize = value;
-});
+    canvas_brushSize.onChange(function (value) {
+        brushSize = value;
+    });
 var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 5);
-canvas_fontSize.onChange(function (value) {
-  fontSize = value;
-});
+    canvas_fontSize.onChange(function (value) {
+        fontSize = value;
+    });
 var canvas_line = f2.add(canvas, 'line', false);
-canvas_line.onChange(function (value) {
-  line = value;
-});
+    canvas_line.onChange(function (value) {
+        line = value;
+    });
 var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5);
-canvas_lineWidth.onChange(function (value) {
-lineWidth = value;
-});
+    canvas_lineWidth.onChange(function (value) {
+        lineWidth = value;
+    });
 var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
-canvas_lineType.onChange(function (value) {
-lineType = value;
-}); 
+    canvas_lineType.onChange(function (value) {
+        lineType = value;
+    }); 
 var canvas_eraser = f2.add(canvas, 'eraser', false);
-canvas_eraser.onChange(function (value) {
-  eraser = value;
-});
+    canvas_eraser.onChange(function (value) {
+        eraser = value;
+    });
 var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
-canvas_eraserSize.onChange(function (value) {
-  eraserSize = value;
-});
+    canvas_eraserSize.onChange(function (value) {
+        eraserSize = value;
+    });
+
+// Folder 3 = Image
 var canvas_imageUpload = f3.add(canvas, 'imageUpload', false);
-canvas_imageUpload.onChange(function (value) {
-imageUpload = value;
-});
+    canvas_imageUpload.onChange(function (value) {
+        imageUpload = value;
+    });
 var canvas_imageRotate = f3.add(canvas, 'imageRotate', false);
-canvas_imageRotate.onChange(function (value) {
-imageRotate = value;
-});
+    canvas_imageRotate.onChange(function (value) {
+        imageRotate = value;
+    });
 var canvas_imageFlip = f3.add(canvas, 'imageFlip', false);
-canvas_imageFlip.onChange(function (value) {
-imageFlip = value;
-});
+    canvas_imageFlip.onChange(function (value) {
+        imageFlip = value;
+    });
 var canvas_imageResize = f3.add(canvas, 'imageResize', false);
-canvas_imageResize.onChange(function (value) {
-imageResize = value;
-});
+    canvas_imageResize.onChange(function (value) {
+        imageResize = value;
+    });
 var canvas_imageDownload = f3.add(canvas, 'imageDownload', false);
-canvas_imageDownload.onChange(function (value) {
-imageDownload = value;
-});
+    canvas_imageDownload.onChange(function (value) {
+        imageDownload = value;
+    });
+
+// Folder 4 = Canvas     
 var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
-canvas_canvasResize.onChange(function (value) {
-canvasResize = value;
-});
-var canvas_canvasBgcolor = f1.addColor(canvas, 'canvasBgcolor').listen();
-canvas_canvasBgcolor.onChange(function (value) {
-  console.log(value);
-}); 
-canvas_canvasBgcolor.onFinishChange(function (value) {
-  console.log(value);
-});
+    canvas_canvasResize.onChange(function (value) {
+        canvasResize = value;
+    });
+var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
+    canvas_canvasBgcolor.onChange(function (value) {
+        console.log(value);
+    }); 
+    canvas_canvasBgcolor.onFinishChange(function (value) {
+        console.log(value);
+    });
+
+// Folder 5 = Color     
 var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
-canvas_exportCanvas.onChange(function (value) {
-exportCanvas = value;
-});
+    canvas_exportCanvas.onChange(function (value) {
+        exportCanvas = value;
+    });
 };
+
 //currentFunction = new DrawingLine(contextReal,contextDraft);
 currentFunction = new DrawingCircle(contextReal,contextDraft);
   function drawLine(){
