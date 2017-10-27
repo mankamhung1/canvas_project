@@ -92,7 +92,7 @@
     transition: overflow 0.1s linear; }
   .dg li:not(.folder) {
     cursor: auto;
-    height: 27px;
+    height: 28px !important;
     line-height: 27px;
     padding: 0 4px 0 5px; }
   .dg li.folder {
@@ -125,8 +125,9 @@
     position: relative; }
   .dg .c input[type=text] {
     border: 0;
-    margin-top: 4px;
-    padding: 3px;
+    margin-top:0 !important;
+    padding-top:0 !important;
+    padding: 0px !important;
     width: 100%;
     float: right; }
   .dg .has-slider input[type=text] {
@@ -158,7 +159,7 @@
     display: none;
     position: absolute;
     margin-left: -9px;
-    margin-top: 23px;
+    margin-top: 3px;
     z-index: 10; }
   .dg .c:hover .selector,
   .dg .selector.drag {
@@ -249,8 +250,8 @@
       cursor: pointer; }
       .dg li.save-row .button.gears {
         background: #c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;
-        height: 7px;
-        width: 8px; }
+        height: 16px !important;
+        width: 16px !important; }
       .dg li.save-row .button:hover {
         background-color: #bab19e;
         box-shadow: 0 -1px 0 #b0a58f; }
