@@ -16,25 +16,26 @@
         <link href="style.css" rel="stylesheet" type='text/css'>
     </head>
 
-
     <body>
-        <div id="canvas-container">
-            <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
-            <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
-        </div>
-        <div class="buttons">
-            <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
-            <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-        </div>
+      <div class="buttons">
+          <span class="btn btn-primary fa fa-square" id="rubber" onclick="rubber()">Rubber</span>
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
+          <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
+      </div>
+
+      <div id="canvas-container">
+          <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
+          <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
+      </div>
     </body>
 <script type="text/javascript" src="js/dat.gui.js"></script>
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script type='text/javascript' src="canvas-common.js"></script>
-<script type='text/javascript' src="drawing-line.js"></script>
-<script type='text/javascript' src="drawing-rectangle.js"></script>
-<script type='text/javascript' src="circle.js"></script>
+<script type='text/javascript' src="js/canvas-common.js"></script>
+<script type='text/javascript' src="js/drawing-line.js"></script>
+<script type='text/javascript' src="js/drawing-rectangle.js"></script>
+<script type='text/javascript' src="js/circle.js"></script>
+<script type='text/javascript' src="js/rubber.js"></script>
 
 <script type='text/javascript'>
 
@@ -88,12 +89,23 @@ window.onload = function() {
         var f1 = gui.addFolder('Color');
         var f2 = gui.addFolder('Tools');
         var f3 = gui.addFolder('Image');
-        var f4 = gui.addFolder
+        var f4 = gui.addFolder('Canvas');
+        var f5 = gui.addFolder('Export');
 
-        var canvas_color = f1.add(canvas, 'color');
+        f1.open();
+        f2.open();
+        f3.open();
+        f4.open();
+        f5.open();
+
+
+        var canvas_color = f1.addColor(canvas, 'color').listen();
         canvas_color.onChange(function (value) {
-            color = value;
+            console.log(value);
         }); 
+        canvas_color.onFinishChange(function (value) {
+            console.log(value);
+        });
         var canvas_backgroundColor = f1.add(canvas, 'backgroundColor');
         canvas_backgroundColor.onChange(function (value) {
             backgroundcolor = value;
@@ -128,6 +140,9 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   }
   function drawCircle(){
       currentFunction = new DrawingCircle(contextReal,contextDraft);
+  }
+  function rubber(){
+      currentFunction = new Rubber(contextReal,contextDraft);
   }
 
 </script>
