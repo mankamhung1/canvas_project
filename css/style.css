@@ -2,11 +2,13 @@
     position:relative;
 
 }
-#canvas-real, #canvas-draft{
+#canvas-draft{
     position:absolute; top:28px; left:0px;
 
 }
-
+#canvas-real {
+    background-color: red;
+}
 
 .resize-handle-ne,
 .resize-handle-se,

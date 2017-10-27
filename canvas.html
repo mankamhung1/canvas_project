@@ -22,7 +22,11 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
           <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-          <span class="btn btn-info fa fa-paint-brush" id="drawing-text" onclick="drawText()">Drawing Text</span>
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawText()">Drawing Text</span>
+          <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
+          <span class="btn btn-primary fa fa-square" id="color-red" onclick="changeColor('#ff0000')">red</span>
+          <span class="btn btn-primary fa fa-square" id="color-green" onclick="changeColor('#00ff00')">green</span>
+          <span class="btn btn-primary fa fa-square" id="color-blue" onclick="changeColor('#0000ff')">blue</span>
       </div>
 
       <div id="canvas-container">
@@ -38,6 +42,7 @@
 <script type='text/javascript' src="js/circle.js"></script>
 <script type='text/javascript' src="js/rubber.js"></script>
 <script type='text/javascript' src="js/drawing-text.js"></script>
+<script type='text/javascript' src="js/resize.js"></script>
 
 <script type='text/javascript'>
 
@@ -287,4 +292,17 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
       currentFunction = new DrawingText(contextReal,contextDraft);
   }
 
+  function resize(){
+      currentFunction = new  Resize (contextReal,contextDraft);
+      currentFunction.printImg();
+  }
+  function changelineColor(newColor){
+    line_color=newColor;
+  }
+  function changefillColor(newColor){
+    fill_color=newColor;
+  }
+  function changeboarderColor(newColor){
+    boarder_color=newColor;
+  }
 </script>
