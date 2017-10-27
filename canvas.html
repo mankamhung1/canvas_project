@@ -22,14 +22,11 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
           <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-<<<<<<< HEAD
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawText()">Drawing Text</span>
-=======
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
           <span class="btn btn-primary fa fa-square" id="color-red" onclick="changeColor('#ff0000')">red</span>
           <span class="btn btn-primary fa fa-square" id="color-green" onclick="changeColor('#00ff00')">green</span>
           <span class="btn btn-primary fa fa-square" id="color-blue" onclick="changeColor('#0000ff')">blue</span>
->>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
       </div>
       
       <div id="canvas-container">
@@ -44,11 +41,8 @@
 <script type='text/javascript' src="js/drawing-rectangle.js"></script>
 <script type='text/javascript' src="js/circle.js"></script>
 <script type='text/javascript' src="js/rubber.js"></script>
-<<<<<<< HEAD
 <script type='text/javascript' src="js/drawing-text.js"></script>
-=======
 <script type='text/javascript' src="js/resize.js"></script>
->>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
 
 <script type='text/javascript'>
 
@@ -294,12 +288,10 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
   }
-<<<<<<< HEAD
   function drawText(){
       currentFunction = new DrawingText(contextReal,contextDraft);
   }
 
-=======
   function resize(){
       currentFunction = new  Resize (contextReal,contextDraft);
       currentFunction.printImg();
@@ -313,5 +305,4 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   function changeboarderColor(newColor){
     boarder_color=newColor;
   }
->>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
 </script>
