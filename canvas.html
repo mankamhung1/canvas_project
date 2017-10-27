@@ -22,16 +22,9 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
           <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-<<<<<<< HEAD
-          <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawText()">Drawing Text</span>
-=======
-          <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
-          <span class="btn btn-primary fa fa-square" id="color-red" onclick="changeColor('#ff0000')">red</span>
-          <span class="btn btn-primary fa fa-square" id="color-green" onclick="changeColor('#00ff00')">green</span>
-          <span class="btn btn-primary fa fa-square" id="color-blue" onclick="changeColor('#0000ff')">blue</span>
->>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-text" onclick="drawText()">Drawing Text</span>
       </div>
-      
+
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
           <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
@@ -44,11 +37,7 @@
 <script type='text/javascript' src="js/drawing-rectangle.js"></script>
 <script type='text/javascript' src="js/circle.js"></script>
 <script type='text/javascript' src="js/rubber.js"></script>
-<<<<<<< HEAD
 <script type='text/javascript' src="js/drawing-text.js"></script>
-=======
-<script type='text/javascript' src="js/resize.js"></script>
->>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
 
 <script type='text/javascript'>
 
@@ -133,7 +122,7 @@ var json = `{
                 "exportCanvas" : false
             }
           }
-        
+
     },
     "closed": false,
     "folders": {}
@@ -158,12 +147,12 @@ f3.open();
 f4.open();
 f5.open();
 
-// Folder 1 = Color 
+// Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
     canvas_color.onChange(function (value) {
     console.log(value);
     changelineColor(value);
-    }); 
+    });
     canvas_color.onFinishChange(function (value) {
     console.log(value);
     changelineColor(value);
@@ -173,7 +162,7 @@ var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
     canvas_fillColor.onChange(function (value) {
     console.log(value);
     changefillColor(value);
-    }); 
+    });
     canvas_fillColor.onFinishChange(function (value) {
     console.log(value);
     changefillColor(value);
@@ -183,7 +172,7 @@ var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
     canvas_borderColor.onChange(function (value) {
     console.log(value);
     changeboarderColor(value);
-    }); 
+    });
     canvas_borderColor.onFinishChange(function (value) {
     console.log(value);
     changeboarderColor(value);
@@ -196,7 +185,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
         console.log(value);
     });
 
-// Folder 2 = Tools     
+// Folder 2 = Tools
 var canvas_brushTool = f2.add(canvas, 'brushTool', ['pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
     canvas_brushTool.onChange(function (value) {
         tool = draw(value);
@@ -204,7 +193,7 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['pen', 'pencil', 'marker', '
 var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'eclipse']);
     canvas_shape.onChange(function (value) {
         shape = value;
-    }); 
+    });
 var canvas_textBox = f2.add(canvas, 'textBox', false);
     canvas_textBox.onChange(function (value) {
         textBox = value;
@@ -228,7 +217,7 @@ var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5);
 var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     canvas_lineType.onChange(function (value) {
         lineType = value;
-    }); 
+    });
 var canvas_eraser = f2.add(canvas, 'eraser', false);
     canvas_eraser.onChange(function (value) {
         eraser = value;
@@ -260,7 +249,7 @@ var canvas_imageDownload = f3.add(canvas, 'imageDownload', false);
         imageDownload = value;
     });
 
-// Folder 4 = Canvas     
+// Folder 4 = Canvas
 var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
     canvas_canvasResize.onChange(function (value) {
         canvasResize = value;
@@ -268,12 +257,12 @@ var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         console.log(value);
-    }); 
+    });
     canvas_canvasBgcolor.onFinishChange(function (value) {
         console.log(value);
     });
 
-// Folder 5 = Color     
+// Folder 5 = Color
 var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
     canvas_exportCanvas.onChange(function (value) {
         exportCanvas = value;
@@ -294,24 +283,8 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
   }
-<<<<<<< HEAD
   function drawText(){
       currentFunction = new DrawingText(contextReal,contextDraft);
   }
 
-=======
-  function resize(){
-      currentFunction = new  Resize (contextReal,contextDraft);
-      currentFunction.printImg();
-  }
-  function changelineColor(newColor){
-    line_color=newColor;
-  }
-  function changefillColor(newColor){
-    fill_color=newColor;
-  }
-  function changeboarderColor(newColor){
-    boarder_color=newColor;
-  }
->>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
 </script>
