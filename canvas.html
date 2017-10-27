@@ -1,5 +1,10 @@
 <html>
     <head>
+        <meta charset="utf-8">
+        <title>Jason, Man, and Michelle's Canvas</title>
+        <meta name="description" content="html css javascript canvas online design">
+        <meta name="keywords" content="html, css, javascript canvas, design,">
+        <meta name="author" content="Jason,Man,Michelle">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -7,6 +12,7 @@
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link type="text/css" href="css/dat.gui.css" rel="stylesheet" />
         <link href="style.css" rel="stylesheet" type='text/css'>
     </head>
 
@@ -23,7 +29,7 @@
             <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
         </div>
     </body>
-
+<script type="text/javascript" src="js/dat.gui.js"></script>
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type='text/javascript' src="canvas-common.js"></script>
 <script type='text/javascript' src="drawing-line.js"></script>
@@ -31,6 +37,86 @@
 <script type='text/javascript' src="circle.js"></script>
 
 <script type='text/javascript'>
+
+
+var text = function () {
+            this.color = "#ffae23";
+            this.backgroundColor = "#c45454";
+            this.tool = "pencil";
+            this.shape = "square";
+            this.strokesize = 1;
+            this.eraser = false;
+        };
+window.onload = function() {
+        var json = `{
+            "preset": "new",
+            "remembered": {
+                "Default": {
+                    "0": {
+                        "color": "#ffae23",
+                        "backgroundColor" : "#c45454",
+                        "tool" : "pencil",
+                        "shape" : "square",
+                        "strokesize" : 1,
+                        "eraser" : false
+                    }
+                    },
+                "new": {
+                    "0": {
+                        "color": "#ffae23",
+                        "backgroundColor" : "#c45454",
+                        "tool" : "marker",
+                        "shape" : "circle",
+                        "strokesize" : 2,
+                        "eraser" : false
+
+                    }
+                  }
+                
+            },
+            "closed": false,
+            "folders": {}
+        }`;
+
+        // create dat-gui controls
+        var canvas = new text();
+        // create GUI
+        var gui = new dat.GUI({ load: JSON.parse(json)});
+        document.getElementById('canvas-draft').appendChild(gui.domElement);
+        gui.remember(canvas);
+
+        var f1 = gui.addFolder('Color');
+        var f2 = gui.addFolder('Tools');
+        var f3 = gui.addFolder('Image');
+        var f4 = gui.addFolder
+
+        var canvas_color = f1.add(canvas, 'color');
+        canvas_color.onChange(function (value) {
+            color = value;
+        }); 
+        var canvas_backgroundColor = f1.add(canvas, 'backgroundColor');
+        canvas_backgroundColor.onChange(function (value) {
+            backgroundcolor = value;
+        });
+        var canvas_tool = f2.add(canvas, 'tool', ['pen', 'crayon', 'marker']);
+        canvas_tool.onChange(function (value) {
+            tool = draw(value);
+        });
+        var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'triangle']);
+        canvas_shape.onChange(function (value) {
+            shape = value;
+        });
+        var canvas_strokesize = f2.add(canvas, 'strokesize', 1, 5);
+        canvas_strokesize.onChange(function (value) {
+            strokesize = value;
+        });
+        var canvas_eraser = f2.add(canvas, 'eraser', false);
+        canvas_eraser.onChange(function (value) {
+            eraser = value;
+        })
+        
+
+    };
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
 currentFunction = new DrawingCircle(contextReal,contextDraft);

@@ -28,6 +28,7 @@
             this.tool = "pencil";
             this.shape = "square";
             this.strokesize = 1;
+            this.eraser = false;
         };
 window.onload = function() {
         var json = `{
@@ -67,7 +68,9 @@ window.onload = function() {
         gui.remember(canvas);
 
         var f1 = gui.addFolder('Color');
-        var f2 = gui.addFolder('Drawing Tools');
+        var f2 = gui.addFolder('Tools');
+        var f3 = gui.addFolder('Image');
+        var f4 = gui.addFolder
 
         var canvas_color = f1.add(canvas, 'color');
         canvas_color.onChange(function (value) {
