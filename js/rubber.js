@@ -6,7 +6,7 @@ class Rubber extends PaintFunction{
 
     onMouseDown(coord,event){
         console.log("here");
-        this.context.strokeStyle = "#ffffff";
+        this.context.strokeStyle = rub_color;
         this.context.lineJoin = "round";
         this.context.lineWidth = 5;
         this.context.beginPath();

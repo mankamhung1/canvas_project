@@ -12,6 +12,7 @@ class DrawingLine extends PaintFunction{
         this.context.beginPath();
         this.context.moveTo(coord[0],coord[1]);
         this.draw(coord[0],coord[1]);
+        this.context.closePath();
     }
     onDragging(coord,event){
         this.draw(coord[0],coord[1]);

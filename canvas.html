@@ -24,11 +24,16 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawText()">Drawing Text</span>
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
+<<<<<<< HEAD
           <span class="btn btn-primary fa fa-square" id="color-red" onclick="changeColor('#ff0000')">red</span>
           <span class="btn btn-primary fa fa-square" id="color-green" onclick="changeColor('#00ff00')">green</span>
           <span class="btn btn-primary fa fa-square" id="color-blue" onclick="changeColor('#0000ff')">blue</span>
       </div>
 
+=======
+          </div>
+      
+>>>>>>> a2a4e9d8f8b8ded038bd661f7a6e810d2f414310
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
           <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
@@ -261,10 +266,20 @@ var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
     });
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
+        $('#canvas-real').css('background-color',value);
+        changeRubColor(value);
         console.log(value);
+<<<<<<< HEAD
     });
+=======
+        
+    }); 
+>>>>>>> a2a4e9d8f8b8ded038bd661f7a6e810d2f414310
     canvas_canvasBgcolor.onFinishChange(function (value) {
+        $('#canvas-real').css('background-color',value);
+        changeRubColor(value);
         console.log(value);
+        
     });
 
 // Folder 5 = Color
@@ -305,4 +320,8 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   function changeboarderColor(newColor){
     boarder_color=newColor;
   }
+  function changeRubColor(newColor){
+      rub_color=newColor;
+  }
+  
 </script>
