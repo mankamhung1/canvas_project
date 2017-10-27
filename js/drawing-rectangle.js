@@ -22,6 +22,11 @@ class DrawingRectangle extends PaintFunction{
         }
         onMouseMove(){}
         onMouseUp(coord){
+<<<<<<< HEAD
+=======
+            this.contextReal.fillStyle = fill_color;
+            this.contextReal.strokeStyle = boarder_color;
+>>>>>>> bc6ef6504aa5c31f6898235dc0a85076a2db7342
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextReal.strokeRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
             this.contextReal.fillRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
