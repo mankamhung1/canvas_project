@@ -12,7 +12,8 @@ class DrawingText extends PaintFunction{
         }
 
         onMouseDown(coord,event){
-            this.contextReal.fillStyle = "#f44";
+            this.contextReal.fillStyle = line_color;
+            this.contextDraft.fillStyle = line_color;
             this.origX = coord[0];
             this.origY = coord[1];
 
@@ -22,8 +23,8 @@ class DrawingText extends PaintFunction{
                  position: 'absolute',
                  top: this.origY,
                  left: this.origX,
-                 color: 'red',
-                 fontSize: '30px',
+                 color: line_color,
+                 fontSize: font_size,
                  "z-index": '1'
                 });
                 pastX = newTextBox.attr("left");
@@ -38,7 +39,8 @@ class DrawingText extends PaintFunction{
               $('#textBox').remove();
               textDone = false;
             }
-
+            this.contextDraft.font = textFont+fontType;
+            this.contextDraft.fillText(text,coord[0],coord[1]);
       }
         onDragging(coord,event){
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);

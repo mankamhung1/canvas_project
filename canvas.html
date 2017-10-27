@@ -204,9 +204,10 @@ var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5);
     canvas_brushSize.onChange(function (value) {
         brushSize = value;
     });
-var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 5);
+var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50);
     canvas_fontSize.onChange(function (value) {
         fontSize = value;
+        changeFontSize(fontSize);
     });
 var canvas_line = f2.add(canvas, 'line', false);
     canvas_line.onChange(function (value) {
@@ -309,6 +310,9 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   }
   function changeRubColor(newColor){
       rub_color=newColor;
+  }
+  function changeFontSize(newColor){
+      font_size=newColor;
   }
 
 </script>
