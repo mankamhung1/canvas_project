@@ -2,8 +2,11 @@
     let contextReal = canvasReal.getContext('2d');
     let canvasDraft = document.getElementById('canvas-draft');
     let contextDraft = canvasDraft.getContext('2d');
+    let image_target = '.buttons';
+    let image = '.resize-image';
     let currentFunction;
     let dragging = false;
+    let color = '#33ccff';
 
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
@@ -39,7 +42,9 @@
     });
 
     class PaintFunction{
-        constructor(){}
+        constructor(){
+            this.color = color;
+        }
         onMouseDown(){}
         onDragging(){}
         onMouseMove(){}
