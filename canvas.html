@@ -54,11 +54,19 @@ var text = function () {
     this.shape = "square";
     this.textBox = false;
     this.fontSize = 2;
+    this.line = false;
     this.lineWidth = 1;
     this.lineType = "solid";
     this.brushSize = 1;
+    this.imageUpload = false;
+    this.imageRotate = false;
+    this.imageFlip = false;
+    this.imageResize = false;
+    this.imageDownload = false;
     this.eraser = false;
     this.eraserSize = 1;
+    this.canvasResize = false;
+    this.canvasBgcolor = "#F6E5E5";
     this.exportCanvas = false;
 };
 window.onload = function() {
@@ -78,11 +86,11 @@ var json = `{
                 "line" : false,
                 "lineWidth" : 1,
                 "lineType" : "solid",
-                "imageUpload" : "false",
-                "imageRotate" : "false",
-                "imageFlip" : "false",
-                "imageResize" : "false",
-                "imageDownload" : "false",
+                "imageUpload" : false,
+                "imageRotate" : false,
+                "imageFlip" : false,
+                "imageResize" : false,
+                "imageDownload" : false,
                 "brushSize" : 1,
                 "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
@@ -104,11 +112,11 @@ var json = `{
                 "line" : false,
                 "lineWidth" : 1,
                 "lineType" : "solid",
-                "imageUpload" : "false",
-                "imageRotate" : "false",
-                "imageFlip" : "false",
-                "imageResize" : "false",
-                "imageDownload" : "false",
+                "imageUpload" : false,
+                "imageRotate" : false,
+                "imageFlip" : false,
+                "imageResize" : false,
+                "imageDownload" : false,
                 "brushSize" : 2,
                 "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
@@ -146,9 +154,11 @@ f5.open();
 var canvas_color = f1.addColor(canvas, 'color').listen();
 canvas_color.onChange(function (value) {
   console.log(value);
+  changelineColor(value);
 }); 
 canvas_color.onFinishChange(function (value) {
   console.log(value);
+  changeColor(value);
 });
 
 var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
@@ -246,9 +256,29 @@ canvas_canvasBgcolor.onFinishChange(function (value) {
   console.log(value);
 });
 var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
-canvas_export.onChange(function (value) {
+canvas_exportCanvas.onChange(function (value) {
 exportCanvas = value;
 });
 };
-
+//currentFunction = new DrawingLine(contextReal,contextDraft);
+currentFunction = new DrawingCircle(contextReal,contextDraft);
+  function drawLine(){
+      currentFunction = new DrawingLine(contextReal,contextDraft);
+  }
+  function drawRect(){
+      currentFunction = new DrawingRectangle(contextReal,contextDraft);
+  }
+  function drawCircle(){
+      currentFunction = new DrawingCircle(contextReal,contextDraft);
+  }
+  function rubber(){
+      currentFunction = new Rubber(contextReal,contextDraft);
+  }
+  function resize(){
+      currentFunction = new  Resize (contextReal,contextDraft);
+      currentFunction.printImg();
+  }
+  function changelineColor(newColor){
+    line_color=newColor;
+  }
 </script>

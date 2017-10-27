@@ -6,7 +6,8 @@
     let image = '.resize-image';
     let currentFunction;
     let dragging = false;
-    let color = '#33ccff';
+    let line_color = '#ffae23';
+    let color='#ff11ff';
 
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
