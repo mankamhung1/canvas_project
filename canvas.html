@@ -1,5 +1,10 @@
 <html>
     <head>
+        <meta charset="utf-8">
+        <title>Jason, Man, and Michelle's Canvas</title>
+        <meta name="description" content="html css javascript canvas online design">
+        <meta name="keywords" content="html, css, javascript canvas, design,">
+        <meta name="author" content="Jason,Man,Michelle">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -7,6 +12,7 @@
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link type="text/css" href="css/dat.gui.css" rel="stylesheet" />
         <link href="css/style.css" rel="stylesheet" type='text/css'>
     </head>
 
@@ -16,24 +22,263 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
           <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
+<<<<<<< HEAD
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawText()">Drawing Text</span>
+=======
+          <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
+          <span class="btn btn-primary fa fa-square" id="color-red" onclick="changeColor('#ff0000')">red</span>
+          <span class="btn btn-primary fa fa-square" id="color-green" onclick="changeColor('#00ff00')">green</span>
+          <span class="btn btn-primary fa fa-square" id="color-blue" onclick="changeColor('#0000ff')">blue</span>
+>>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
       </div>
-
+      
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
           <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
       </div>
     </body>
-
+<script type="text/javascript" src="js/dat.gui.js"></script>
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type='text/javascript' src="js/canvas-common.js"></script>
 <script type='text/javascript' src="js/drawing-line.js"></script>
 <script type='text/javascript' src="js/drawing-rectangle.js"></script>
 <script type='text/javascript' src="js/circle.js"></script>
 <script type='text/javascript' src="js/rubber.js"></script>
+<<<<<<< HEAD
 <script type='text/javascript' src="js/drawing-text.js"></script>
+=======
+<script type='text/javascript' src="js/resize.js"></script>
+>>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
 
 <script type='text/javascript'>
+
+
+var text = function () {
+    this.color = "#ffae23";
+    this.borderColor = "#F6E5E5";
+    this.fillColor = "#e8ffea";
+    this.opacity = 0;
+    this.brushTool = "pencil";
+    this.shape = "square";
+    this.textBox = false;
+    this.fontSize = 2;
+    this.line = false;
+    this.lineWidth = 1;
+    this.lineType = "solid";
+    this.brushSize = 1;
+    this.imageUpload = false;
+    this.imageRotate = false;
+    this.imageFlip = false;
+    this.imageResize = false;
+    this.imageDownload = false;
+    this.eraser = false;
+    this.eraserSize = 1;
+    this.canvasResize = false;
+    this.canvasBgcolor = "#F6E5E5";
+    this.exportCanvas = false;
+};
+window.onload = function() {
+var json = `{
+    "preset": "new",
+    "remembered": {
+        "Default": {
+            "0": {
+                "color": "#ffae23",
+                "borderColor" : "#F6E5E5",
+                "fillColor" : "#e8ffea",
+                "opacity" : 0,
+                "brushTool" : "pencil",
+                "shape" : "square",
+                "textBox" : false,
+                "fontSize" : 2,
+                "line" : false,
+                "lineWidth" : 1,
+                "lineType" : "solid",
+                "imageUpload" : false,
+                "imageRotate" : false,
+                "imageFlip" : false,
+                "imageResize" : false,
+                "imageDownload" : false,
+                "brushSize" : 1,
+                "canvasResize" : false,
+                "canvasBgcolor" : "#F6E5E5",
+                "eraser" : false,
+                "eraserSize" : 1,
+                "exportCanvas" : false
+            }
+            },
+        "new": {
+            "0": {
+                "color": "#ffae23",
+                "borderColor" : "##F6E5E5",
+                "fillColor" : "#e8ffea",
+                "opacity" : 0,
+                "brushTool" : "marker",
+                "shape" : "circle",
+                "textBox" : false,
+                "fontSize" : 2,
+                "line" : false,
+                "lineWidth" : 1,
+                "lineType" : "solid",
+                "imageUpload" : false,
+                "imageRotate" : false,
+                "imageFlip" : false,
+                "imageResize" : false,
+                "imageDownload" : false,
+                "brushSize" : 2,
+                "canvasResize" : false,
+                "canvasBgcolor" : "#F6E5E5",
+                "eraser" : false,
+                "eraserSize" : 1,
+                "exportCanvas" : false
+            }
+          }
+        
+    },
+    "closed": false,
+    "folders": {}
+}`;
+
+// create dat-gui controls
+var canvas = new text();
+// create GUI
+var gui = new dat.GUI({ load: JSON.parse(json)});
+
+gui.remember(canvas);
+
+var f1 = gui.addFolder('Color');
+var f2 = gui.addFolder('Tools');
+var f3 = gui.addFolder('Image');
+var f4 = gui.addFolder('Canvas');
+var f5 = gui.addFolder('Export');
+
+f1.open();
+f2.open();
+f3.open();
+f4.open();
+f5.open();
+
+// Folder 1 = Color 
+var canvas_color = f1.addColor(canvas, 'color').listen();
+    canvas_color.onChange(function (value) {
+    console.log(value);
+    changelineColor(value);
+    }); 
+    canvas_color.onFinishChange(function (value) {
+    console.log(value);
+    changelineColor(value);
+    });
+
+var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
+    canvas_fillColor.onChange(function (value) {
+    console.log(value);
+    changefillColor(value);
+    }); 
+    canvas_fillColor.onFinishChange(function (value) {
+    console.log(value);
+    changefillColor(value);
+    });
+
+var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
+    canvas_borderColor.onChange(function (value) {
+    console.log(value);
+    changeboarderColor(value);
+    }); 
+    canvas_borderColor.onFinishChange(function (value) {
+    console.log(value);
+    changeboarderColor(value);
+    });
+var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
+    canvas_opacity.onChange(function (value) {
+        opacity = value;
+    });
+    canvas_opacity.onFinishChange(function (value) {
+        console.log(value);
+    });
+
+// Folder 2 = Tools     
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
+    canvas_brushTool.onChange(function (value) {
+        tool = draw(value);
+    });
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'eclipse']);
+    canvas_shape.onChange(function (value) {
+        shape = value;
+    }); 
+var canvas_textBox = f2.add(canvas, 'textBox', false);
+    canvas_textBox.onChange(function (value) {
+        textBox = value;
+    });
+var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5);
+    canvas_brushSize.onChange(function (value) {
+        brushSize = value;
+    });
+var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 5);
+    canvas_fontSize.onChange(function (value) {
+        fontSize = value;
+    });
+var canvas_line = f2.add(canvas, 'line', false);
+    canvas_line.onChange(function (value) {
+        line = value;
+    });
+var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5);
+    canvas_lineWidth.onChange(function (value) {
+        lineWidth = value;
+    });
+var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
+    canvas_lineType.onChange(function (value) {
+        lineType = value;
+    }); 
+var canvas_eraser = f2.add(canvas, 'eraser', false);
+    canvas_eraser.onChange(function (value) {
+        eraser = value;
+    });
+var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
+    canvas_eraserSize.onChange(function (value) {
+        eraserSize = value;
+    });
+
+// Folder 3 = Image
+var canvas_imageUpload = f3.add(canvas, 'imageUpload', false);
+    canvas_imageUpload.onChange(function (value) {
+        imageUpload = value;
+    });
+var canvas_imageRotate = f3.add(canvas, 'imageRotate', false);
+    canvas_imageRotate.onChange(function (value) {
+        imageRotate = value;
+    });
+var canvas_imageFlip = f3.add(canvas, 'imageFlip', false);
+    canvas_imageFlip.onChange(function (value) {
+        imageFlip = value;
+    });
+var canvas_imageResize = f3.add(canvas, 'imageResize', false);
+    canvas_imageResize.onChange(function (value) {
+        imageResize = value;
+    });
+var canvas_imageDownload = f3.add(canvas, 'imageDownload', false);
+    canvas_imageDownload.onChange(function (value) {
+        imageDownload = value;
+    });
+
+// Folder 4 = Canvas     
+var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
+    canvas_canvasResize.onChange(function (value) {
+        canvasResize = value;
+    });
+var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
+    canvas_canvasBgcolor.onChange(function (value) {
+        console.log(value);
+    }); 
+    canvas_canvasBgcolor.onFinishChange(function (value) {
+        console.log(value);
+    });
+
+// Folder 5 = Color     
+var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
+    canvas_exportCanvas.onChange(function (value) {
+        exportCanvas = value;
+    });
+};
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
 currentFunction = new DrawingCircle(contextReal,contextDraft);
@@ -49,8 +294,24 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
   }
+<<<<<<< HEAD
   function drawText(){
       currentFunction = new DrawingText(contextReal,contextDraft);
   }
 
+=======
+  function resize(){
+      currentFunction = new  Resize (contextReal,contextDraft);
+      currentFunction.printImg();
+  }
+  function changelineColor(newColor){
+    line_color=newColor;
+  }
+  function changefillColor(newColor){
+    fill_color=newColor;
+  }
+  function changeboarderColor(newColor){
+    boarder_color=newColor;
+  }
+>>>>>>> 0cda69eda7d535bd427d12649c2a33ae130ec096
 </script>
