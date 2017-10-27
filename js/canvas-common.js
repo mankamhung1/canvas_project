@@ -7,6 +7,8 @@
     let currentFunction;
     let dragging = false;
     let line_color = '#ffae23';
+    let fill_color ='#e8ffea';
+    let boarder_color = "#F6E5E5";
     let color='#ff11ff';
 
     $('#canvas-draft').mousedown(function(e){

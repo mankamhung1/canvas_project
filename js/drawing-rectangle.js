@@ -6,20 +6,29 @@ class DrawingRectangle extends PaintFunction{
         }
 
         onMouseDown(coord,event){
-            this.contextReal.fillStyle = color;
+            this.contextReal.fillStyle = fill_color;
+            this.contextDraft.fillStyle = fill_color;
+            this.contextDraft.strokeStyle = boarder_color;
+            this.contextReal.strokeStyle = boarder_color;
             this.origX = coord[0];
             this.origY = coord[1];
         }
         onDragging(coord,event){
-            this.contextDraft.fillStyle = color;
+            
+            
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
-            this.contextDraft.fillRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY)
+            this.contextDraft.strokeRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
+            this.contextDraft.fillRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
+            this.contextDraft.stroke();
         }
 
         onMouseMove(){}
         onMouseUp(coord){
+            
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
-            this.contextReal.fillRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY)
+            this.contextReal.strokeRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
+            this.contextReal.fillRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
+            this.contextReal.stroke();
         }
         onMouseLeave(){}
         onMouseEnter(){}
