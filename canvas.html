@@ -152,6 +152,7 @@ f5.open();
 
 // Folder 1 = Color 
 var canvas_color = f1.addColor(canvas, 'color').listen();
+<<<<<<< HEAD
     canvas_color.onChange(function (value) {
         console.log(value);
         changelineColor(value);
@@ -176,6 +177,36 @@ var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
     canvas_borderColor.onFinishChange(function (value) {
         console.log(value);
     });
+=======
+canvas_color.onChange(function (value) {
+  console.log(value);
+  changelineColor(value);
+}); 
+canvas_color.onFinishChange(function (value) {
+  console.log(value);
+  changelineColor(value);
+});
+
+var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
+canvas_fillColor.onChange(function (value) {
+  console.log(value);
+  changefillColor(value);
+}); 
+canvas_fillColor.onFinishChange(function (value) {
+  console.log(value);
+  changefillColor(value);
+});
+
+var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
+canvas_borderColor.onChange(function (value) {
+  console.log(value);
+  changeboarderColor(value);
+}); 
+canvas_borderColor.onFinishChange(function (value) {
+  console.log(value);
+  changeboarderColor(value);
+});
+>>>>>>> 8b79d1f659fc64e4bb616c3a0edda69d30792014
 var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
     canvas_opacity.onChange(function (value) {
         opacity = value;
@@ -288,5 +319,11 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   }
   function changelineColor(newColor){
     line_color=newColor;
+  }
+  function changefillColor(newColor){
+    fill_color=newColor;
+  }
+  function changeboarderColor(newColor){
+    boarder_color=newColor;
   }
 </script>
