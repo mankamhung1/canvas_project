@@ -25,8 +25,8 @@ class DrawingCurve extends PaintFunction{
             this.contextReal.quadraticCurveTo(coord[0],coord[1],this.origX2,this.origY2);
             this.contextReal.stroke();
             this.contextDraft.closePath();
-            this.contextReal.line_width=5;
-            this.contextDraft.line_width=5;
+            this.contextReal.lineWidth=5;
+            this.contextDraft.lineWidth=5;
             this.contextReal.closePath();
             state = 'finishcurve';
         }
