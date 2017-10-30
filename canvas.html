@@ -38,6 +38,8 @@
 <script type='text/javascript' src="js/resize.js"></script>
 <script type='text/javascript' src="js/bgcolor.js"></script>
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
+<script type='text/javascript' src="js/drawing-sketch1.js"></script>
+<script type='text/javascript' src="js/drawing-StLine.js"></script>
 
 <script type='text/javascript'>
 
@@ -195,7 +197,7 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawSketch1();
         }
     });
-var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','Straight Line']);
     canvas_shape.onChange(function (value) {
         if(value == 'rectangle'){
             drawRect();
@@ -203,6 +205,8 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
             drawCircle();
         }else if(value == 'ellipse'){
             drawEllipse();
+        }else if(value =='Straight Line'){
+            drawStLine();
         }
         
     });
@@ -302,6 +306,9 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   function drawEllipse(){
       currentFunction = new DrawingEllipse(contextReal,contextDraft);
   }
+  function drawStLine(){
+      currentFunction = new  DrawingStLine(contextReal,contextDraft);
+  }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
   }
@@ -345,4 +352,4 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
 
 </script>
-<script type='text/javascript' src="js/drawing-sketch1.js"></script>
+
