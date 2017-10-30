@@ -9,6 +9,7 @@
     let line_color = '#ffae23';
     let fill_color ='#e8ffea';
     let boarder_color = "#F6E5E5";
+    let bgcolor ='ff0000';
     let color='#ff11ff';
     let font_size = "14px";
     let rub_color = "white";
