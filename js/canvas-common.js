@@ -15,6 +15,9 @@
     let rubwidth;
     let font_size = "14px";
     let rub_color = "white";
+    let state = "beforeClick";
+    let origX2;
+    let origY2;
 
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
@@ -23,12 +26,12 @@
         dragging = true;
     });
     $('#canvas-draft').mousemove(function(e){
+        let mouseX = e.pageX - this.offsetLeft;
+        let mouseY = e.pageY - this.offsetTop;
         if(dragging){
-            let mouseX = e.pageX - this.offsetLeft;
-            let mouseY = e.pageY - this.offsetTop;
             currentFunction.onDragging([mouseX,mouseY],e);
         }
-        currentFunction.onMouseMove(e,this);
+        currentFunction.onMouseMove([mouseX,mouseY],e);
     });
     $('#canvas-draft').mouseup(function(e){
         dragging = false;
