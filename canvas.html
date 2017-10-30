@@ -3,9 +3,10 @@
         <meta charset="utf-8">
         <title>Jason, Man, and Michelle's Canvas</title>
         <meta name="description" content="html css javascript canvas online design">
-        <meta name="keywords" content="html, css, javascript canvas, design,">
+        <meta name="keywords" content="html, css, javascript canvas, design">
         <meta name="author" content="Jason,Man,Michelle">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">      
+        <meta name="msapplication-tap-highlight" content="no" />  
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
@@ -28,6 +29,7 @@
     </body>
 <script type="text/javascript" src="js/dat.gui.js"></script>
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/hammer.js"></script>
 <script type='text/javascript' src="js/canvas-common.js"></script>
 <script type='text/javascript' src="js/drawing-line.js"></script>
 <script type='text/javascript' src="js/drawing-rectangle.js"></script>
@@ -145,6 +147,11 @@ var f3 = gui.addFolder('Image');
 var f4 = gui.addFolder('Canvas');
 var f5 = gui.addFolder('Export');
 
+f1.open();
+f2.open();
+f3.open();
+f4.open();
+f5.open();
 
 // Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
@@ -211,7 +218,6 @@ var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
         if(value==true){
         drawText();
         }
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = false; 
         canvas.imageResize = false; 
@@ -234,7 +240,6 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50);
 var canvas_line = f2.add(canvas, 'line', false).listen();
     canvas_line.onChange(function (value) {
         drawLine();
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = false; 
         canvas.imageResize = false; 
@@ -257,7 +262,6 @@ var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
     canvas_eraser.onChange(function (value) {
         changeRubColor('#ffffff');
         rubber();
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = false; 
         canvas.imageResize = false; 
@@ -277,7 +281,6 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
 var canvas_imageUpload = f3.add(canvas, 'imageUpload', false).listen();
     canvas_imageUpload.onChange(function (value) {
         imageUpload = value;
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = false; 
         canvas.imageResize = false; 
@@ -291,21 +294,19 @@ var canvas_imageUpload = f3.add(canvas, 'imageUpload', false).listen();
 var canvas_imageRotate = f3.add(canvas, 'imageRotate', false).listen();
     canvas_imageRotate.onChange(function (value) {
         imageRotate = value;
-        exportCanvas = false; 
-        canvasResize = false;
-        imageDownload = false; 
-        imageResize = false; 
-        imageFlip = false; 
-        imageRotate = true; 
-        imageUpload = false; 
-        eraser = false; 
-        line = false;
-        textBox = false;
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = true; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
 var canvas_imageFlip = f3.add(canvas, 'imageFlip', false).listen();
     canvas_imageFlip.onChange(function (value) {
         imageFlip = value;
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = false; 
         canvas.imageResize = false; 
@@ -319,7 +320,6 @@ var canvas_imageFlip = f3.add(canvas, 'imageFlip', false).listen();
 var canvas_imageResize = f3.add(canvas, 'imageResize', false).listen();
     canvas_imageResize.onChange(function (value) {
         imageResize = value;
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = false; 
         canvas.imageResize = true; 
@@ -333,7 +333,6 @@ var canvas_imageResize = f3.add(canvas, 'imageResize', false).listen();
 var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
     canvas_imageDownload.onChange(function (value) {
         imageDownload = value;
-        canvas.exportCanvas = false; 
         canvas.canvasResize = false;
         canvas.imageDownload = true; 
         canvas.imageResize = false; 
@@ -349,7 +348,6 @@ var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
 var canvas_canvasResize = f4.add(canvas, 'canvasResize', false).listen();
     canvas_canvasResize.onChange(function (value) {
         canvasResize = value;
-        canvas.exportCanvas = false; 
         canvas.canvasResize = true;
         canvas.imageDownload = false; 
         canvas.imageResize = false; 
@@ -375,16 +373,6 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
 var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false).listen();
     canvas_exportCanvas.onChange(function (value) {
         exportCanvas = value;
-        canvas.exportCanvas = true; 
-        canvas.canvasResize = false;
-        canvas.imageDownload = false; 
-        canvas.imageResize = false; 
-        canvas.imageFlip = false; 
-        canvas.imageRotate = false; 
-        canvas.imageUpload = false; 
-        canvas.eraser = false; 
-        canvas.line = false;
-        canvas.textBox = false;
     });
 };
 
