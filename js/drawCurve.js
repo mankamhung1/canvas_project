@@ -3,11 +3,11 @@ class DrawingCurve extends PaintFunction{
         super();
         this.contextDraft = contextDraft;
         this.contextReal = contextReal;
-        
+        this.state = 'beforeClick';
     }
 
     onMouseDown(coord,event){
-        if(state==='beforeClick'){
+        if(this.state==='beforeClick'){
         this.contextDraft.strokeStyle =line_color;
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
@@ -17,8 +17,8 @@ class DrawingCurve extends PaintFunction{
         this.origX = coord[0];
         this.origY = coord[1];
         console.log(this.origX,this.origY);
-        state = 'afterFirstClick';
-        }else if(state === 'afterFirstRelease'){
+        this.state = 'afterFirstClick';
+        }else if(this.state === 'afterFirstRelease'){
             console.log('step5');
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.origX,this.origY);
@@ -28,11 +28,11 @@ class DrawingCurve extends PaintFunction{
             this.contextReal.lineWidth=5;
             this.contextDraft.lineWidth=5;
             this.contextReal.closePath();
-            state = 'finishcurve';
+            this.state = 'finishcurve';
         }
     }
     onDragging(coord,event){
-        if(state === 'afterFirstClick'){
+        if(this.state === 'afterFirstClick'){
             console.log('step2');
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextDraft.beginPath();
@@ -44,7 +44,7 @@ class DrawingCurve extends PaintFunction{
     }
 
     onMouseMove(coord,event){
-         if(state === 'afterFirstRelease'){
+         if(this.state === 'afterFirstRelease'){
             console.log('step4');
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextDraft.beginPath();
@@ -56,7 +56,7 @@ class DrawingCurve extends PaintFunction{
          }
     }
     onMouseUp(coord,event){
-        if(state ==='afterFirstClick'){
+        if(this.state ==='afterFirstClick'){
             console.log('step3');
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX,this.origY);
@@ -66,10 +66,10 @@ class DrawingCurve extends PaintFunction{
             this.origX2=coord[0];
             this.origY2=coord[1];
             console.log(this.origX2,this.origY2);
-            state = 'afterFirstRelease';
-        }else if(state ==='finishcurve'){
+            this.state = 'afterFirstRelease';
+        }else if(this.state ==='finishcurve'){
             console.log('finish curve');
-            state ='beforeClick';
+            this.state ='beforeClick';
         }
     }
     onMouseLeave(){}
