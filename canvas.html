@@ -18,15 +18,8 @@
 
     <body>
       <div class="buttons">
-          <span class="btn btn-primary fa fa-square" id="rubber" onclick="rubber()">Rubber</span>
-          <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
-          <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
-          <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-          <span class="btn btn-info fa fa-paint-brush" id="drawing-text" onclick="drawText()">Drawing Text</span>
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
-          <span class="btn btn-primary fa fa-square" id="brush1" onclick="drawBrush1()">Brush 1</span>
-          <span class="btn btn-primary fa fa-square" id="sketch1" onclick="drawSketch1()">sketch 1</span>
-          </div>
+      </div>
 
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
@@ -192,17 +185,32 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
     canvas_brushTool.onChange(function (value) {
-        tool = draw(value);
+        if(value == 'Brush 1'){
+            drawBrush1();
+        }else if (value == 'Sketch 1'){
+            drawSketch1();
+        }
     });
-var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'eclipse']);
+var canvas_shape = f2.add(canvas, 'shape', ['line','rectangle', 'circle', 'eclipse']);
     canvas_shape.onChange(function (value) {
-        shape = value;
+        if(value == 'rectangle'){
+            drawRect();
+        }else if(value =='circle'){
+            drawCircle();
+        }
+        else if (value =='line'){
+            drawLine();
+        }
+        console.log(value);
     });
 var canvas_textBox = f2.add(canvas, 'textBox', false);
     canvas_textBox.onChange(function (value) {
-        textBox = value;
+        if(value==true){
+        drawText();
+        }
+        console.log(value);
     });
 var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5);
     canvas_brushSize.onChange(function (value) {
