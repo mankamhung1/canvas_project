@@ -44,6 +44,7 @@
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
+<script type='text/javascript' src="js/drawCurve.js"></script>
 
 <script type='text/javascript'>
 
@@ -206,7 +207,11 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
         }
         
     });
+<<<<<<< HEAD
 var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
+=======
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','straight Line','curve']);
+>>>>>>> 2c6f0991c6d8416f608e6e48a8e7be541aab4536
     canvas_shape.onChange(function (value) {
         if(value == 'rectangle'){
             drawRect();
@@ -214,6 +219,13 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
             drawCircle();
         }else if(value == 'ellipse'){
             drawEllipse();
+<<<<<<< HEAD
+=======
+        }else if(value =='straight Line'){
+            drawStLine();
+        }else if(value =='curve'){
+            drawCurve();
+>>>>>>> 2c6f0991c6d8416f608e6e48a8e7be541aab4536
         }
 
     });
@@ -395,6 +407,9 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
   function drawStLine(){
       currentFunction = new  DrawingStLine(contextReal,contextDraft);
+  }
+  function drawCurve(){
+      currentFunction = new DrawingCurve(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
