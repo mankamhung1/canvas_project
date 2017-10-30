@@ -55,11 +55,11 @@ var text = function () {
     this.borderColor = "#F6E5E5";
     this.fillColor = "#e8ffea";
     this.opacity = 0;
-    this.brushTool = "pencil";
+    this.brushTool = "pen";
     this.shape = "square";
     this.textBox = false;
     this.fontSize = 2;
-    this.line = false;
+    this.straightline = false;
     this.lineWidth = 1;
     this.lineType = "solid";
     this.brushSize = 1;
@@ -85,11 +85,11 @@ var json = `{
                 "borderColor" : "#F6E5E5",
                 "fillColor" : "#e8ffea",
                 "opacity" : 0,
-                "brushTool" : "pencil",
+                "brushTool" : "pen",
                 "shape" : "square",
                 "textBox" : false,
                 "fontSize" : 2,
-                "line" : true,
+                "straightline" : false,
                 "lineWidth" : 1,
                 "lineType" : "solid",
                 "imageUpload" : false,
@@ -111,11 +111,11 @@ var json = `{
                 "borderColor" : "##F6E5E5",
                 "fillColor" : "#e8ffea",
                 "opacity" : 0,
-                "brushTool" : "marker",
+                "brushTool" : "pen",
                 "shape" : "circle",
                 "textBox" : false,
                 "fontSize" : 2,
-                "line" : true,
+                "straightline" : false,
                 "lineWidth" : 1,
                 "lineType" : "solid",
                 "imageUpload" : false,
@@ -198,13 +198,20 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
 // Folder 2 = Tools
 var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']);
     canvas_brushTool.onChange(function (value) {
-        if(value == 'Brush 1'){
+        if (value === 'pen') {
+            drawWithPen();
+        } else if(value == 'Brush 1'){
             drawBrush1();
         }else if (value == 'Sketch 1'){
             drawSketch1();
         }
+        
     });
+<<<<<<< HEAD
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
+=======
 var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','straight Line','curve']);
+>>>>>>> 2c6f0991c6d8416f608e6e48a8e7be541aab4536
     canvas_shape.onChange(function (value) {
         if(value == 'rectangle'){
             drawRect();
@@ -212,10 +219,13 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','st
             drawCircle();
         }else if(value == 'ellipse'){
             drawEllipse();
+<<<<<<< HEAD
+=======
         }else if(value =='straight Line'){
             drawStLine();
         }else if(value =='curve'){
             drawCurve();
+>>>>>>> 2c6f0991c6d8416f608e6e48a8e7be541aab4536
         }
 
     });
@@ -243,9 +253,9 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50);
         fontSize = value;
         changeFontSize(fontSize);
     });
-var canvas_line = f2.add(canvas, 'line', false).listen();
+var canvas_line = f2.add(canvas, 'straightline', false).listen();
     canvas_line.onChange(function (value) {
-        drawLine();
+        drawStLine();
         canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
@@ -383,7 +393,7 @@ var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false).listen();
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
 currentFunction = new DrawingBrush1(contextReal,contextDraft);
-  function drawLine(){
+  function drawWithPen(){
       currentFunction = new DrawingLine(contextReal,contextDraft);
   }
   function drawRect(){
