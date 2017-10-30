@@ -55,6 +55,7 @@ class DrawingSketch1 extends PaintFunction{
     onMouseUp(){
       isDrawing = false;
       points.length = 0;
+      this.context.globalAlpha = 1;
     }
     onMouseLeave(){}
     onMouseEnter(){}
