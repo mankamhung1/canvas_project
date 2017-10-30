@@ -267,7 +267,6 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     });
 var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
     canvas_eraser.onChange(function (value) {
-        changeRubColor('#ffffff');
         rubber();
         canvas.canvasResize = false;
         canvas.imageDownload = false;
