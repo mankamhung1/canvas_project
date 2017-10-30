@@ -22,8 +22,8 @@
           </div>
 
       <div id="canvas-container">
-          <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
-          <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
+          <canvas id="canvas-real" class="canvas" width='920px' height='630px'></canvas>
+          <canvas id="canvas-draft" class="canvas" width='920px' height='630px'></canvas>
       </div>
     </body>
 <script type="text/javascript" src="js/dat.gui.js"></script>
@@ -52,7 +52,7 @@ var text = function () {
     this.shape = "square";
     this.textBox = false;
     this.fontSize = 2;
-    this.line = false;
+    this.line = true;
     this.lineWidth = 1;
     this.lineType = "solid";
     this.brushSize = 1;
@@ -81,7 +81,7 @@ var json = `{
                 "shape" : "square",
                 "textBox" : false,
                 "fontSize" : 2,
-                "line" : false,
+                "line" : true,
                 "lineWidth" : 1,
                 "lineType" : "solid",
                 "imageUpload" : false,
@@ -97,7 +97,7 @@ var json = `{
                 "exportCanvas" : false
             }
             },
-        "new": {
+        "My Canvas": {
             "0": {
                 "color": "#ffae23",
                 "borderColor" : "##F6E5E5",
@@ -107,7 +107,7 @@ var json = `{
                 "shape" : "circle",
                 "textBox" : false,
                 "fontSize" : 2,
-                "line" : false,
+                "line" : true,
                 "lineWidth" : 1,
                 "lineType" : "solid",
                 "imageUpload" : false,
@@ -129,6 +129,7 @@ var json = `{
     "folders": {}
 }`;
 
+
 // create dat-gui controls
 var canvas = new text();
 // create GUI
@@ -142,11 +143,6 @@ var f3 = gui.addFolder('Image');
 var f4 = gui.addFolder('Canvas');
 var f5 = gui.addFolder('Export');
 
-f1.open();
-f2.open();
-f3.open();
-f4.open();
-f5.open();
 
 // Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
@@ -206,11 +202,21 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
         }
         
     });
-var canvas_textBox = f2.add(canvas, 'textBox', false);
+var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
     canvas_textBox.onChange(function (value) {
         if(value==true){
         drawText();
         }
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = true;
     });
 var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5);
     canvas_brushSize.onChange(function (value) {
@@ -221,9 +227,19 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50);
         fontSize = value;
         changeFontSize(fontSize);
     });
-var canvas_line = f2.add(canvas, 'line', false);
+var canvas_line = f2.add(canvas, 'line', false).listen();
     canvas_line.onChange(function (value) {
         drawLine();
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = true;
+        canvas.textBox = false;
     });
 var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5);
     canvas_lineWidth.onChange(function (value) {
@@ -233,10 +249,20 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     canvas_lineType.onChange(function (value) {
         lineType = value;
     });
-var canvas_eraser = f2.add(canvas, 'eraser', false);
+var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
     canvas_eraser.onChange(function (value) {
         changeRubColor('#ffffff');
         rubber();
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = true; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
 var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
     canvas_eraserSize.onChange(function (value) {
@@ -244,31 +270,91 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
     });
 
 // Folder 3 = Image
-var canvas_imageUpload = f3.add(canvas, 'imageUpload', false);
+var canvas_imageUpload = f3.add(canvas, 'imageUpload', false).listen();
     canvas_imageUpload.onChange(function (value) {
         imageUpload = value;
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = true; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
-var canvas_imageRotate = f3.add(canvas, 'imageRotate', false);
+var canvas_imageRotate = f3.add(canvas, 'imageRotate', false).listen();
     canvas_imageRotate.onChange(function (value) {
         imageRotate = value;
+        exportCanvas = false; 
+        canvasResize = false;
+        imageDownload = false; 
+        imageResize = false; 
+        imageFlip = false; 
+        imageRotate = true; 
+        imageUpload = false; 
+        eraser = false; 
+        line = false;
+        textBox = false;
     });
-var canvas_imageFlip = f3.add(canvas, 'imageFlip', false);
+var canvas_imageFlip = f3.add(canvas, 'imageFlip', false).listen();
     canvas_imageFlip.onChange(function (value) {
         imageFlip = value;
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = true; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
-var canvas_imageResize = f3.add(canvas, 'imageResize', false);
+var canvas_imageResize = f3.add(canvas, 'imageResize', false).listen();
     canvas_imageResize.onChange(function (value) {
         imageResize = value;
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = true; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
-var canvas_imageDownload = f3.add(canvas, 'imageDownload', false);
+var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
     canvas_imageDownload.onChange(function (value) {
         imageDownload = value;
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = true; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
 
 // Folder 4 = Canvas
-var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
+var canvas_canvasResize = f4.add(canvas, 'canvasResize', false).listen();
     canvas_canvasResize.onChange(function (value) {
         canvasResize = value;
+        canvas.exportCanvas = false; 
+        canvas.canvasResize = true;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
@@ -282,9 +368,19 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     });
 
 // Folder 5 = Color
-var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
+var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false).listen();
     canvas_exportCanvas.onChange(function (value) {
         exportCanvas = value;
+        canvas.exportCanvas = true; 
+        canvas.canvasResize = false;
+        canvas.imageDownload = false; 
+        canvas.imageResize = false; 
+        canvas.imageFlip = false; 
+        canvas.imageRotate = false; 
+        canvas.imageUpload = false; 
+        canvas.eraser = false; 
+        canvas.line = false;
+        canvas.textBox = false;
     });
 };
 
