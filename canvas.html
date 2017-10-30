@@ -41,6 +41,7 @@
 <script type='text/javascript' src="js/rubber.js"></script>
 <script type='text/javascript' src="js/drawing-text.js"></script>
 <script type='text/javascript' src="js/resize.js"></script>
+<script type='text/javascript' src="js/bgcolor.js"></script>
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
 
 <script type='text/javascript'>
@@ -225,6 +226,8 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     });
 var canvas_eraser = f2.add(canvas, 'eraser', false);
     canvas_eraser.onChange(function (value) {
+        changeRubColor('ffffff');
+        rubber();
         eraser = value;
     });
 var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
@@ -261,12 +264,12 @@ var canvas_canvasResize = f4.add(canvas, 'canvasResize', false);
     });
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
-        $('#canvas-real').css('background-color',value);
+        changeBgColor(value);
         changeRubColor(value);
         console.log(value);
     });
     canvas_canvasBgcolor.onFinishChange(function (value) {
-        $('#canvas-real').css('background-color',value);
+        changeBgColor(value);
         changeRubColor(value);
         console.log(value);
 
@@ -317,6 +320,10 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
   function changeFontSize(newColor){
       font_size=newColor;
+  }
+  function changeBgColor(newColor){
+      bgcolor = newColor;
+      currentFunction = new Bgcolor(contextReal,contextDraft);   
   }
 
 </script>
