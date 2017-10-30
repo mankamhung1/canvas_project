@@ -11,6 +11,7 @@
     let boarder_color = "#F6E5E5";
     let color='#ff11ff';
     let font_size = "14px";
+    let rub_color = "white";
 
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
