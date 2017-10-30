@@ -215,11 +215,11 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50);
     });
 var canvas_line = f2.add(canvas, 'line', false);
     canvas_line.onChange(function (value) {
-        line = value;
+        changeRubSize(value);
     });
 var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5);
     canvas_lineWidth.onChange(function (value) {
-        lineWidth = value;
+        changeLineSize(value);
     });
 var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     canvas_lineType.onChange(function (value) {
@@ -227,13 +227,13 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     });
 var canvas_eraser = f2.add(canvas, 'eraser', false);
     canvas_eraser.onChange(function (value) {
-        changeRubColor('ffffff');
+        changeRubColor('#ffffff');
         rubber();
         eraser = value;
     });
 var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
     canvas_eraserSize.onChange(function (value) {
-        eraserSize = value;
+        changeRubSize(value);
     });
 
 // Folder 3 = Image
@@ -328,6 +328,12 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   function changeBgColor(newColor){
       bgcolor = newColor;
       currentFunction = new Bgcolor(contextReal,contextDraft);   
+  }
+  function changeRubSize(size){
+      rubwidth = size*5;
+  }
+  function changeLineSize(size){
+      line_width=size*5;
   }
 
 </script>

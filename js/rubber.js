@@ -2,13 +2,15 @@ class Rubber extends PaintFunction{
     constructor(contextReal){
         super();
         this.context = contextReal;
+        this.context.rubWidth = 5;
     }
 
     onMouseDown(coord,event){
         console.log("here");
         this.context.strokeStyle = rub_color;
         this.context.lineJoin = "round";
-        this.context.lineWidth = 5;
+        this.context.lineCap = 'round';
+        this.context.lineWidth = rubwidth;
         this.context.beginPath();
         this.context.moveTo(coord[0],coord[1]);
         this.draw(coord[0],coord[1]);
@@ -18,7 +20,9 @@ class Rubber extends PaintFunction{
     }
 
     onMouseMove(){}
-    onMouseUp(){}
+    onMouseUp(){
+        this.context.lineWidth = 5;
+    }
     onMouseLeave(){}
     onMouseEnter(){}
 
