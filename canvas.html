@@ -19,7 +19,7 @@
     <body>
       <div class="buttons">
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
-      </div>
+          </div>
 
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
@@ -32,6 +32,7 @@
 <script type='text/javascript' src="js/drawing-line.js"></script>
 <script type='text/javascript' src="js/drawing-rectangle.js"></script>
 <script type='text/javascript' src="js/circle.js"></script>
+<script type='text/javascript' src="js/ellipse.js"></script>
 <script type='text/javascript' src="js/rubber.js"></script>
 <script type='text/javascript' src="js/drawing-text.js"></script>
 <script type='text/javascript' src="js/resize.js"></script>
@@ -193,24 +194,22 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawSketch1();
         }
     });
-var canvas_shape = f2.add(canvas, 'shape', ['line','rectangle', 'circle', 'eclipse']);
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse']);
     canvas_shape.onChange(function (value) {
         if(value == 'rectangle'){
             drawRect();
         }else if(value =='circle'){
             drawCircle();
+        }else if(value == 'ellipse'){
+            drawEllipse();
         }
-        else if (value =='line'){
-            drawLine();
-        }
-        console.log(value);
+        
     });
 var canvas_textBox = f2.add(canvas, 'textBox', false);
     canvas_textBox.onChange(function (value) {
         if(value==true){
         drawText();
         }
-        console.log(value);
     });
 var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5);
     canvas_brushSize.onChange(function (value) {
@@ -223,7 +222,7 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50);
     });
 var canvas_line = f2.add(canvas, 'line', false);
     canvas_line.onChange(function (value) {
-        changeRubSize(value);
+        drawLine();
     });
 var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5);
     canvas_lineWidth.onChange(function (value) {
@@ -237,7 +236,6 @@ var canvas_eraser = f2.add(canvas, 'eraser', false);
     canvas_eraser.onChange(function (value) {
         changeRubColor('#ffffff');
         rubber();
-        eraser = value;
     });
 var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5);
     canvas_eraserSize.onChange(function (value) {
@@ -275,12 +273,10 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
-        console.log(value);
     });
     canvas_canvasBgcolor.onFinishChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
-        console.log(value);
 
     });
 
@@ -301,6 +297,9 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
   function drawCircle(){
       currentFunction = new DrawingCircle(contextReal,contextDraft);
+  }
+  function drawEllipse(){
+      currentFunction = new DrawingEllipse(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);

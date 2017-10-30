@@ -5,7 +5,6 @@ class Bgcolor extends PaintFunction{
         this.contextDraft = contextDraft;
     }
     onMouseDown(){
-        console.log('running');
         this.contextReal.beginPath();
         this.contextReal.fillStyle = bgcolor;
         this.contextReal.strokeStyle = bgcolor;
