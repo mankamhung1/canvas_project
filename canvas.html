@@ -22,8 +22,9 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-line" onclick="drawLine()" >Drawing Line</span>
           <span class="btn btn-primary fa fa-square" id="drawing-rectangle" onclick="drawRect()">Drawing Rectangle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
-          <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawText()">Drawing Text</span>
+          <span class="btn btn-info fa fa-paint-brush" id="drawing-text" onclick="drawText()">Drawing Text</span>
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
+          <span class="btn btn-primary fa fa-square" id="brush1" onclick="drawingBrush1()">Brush 1</span>
           </div>
 
       <div id="canvas-container">
@@ -40,6 +41,7 @@
 <script type='text/javascript' src="js/rubber.js"></script>
 <script type='text/javascript' src="js/drawing-text.js"></script>
 <script type='text/javascript' src="js/resize.js"></script>
+<script type='text/javascript' src="js/drawing-brush1.js"></script>
 
 <script type='text/javascript'>
 
@@ -278,7 +280,7 @@ var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
 };
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
-currentFunction = new DrawingCircle(contextReal,contextDraft);
+currentFunction = new DrawingBrush1(contextReal,contextDraft);
   function drawLine(){
       currentFunction = new DrawingLine(contextReal,contextDraft);
   }
@@ -294,7 +296,9 @@ currentFunction = new DrawingCircle(contextReal,contextDraft);
   function drawText(){
       currentFunction = new DrawingText(contextReal,contextDraft);
   }
-
+  function drawBrush1(){
+      currentFunction = new DrawingBrush1(contextReal,contextDraft);
+  }
   function resize(){
       currentFunction = new  Resize (contextReal,contextDraft);
       currentFunction.printImg();
