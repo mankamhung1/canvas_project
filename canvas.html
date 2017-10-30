@@ -26,6 +26,7 @@
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
           <span class="btn btn-primary fa fa-square" id="brush1" onclick="drawBrush1()">Brush 1</span>
           <span class="btn btn-primary fa fa-square" id="sketch1" onclick="drawSketch1()">sketch 1</span>
+          <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
           </div>
 
       <div id="canvas-container">
@@ -44,6 +45,8 @@
 <script type='text/javascript' src="js/resize.js"></script>
 <script type='text/javascript' src="js/bgcolor.js"></script>
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
+<script type='text/javascript' src="js/canvas_download.js"></script>
+
 
 <script type='text/javascript'>
 
@@ -70,7 +73,8 @@ var text = function () {
     this.eraserSize = 1;
     this.canvasResize = false;
     this.canvasBgcolor = "#F6E5E5";
-    this.exportCanvas = false;
+    this.exportCanvas = function() {
+      $('#download')[0].click(); };
 };
 window.onload = function() {
 var json = `{
@@ -98,8 +102,8 @@ var json = `{
                 "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
-                "eraserSize" : 1,
-                "exportCanvas" : false
+                "eraserSize" : 1
+
             }
             },
         "new": {
@@ -124,8 +128,8 @@ var json = `{
                 "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
-                "eraserSize" : 1,
-                "exportCanvas" : false
+                "eraserSize" : 1
+
             }
           }
 
@@ -227,7 +231,7 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     });
 var canvas_eraser = f2.add(canvas, 'eraser', false);
     canvas_eraser.onChange(function (value) {
-        changeRubColor('ffffff');
+        changeRubColor('#ffffff');
         rubber();
         eraser = value;
     });
@@ -273,14 +277,11 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
         changeBgColor(value);
         changeRubColor(value);
         console.log(value);
-
     });
 
 // Folder 5 = Color
-var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false);
-    canvas_exportCanvas.onChange(function (value) {
-        exportCanvas = value;
-    });
+var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true);
+
 };
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
@@ -307,7 +308,7 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
       currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
   function resize(){
-      currentFunction = new  Resize (contextReal,contextDraft);
+      currentFunction = new Resize(contextReal,contextDraft);
       currentFunction.printImg();
   }
   function changelineColor(newColor){
@@ -327,7 +328,7 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
   function changeBgColor(newColor){
       bgcolor = newColor;
-      currentFunction = new Bgcolor(contextReal,contextDraft);   
+      currentFunction = new Bgcolor(contextReal,contextDraft);
   }
 
 </script>
