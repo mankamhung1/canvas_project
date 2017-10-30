@@ -24,7 +24,8 @@
           <span class="btn btn-info fa fa-paint-brush" id="drawing-circle" onclick="drawCircle()">Drawing Circle</span>
           <span class="btn btn-info fa fa-paint-brush" id="drawing-text" onclick="drawText()">Drawing Text</span>
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
-          <span class="btn btn-primary fa fa-square" id="brush1" onclick="drawingBrush1()">Brush 1</span>
+          <span class="btn btn-primary fa fa-square" id="brush1" onclick="drawBrush1()">Brush 1</span>
+          <span class="btn btn-primary fa fa-square" id="sketch1" onclick="drawSketch1()">sketch 1</span>
           </div>
 
       <div id="canvas-container">
@@ -302,6 +303,9 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   function drawBrush1(){
       currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
+  function drawSketch1(){
+      currentFunction = new DrawingSketch1(contextReal,contextDraft);
+  }
   function resize(){
       currentFunction = new  Resize (contextReal,contextDraft);
       currentFunction.printImg();
@@ -327,3 +331,4 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
 
 </script>
+<script type='text/javascript' src="js/drawing-sketch1.js"></script>
