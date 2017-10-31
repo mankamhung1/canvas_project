@@ -7,6 +7,10 @@ class DrawingRectangle extends PaintFunction{
         onMouseDown(coord,event){
             this.contextReal.beginPath();
             this.contextDraft.beginPath();
+            this.contextReal.lineCap = 'round';
+            this.contextReal.lineJoin = "round";
+            this.contextDraft.lineCap = 'round';
+            this.contextDraft.lineJoin = "round";
             this.contextReal.fillStyle = fill_color;
             this.contextDraft.fillStyle = fill_color;
             this.contextDraft.strokeStyle = boarder_color;

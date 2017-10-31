@@ -10,6 +10,8 @@ class DrawingStLine extends PaintFunction{
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
         this.contextDraft.lineJoin = "round";
+        this.contextReal.lineCap = 'round';
+        this.contextReal.lineJoin = "round";
         this.contextDraft.lineWidth =line_width;
         this.contextReal.lineWidth =line_width;
         this.origX = coord[0];
