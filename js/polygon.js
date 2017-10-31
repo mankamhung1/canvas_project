@@ -28,7 +28,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
+    //        this.contextReal.closePath();
             this.origX2=coord[0];
             this.origY2=coord[1];
             this.state ='intermediate';
@@ -38,7 +38,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
+    //        this.contextReal.closePath();
             this.state = 'finishpolygon';
         }
     }
@@ -51,7 +51,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextDraft.stroke();
-            this.contextDraft.closePath();
+//            this.contextDraft.closePath();
         }
     }
 
@@ -64,14 +64,14 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextDraft.stroke();
-            this.contextDraft.closePath();
+      //      this.contextDraft.closePath();
          }
     }
     onMouseUp(coord,event){
         if(this.state ==='afterFirstClick'){
             console.log('step3');
             this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX,this.origY);
+    //        this.contextReal.moveTo(this.origX,this.origY);
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextReal.stroke();
@@ -90,6 +90,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineCap = 'butt';
             this.contextDraft.lineJoin = "butt";
             this.state ='Start';
+            drawImage();
         }
     }
     onMouseLeave(){}
