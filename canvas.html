@@ -45,6 +45,8 @@
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
 <script type='text/javascript' src="js/drawCurve.js"></script>
+<script type='text/javascript' src="js/polygon.js"></script>
+
 
 <script type='text/javascript'>
 
@@ -180,11 +182,9 @@ var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
 
 var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
     canvas_borderColor.onChange(function (value) {
-    console.log(value);
     changeboarderColor(value);
     });
     canvas_borderColor.onFinishChange(function (value) {
-    console.log(value);
     changeboarderColor(value);
     });
 var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
@@ -192,7 +192,6 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1);
         opacity = value;
     });
     canvas_opacity.onFinishChange(function (value) {
-        console.log(value);
     });
 
 // Folder 2 = Tools
@@ -207,7 +206,7 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
         }
         
     });
-var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','curve']);
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','curve','polygon']);
     canvas_shape.onChange(function (value) {
         if(value == 'rectangle'){
             drawRect();
@@ -217,6 +216,8 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','cu
             drawEllipse();
         }else if(value =='curve'){
             drawCurve();
+        }else if (value =='polygon'){
+            drawPolygon();
         }
 
     });
@@ -400,6 +401,9 @@ currentFunction = new DrawingBrush1(contextReal,contextDraft);
   }
   function drawCurve(){
       currentFunction = new DrawingCurve(contextReal,contextDraft);
+  }
+  function drawPolygon(){
+      currentFunction = new DrawingPolygon(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
