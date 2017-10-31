@@ -5,8 +5,8 @@
         <meta name="description" content="html css javascript canvas online design">
         <meta name="keywords" content="html, css, javascript canvas, design">
         <meta name="author" content="Jason,Man,Michelle">
-        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">      
-        <meta name="msapplication-tap-highlight" content="no" />  
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="msapplication-tap-highlight" content="no" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
@@ -30,7 +30,6 @@
     </body>
 
 
-<<<<<<< HEAD
 <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 <script>
     // Initialize Firebase
@@ -45,8 +44,6 @@
   firebase.initializeApp(config);
 </script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
-=======
->>>>>>> b55866fec09d0ec6e8db684d732b4c0fc608e858
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
@@ -65,15 +62,12 @@
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
+
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
-<<<<<<< HEAD
 <script type='text/javascript' src="js/firebase.js"></script>
-=======
 <script type='text/javascript' src="js/drawCurve.js"></script>
 <script type='text/javascript' src="js/polygon.js"></script>
 
-
->>>>>>> b55866fec09d0ec6e8db684d732b4c0fc608e858
 <script type='text/javascript'>
 
 
@@ -417,12 +411,12 @@ var canvas_imageRotate = f3.add(canvas, 'imageRotate', false).listen();
         canvas.brushTool = "";
         canvas.shape = "";
         canvas.canvasResize = false;
-        canvas.imageDownload = false; 
-        canvas.imageResize = false; 
-        canvas.imageFlip = false; 
-        canvas.imageRotate = true; 
-        canvas.imageUpload = false; 
-        canvas.eraser = false; 
+        canvas.imageDownload = false;
+        canvas.imageResize = false;
+        canvas.imageFlip = false;
+        canvas.imageRotate = true;
+        canvas.imageUpload = false;
+        canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = false;
     });
@@ -492,7 +486,7 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
-        
+
     });
     canvas_canvasBgcolor.onFinishChange(function (value) {
         changeBgColor(value);
@@ -511,16 +505,9 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     });
 
 // Folder 5 = Color
-<<<<<<< HEAD
 var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true);
 var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Export To Firebase");
 
-=======
-var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', false).listen();
-    canvas_exportCanvas.onChange(function (value) {
-        exportCanvas = value;
-    });
->>>>>>> b55866fec09d0ec6e8db684d732b4c0fc608e858
 };
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
@@ -598,13 +585,13 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         hRuleSize: 18,
         showCrosshair : true,
         showMousePos: true
-    });    
+    });
     $('#canvas-container').ruler({
         vRuleSize: 18,
         hRuleSize: 18,
         showCrosshair : true,
         showMousePos: true
-    });    
+    });
 });
 
 </script>
