@@ -234,10 +234,10 @@
     background: #dad5cb;
     border: 0; }
     .dg li.save-row select {
-      margin-left: 5px;
-      width: 108px; }
+      margin-left: 2px !important;
+      width: 60px !important ; }
     .dg li.save-row .button {
-      margin-left: 5px;
+      margin-left: 2px !important;
       margin-top: 1px;
       border-radius: 2px;
       font-size: 9px;
