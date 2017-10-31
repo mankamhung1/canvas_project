@@ -521,6 +521,14 @@ var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Exp
 
 };
 
+changeBgColor("white");
+contextReal.beginPath();
+contextReal.fillStyle = bgcolor;
+contextReal.strokeStyle = bgcolor;
+contextReal.strokeRect(0,0,canvasReal.width,canvasReal.height);
+contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
+contextReal.stroke();
+
 //currentFunction = new DrawingLine(contextReal,contextDraft);
 currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawWithPen(){
@@ -608,7 +616,7 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         hRuleSize: 18,
         showCrosshair : true,
         showMousePos: true
-    });    
+    });
 });*/
 
 </script>

@@ -16,6 +16,7 @@
     let rubwidth;
     let font_size = "14px";
     let rub_color = "white";
+<<<<<<< HEAD
     let cPushArray = new Array();
     let cStep = -1;
     // ctx = document.getElementById('myCanvas').getContext("2d");
@@ -24,6 +25,17 @@
             contextReal.drawImage(image, 0, 0, 500, 200);
             cPush();
     }   
+=======
+    var cPushArray = new Array();
+    var cStep = -1;
+
+    // ctx = document.getElementById('myCanvas').getContext("2d");
+    function drawImage() {
+        var image = new Image();
+        contextReal.drawImage(image, 0, 0, canvasReal.width, canvasReal.height);
+        cPush();
+    }
+>>>>>>> b5b3937468dc776e261849181e8b3ef9492bd32c
     function cPush() {
         cStep++;
         if (cStep < cPushArray.length) { cPushArray.length = cStep; }
@@ -90,4 +102,3 @@
         onMouseLeave(){}
         onMouseEnter(){}
     }
-
