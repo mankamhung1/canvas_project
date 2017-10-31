@@ -28,13 +28,14 @@ class DrawingStLine extends PaintFunction{
 
     onMouseMove(){}
     onMouseUp(coord,event){
+        this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
         this.contextReal.beginPath();
         this.contextReal.moveTo(this.origX,this.origY);
         this.contextReal.lineTo(coord[0],coord[1]);
         this.contextReal.stroke();
-        this.contextDraft.closePath();
+  //      this.contextDraft.closePath();
         this.contextReal.lineWidth=5;
-        this.contextDraft.line_width=5;
+    //    this.contextDraft.line_width=5;
         this.contextReal.closePath();
     }
     onMouseLeave(){}
