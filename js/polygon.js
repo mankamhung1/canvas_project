@@ -26,7 +26,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
+            this.contextReal.fill();
             this.contextReal.stroke();
     //        this.contextReal.closePath();
             this.origX2=coord[0];
@@ -36,9 +36,13 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
             this.contextReal.stroke();
+<<<<<<< HEAD
     //        this.contextReal.closePath();
+=======
+            this.contextReal.closePath();
+            this.contextReal.fill();
+>>>>>>> 95e8509f64df681cba6a004f2c3064f312998490
             this.state = 'finishpolygon';
         }
     }
@@ -62,7 +66,6 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX2,this.origY2);
             this.contextDraft.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
             this.contextDraft.stroke();
       //      this.contextDraft.closePath();
          }
