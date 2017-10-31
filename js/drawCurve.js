@@ -50,7 +50,6 @@ class DrawingCurve extends PaintFunction{
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX,this.origY);
             this.contextDraft.quadraticCurveTo(coord[0],coord[1],this.origX2,this.origY2);
-            console.log(this.origX,this.origY,this.origX2,this.origY2);
             this.contextDraft.stroke();
             this.contextDraft.closePath();
          }
