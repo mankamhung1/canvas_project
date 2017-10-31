@@ -33,9 +33,13 @@ class DrawingStLine extends PaintFunction{
         this.contextReal.lineTo(coord[0],coord[1]);
         this.contextReal.stroke();
         this.contextDraft.closePath();
+        this.contextReal.closePath();
         this.contextReal.lineWidth=5;
         this.contextDraft.line_width=5;
-        this.contextReal.closePath();
+        this.contextDraft.lineCap = 'butt';
+        this.contextDraft.lineJoin = "butt";
+        this.contextReal.lineCap = 'butt';
+        this.contextReal.lineJoin = "butt";
     }
     onMouseLeave(){}
     onMouseEnter(){}

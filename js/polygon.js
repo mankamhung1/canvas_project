@@ -14,6 +14,8 @@ class DrawingPolygon extends PaintFunction{
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
         this.contextDraft.lineJoin = "round";
+        this.contextReal.lineCap = 'round';
+        this.contextReal.lineJoin = "round";
         this.contextDraft.lineWidth =line_width;
         this.contextReal.lineWidth =line_width;
         this.origX = coord[0];
@@ -83,6 +85,10 @@ class DrawingPolygon extends PaintFunction{
         }
         else if(this.state ==='finishpolygon'){
             console.log('finish polygon');
+            this.contextReal.lineCap = 'butt';
+            this.contextReal.lineJoin = "butt";
+            this.contextDraft.lineCap = 'butt';
+            this.contextDraft.lineJoin = "butt";
             this.state ='Start';
         }
     }

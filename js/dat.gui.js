@@ -3822,13 +3822,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 	
 		// div.appendChild(button2);
-		
+		//undo button
 		_dom2.default.bind(button4, 'click', function () {
-	    gui.undo();
+			console.log('undo');
+	    cUndo();
 		});
-		
+		//redo button
 		_dom2.default.bind(button5, 'click', function () {
-	    gui.redo();
+			console.log('redo');
+	    cRedo();
 		});
 		
 	}
