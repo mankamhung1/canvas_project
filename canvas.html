@@ -327,9 +327,15 @@ var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5).listen();
         canvas.eraser = false;
         canvas.textBox = false;
     });
-var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']).listen();
+var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted', 'dashed']).listen();
     canvas_lineType.onChange(function (value) {
-        lineType = value;
+        if (value === 'solid') {
+            drawStLine();
+        } else if (value === 'dotted') {
+            drawDottedLine();
+        } else if (value === 'dashed') {
+            drawDashedLine();
+        }
         canvas.brushTool = "";
         canvas.shape = "";
         canvas.canvasResize = false;
@@ -510,6 +516,12 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
   function drawStLine(){
       currentFunction = new  DrawingStLine(contextReal,contextDraft);
+  }
+  function drawDottedLine(){
+      currentFunction = new DrawingDottedLine(contextReal,contextDraft);
+  }
+  function drawDashedLine(){
+    currentFunction = new DrawingDashedLine(contextReal,contextDraft);
   }
   function drawCurve(){
       currentFunction = new DrawingCurve(contextReal,contextDraft);
