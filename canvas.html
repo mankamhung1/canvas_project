@@ -27,6 +27,21 @@
           <canvas id="canvas-draft" class="canvas" width='920px' height='630px'></canvas>
       </div>
     </body>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBvchHH7SPkjFiyHCPdj1VI1TYOyK_cYC0",
+    authDomain: "jmm-canvas.firebaseapp.com",
+    databaseURL: "https://jmm-canvas.firebaseio.com",
+    projectId: "jmm-canvas",
+    storageBucket: "jmm-canvas.appspot.com",
+    messagingSenderId: "99540808872"
+  };
+  firebase.initializeApp(config);
+</script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type='text/javascript' src="js/canvas-common.js"></script>
@@ -42,7 +57,7 @@
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
-
+<script type='text/javascript' src="js/firebase.js"></script>
 <script type='text/javascript'>
 
 
@@ -71,6 +86,8 @@ var text = function () {
     this.canvasBgcolor = "#F6E5E5";
     this.exportCanvas = function() {
       $('#download')[0].click(); };
+    this.exportToFirebase = function() {
+      uploadToFirebase(); };
 };
 window.onload = function() {
 var json = `{
@@ -258,7 +275,6 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']);
     });
 var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
     canvas_eraser.onChange(function (value) {
-        changeRubColor('#ffffff');
         rubber();
         canvas.exportCanvas = false;
         canvas.canvasResize = false;
@@ -375,6 +391,7 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
 
 // Folder 5 = Color
 var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true);
+var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Export To Firebase");
 
 };
 //currentFunction = new DrawingLine(contextReal,contextDraft);
