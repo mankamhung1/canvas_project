@@ -10,7 +10,7 @@ class DrawingCurve extends PaintFunction{
         if(this.state==='beforeClick'){
         this.contextDraft.strokeStyle =line_color;
         this.contextReal.strokeStyle =line_color;
-        this.contextReal.lineCap = 'round';
+        this.contextReal.lineCap = 'round';``
         this.contextReal.lineJoin = "round";
         this.contextDraft.lineCap = 'round';
         this.contextDraft.lineJoin = "round";
@@ -27,8 +27,6 @@ class DrawingCurve extends PaintFunction{
             this.contextReal.quadraticCurveTo(coord[0],coord[1],this.origX2,this.origY2);
             this.contextReal.stroke();
             this.contextDraft.closePath();
-            this.contextReal.lineWidth=5;
-            this.contextDraft.lineWidth=5;
             this.contextReal.closePath();
             this.state = 'finishcurve';
         }
@@ -69,8 +67,15 @@ class DrawingCurve extends PaintFunction{
             this.origY2=coord[1];
             console.log(this.origX2,this.origY2);
             this.state = 'afterFirstRelease';
+            
         }else if(this.state ==='finishcurve'){
             console.log('finish curve');
+            this.contextReal.lineWidth=5;
+            this.contextDraft.lineWidth=5;
+            this.contextReal.lineCap = 'butt';
+            this.contextReal.lineJoin = "butt";
+            this.contextDraft.lineCap = 'butt';
+            this.contextDraft.lineJoin = "butt";
             this.state ='beforeClick';
         }
     }

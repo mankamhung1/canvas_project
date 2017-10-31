@@ -7,16 +7,16 @@ class DrawingRectangle extends PaintFunction{
         onMouseDown(coord,event){
             this.contextReal.beginPath();
             this.contextDraft.beginPath();
-            this.contextReal.lineCap = 'round';
-            this.contextReal.lineJoin = "round";
-            this.contextDraft.lineCap = 'round';
-            this.contextDraft.lineJoin = "round";
             this.contextReal.fillStyle = fill_color;
             this.contextDraft.fillStyle = fill_color;
-            this.contextDraft.strokeStyle = boarder_color;
-            this.contextReal.strokeStyle = boarder_color;
+            this.contextDraft.strokeStyle = border_color;
+            this.contextReal.strokeStyle = border_color;
             this.contextDraft.lineWidth = borderwidth;
             this.contextReal.lineWidth = borderwidth;
+            this.contextReal.lineCap = 'square';
+            this.contextReal.lineJoin = "square";
+            this.contextDraft.lineCap = 'square';
+            this.contextDraft.lineJoin = "square";
             this.origX = coord[0];
             this.origY = coord[1];
         }
@@ -29,7 +29,7 @@ class DrawingRectangle extends PaintFunction{
         onMouseMove(){}
         onMouseUp(coord){
             this.contextReal.fillStyle = fill_color;
-            this.contextReal.strokeStyle = boarder_color;
+            this.contextReal.strokeStyle = border_color;
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextReal.strokeRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);
             this.contextReal.fillRect(this.origX,this.origY,coord[0]- this.origX,coord[1] - this.origY);

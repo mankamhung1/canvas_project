@@ -48,7 +48,7 @@
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
 <script src="js/jquery.ruler.js"></script>
-<script src=”https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js”></script>
+<!--<script src=”https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js”></script>-->
 <script type="text/javascript" src="js/hammer.js"></script>
 <script type='text/javascript' src="js/canvas-common.js"></script>
 <script type='text/javascript' src="js/drawing-line.js"></script>
@@ -207,10 +207,10 @@ var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
 
 var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
     canvas_borderColor.onChange(function (value) {
-    changeboarderColor(value);
+    changeborderColor(value);
     });
     canvas_borderColor.onFinishChange(function (value) {
-    changeboarderColor(value);
+    changeborderColor(value);
     });
 var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     canvas_opacity.onChange(function (value) {
@@ -245,14 +245,19 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','cu
     canvas_shape.onChange(function (value) {
         if(value == 'rectangle'){
             drawRect();
+            drawImage();
         }else if(value =='circle'){
             drawCircle();
+            drawImage();
         }else if(value == 'ellipse'){
             drawEllipse();
+            drawImage();
         }else if(value =='curve'){
             drawCurve();
+            drawImage();
         }else if (value =='polygon'){
             drawPolygon();
+            drawImage();
         }
         canvas.brushTool = "";
         canvas.lineType = "";
@@ -344,9 +349,15 @@ var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5).listen();
         canvas.eraser = false;
         canvas.textBox = false;
     });
-var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted']).listen();
+var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted', 'dashed']).listen();
     canvas_lineType.onChange(function (value) {
-        lineType = value;
+        if (value === 'solid') {
+            drawStLine();
+        } else if (value === 'dotted') {
+            drawDottedLine();
+        } else if (value === 'dashed') {
+            drawDashedLine();
+        }
         canvas.brushTool = "";
         canvas.shape = "";
         canvas.canvasResize = false;
@@ -527,6 +538,12 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawStLine(){
       currentFunction = new  DrawingStLine(contextReal,contextDraft);
   }
+  function drawDottedLine(){
+      currentFunction = new DrawingDottedLine(contextReal,contextDraft);
+  }
+  function drawDashedLine(){
+    currentFunction = new DrawingDashedLine(contextReal,contextDraft);
+  }
   function drawCurve(){
       currentFunction = new DrawingCurve(contextReal,contextDraft);
   }
@@ -555,8 +572,8 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function changefillColor(newColor){
     fill_color=newColor;
   }
-  function changeboarderColor(newColor){
-    boarder_color=newColor;
+  function changeborderColor(newColor){
+    border_color=newColor;
   }
   function changeRubColor(newColor){
       rub_color=newColor;
@@ -579,7 +596,7 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
 
 
-  $(function() {
+/*  $(function() {
     $('body').ruler({
         vRuleSize: 18,
         hRuleSize: 18,
@@ -591,7 +608,7 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         hRuleSize: 18,
         showCrosshair : true,
         showMousePos: true
-    });
-});
+    });    
+});*/
 
 </script>
