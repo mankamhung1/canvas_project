@@ -14,6 +14,8 @@ class DrawingPolygon extends PaintFunction{
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
         this.contextDraft.lineJoin = "round";
+        this.contextReal.lineCap = 'round';
+        this.contextReal.lineJoin = "round";
         this.contextDraft.lineWidth =line_width;
         this.contextReal.lineWidth =line_width;
         this.origX = coord[0];
@@ -24,9 +26,9 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
+            this.contextReal.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
+    //        this.contextReal.closePath();
             this.origX2=coord[0];
             this.origY2=coord[1];
             this.state ='intermediate';
@@ -34,9 +36,13 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
             this.contextReal.stroke();
+<<<<<<< HEAD
+    //        this.contextReal.closePath();
+=======
             this.contextReal.closePath();
+            this.contextReal.fill();
+>>>>>>> 95e8509f64df681cba6a004f2c3064f312998490
             this.state = 'finishpolygon';
         }
     }
@@ -49,7 +55,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextDraft.stroke();
-            this.contextDraft.closePath();
+//            this.contextDraft.closePath();
         }
     }
 
@@ -60,16 +66,15 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX2,this.origY2);
             this.contextDraft.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
             this.contextDraft.stroke();
-            this.contextDraft.closePath();
+      //      this.contextDraft.closePath();
          }
     }
     onMouseUp(coord,event){
         if(this.state ==='afterFirstClick'){
             console.log('step3');
             this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX,this.origY);
+    //        this.contextReal.moveTo(this.origX,this.origY);
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextReal.stroke();
@@ -83,7 +88,12 @@ class DrawingPolygon extends PaintFunction{
         }
         else if(this.state ==='finishpolygon'){
             console.log('finish polygon');
+            this.contextReal.lineCap = 'butt';
+            this.contextReal.lineJoin = "butt";
+            this.contextDraft.lineCap = 'butt';
+            this.contextDraft.lineJoin = "butt";
             this.state ='Start';
+            drawImage();
         }
     }
     onMouseLeave(){}

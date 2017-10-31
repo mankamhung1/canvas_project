@@ -9,8 +9,8 @@ class DrawingEllipse extends PaintFunction{
         console.log('running');
         this.contextReal.fillStyle = fill_color;
         this.contextDraft.fillStyle = fill_color;
-        this.contextDraft.strokeStyle = boarder_color;
-        this.contextReal.strokeStyle = boarder_color;
+        this.contextDraft.strokeStyle = border_color;
+        this.contextReal.strokeStyle = border_color;
         this.contextDraft.lineWidth = borderwidth;
         this.contextReal.lineWidth = borderwidth;
         this.origX = coord[0];
@@ -30,8 +30,6 @@ class DrawingEllipse extends PaintFunction{
     onMouseUp(coord){
         this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
         this.contextReal.beginPath();
-        
-        this.contextReal.lineWidth = 1;
         let r=Math.sqrt(Math.pow((this.origX-coord[0]),2)+Math.pow((this.origY-coord[1]),2));
         this.contextReal.ellipse(this.origX, this.origY, Math.abs(this.origX-coord[0]),Math.abs(this.origY-coord[1]), 0, 0, 2 * Math.PI);
         this.contextReal.fill();

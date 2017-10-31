@@ -8,7 +8,7 @@
     let dragging = false;
     let line_color = '#bf4444';
     let fill_color ='#e8ffea';
-    let boarder_color = "#F6E5E5";
+    let border_color = "#F6E5E5";
     let bgcolor ='ff0000';
     let color='#bf4444';
     let line_width = 5;
@@ -16,6 +16,47 @@
     let rubwidth;
     let font_size = "14px";
     let rub_color = "white";
+<<<<<<< HEAD
+    let cPushArray = new Array();
+    let cStep = -1;
+    // ctx = document.getElementById('myCanvas').getContext("2d");
+    function drawImage() {
+        var image = new Image();
+            contextReal.drawImage(image, 0, 0, 500, 200);
+            cPush();
+    }   
+=======
+    var cPushArray = new Array();
+    var cStep = -1;
+
+    // ctx = document.getElementById('myCanvas').getContext("2d");
+    function drawImage() {
+        var image = new Image();
+        contextReal.drawImage(image, 0, 0, canvasReal.width, canvasReal.height);
+        cPush();
+    }
+>>>>>>> b5b3937468dc776e261849181e8b3ef9492bd32c
+    function cPush() {
+        cStep++;
+        if (cStep < cPushArray.length) { cPushArray.length = cStep; }
+        cPushArray.push(canvasReal.toDataURL());
+    }
+    function cUndo() {
+        if (cStep > 0) {
+            cStep--;
+            var canvasPic = new Image();
+            canvasPic.src = cPushArray[cStep];
+            canvasPic.onload = function () { contextReal.drawImage(canvasPic, 0, 0); }
+        }
+    }
+    function cRedo() {
+        if (cStep < cPushArray.length-1) {
+            cStep++;
+            var canvasPic = new Image();
+            canvasPic.src = cPushArray[cStep];
+            canvasPic.onload = function () { contextReal.drawImage(canvasPic, 0, 0); }
+        }
+    }
 
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
@@ -61,4 +102,3 @@
         onMouseLeave(){}
         onMouseEnter(){}
     }
-
