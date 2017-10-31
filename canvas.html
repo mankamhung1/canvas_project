@@ -50,6 +50,8 @@
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
 <script type='text/javascript' src="js/drawCurve.js"></script>
+<script type='text/javascript' src="js/polygon.js"></script>
+
 
 <script type='text/javascript'>
 
@@ -188,11 +190,9 @@ var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
 
 var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
     canvas_borderColor.onChange(function (value) {
-    console.log(value);
     changeboarderColor(value);
     });
     canvas_borderColor.onFinishChange(function (value) {
-    console.log(value);
     changeboarderColor(value);
     });
 var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
@@ -200,7 +200,6 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
         opacity = value;
     });
     canvas_opacity.onFinishChange(function (value) {
-        console.log(value);
     });
 
 // Folder 2 = Tools
@@ -223,18 +222,20 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
         canvas.straightline = false;
         canvas.textBox = false;
     });
-var canvas_brushSize = f2.add(canvas, 'brushSize', 1, 5).listen();
-    canvas_brushSize.onChange(function (value) {
-        brushSize = value;
-        canvas.canvasResize = false;
-        canvas.imageDownload = false;
-        canvas.imageResize = false;
-        canvas.imageFlip = false;
-        canvas.imageRotate = false;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
+var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','curve','polygon']);
+    canvas_shape.onChange(function (value) {
+        if(value == 'rectangle'){
+            drawRect();
+        }else if(value =='circle'){
+            drawCircle();
+        }else if(value == 'ellipse'){
+            drawEllipse();
+        }else if(value =='curve'){
+            drawCurve();
+        }else if (value =='polygon'){
+            drawPolygon();
+        }
+
     });
 var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
     canvas_textBox.onChange(function (value) {
@@ -336,7 +337,6 @@ var canvas_borderWidth = f2.add(canvas, 'borderWidth', 1, 5).listen();
     });
 var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
     canvas_eraser.onChange(function (value) {
-        changeRubColor('#ffffff');
         rubber();
         canvas.canvasResize = false;
         canvas.imageDownload = false;
@@ -487,6 +487,9 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
   function drawCurve(){
       currentFunction = new DrawingCurve(contextReal,contextDraft);
+  }
+  function drawPolygon(){
+      currentFunction = new DrawingPolygon(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);

@@ -16,9 +16,6 @@
     let rubwidth;
     let font_size = "14px";
     let rub_color = "white";
-    let state = "beforeClick";
-    let origX2;
-    let origY2;
 
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
