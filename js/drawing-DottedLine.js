@@ -30,7 +30,7 @@ class DrawingDottedLine extends PaintFunction{
     onMouseMove(){}
     onMouseUp(coord,event){
         this.contextReal.beginPath();
-        this.contextDraft.setLineDash([1,15]);
+        this.contextReal.setLineDash([1,15]);
         this.contextReal.moveTo(this.origX,this.origY);
         this.contextReal.lineTo(coord[0],coord[1]);
         this.contextReal.stroke();
