@@ -62,7 +62,9 @@
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
-
+<script type='text/javascript' src="js/drawing-red circles.js"></script>
+<script type='text/javascript' src="js/drawing-DashedLine.js"></script>
+<script type='text/javascript' src="js/drawing-DottedLine.js"></script>
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
 <script type='text/javascript' src="js/firebase.js"></script>
 <script type='text/javascript' src="js/drawCurve.js"></script>
@@ -220,7 +222,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']).listen();
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -228,6 +230,8 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawBrush1();
         }else if (value == 'pen'){
             drawWithPen();
+        }else if (value == 'red circles') {
+            drawRedCircles();
         }
         canvas.lineType = "";
         canvas.shape = "";
@@ -521,6 +525,9 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawWithPen(){
       currentFunction = new DrawingLine(contextReal,contextDraft);
   }
+  function drawRedCircles(){
+      currentFunction = new DrawingRedCircles(contextReal,contextDraft);
+  }
   function drawRect(){
       currentFunction = new DrawingRectangle(contextReal,contextDraft);
   }
@@ -531,7 +538,7 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
       currentFunction = new DrawingEllipse(contextReal,contextDraft);
   }
   function drawStLine(){
-      currentFunction = new  DrawingStLine(contextReal,contextDraft);
+      currentFunction = new DrawingStLine(contextReal,contextDraft);
   }
   function drawDottedLine(){
       currentFunction = new DrawingDottedLine(contextReal,contextDraft);
