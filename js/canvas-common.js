@@ -6,12 +6,13 @@
     let image = '.resize-image';
     let currentFunction;
     let dragging = false;
-    let line_color = '#ffae23';
+    let line_color = '#bf4444';
     let fill_color ='#e8ffea';
     let boarder_color = "#F6E5E5";
     let bgcolor ='ff0000';
-    let color='#ff11ff';
+    let color='#bf4444';
     let line_width = 5;
+    let borderwidth = 5;
     let rubwidth;
     let font_size = "14px";
     let rub_color = "white";
@@ -23,12 +24,12 @@
         dragging = true;
     });
     $('#canvas-draft').mousemove(function(e){
+        let mouseX = e.pageX - this.offsetLeft;
+        let mouseY = e.pageY - this.offsetTop;
         if(dragging){
-            let mouseX = e.pageX - this.offsetLeft;
-            let mouseY = e.pageY - this.offsetTop;
             currentFunction.onDragging([mouseX,mouseY],e);
         }
-        currentFunction.onMouseMove(e,this);
+        currentFunction.onMouseMove([mouseX,mouseY],e);
     });
     $('#canvas-draft').mouseup(function(e){
         dragging = false;

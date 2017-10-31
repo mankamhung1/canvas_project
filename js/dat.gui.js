@@ -3733,8 +3733,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var button3 = document.createElement('span');
 	  button3.innerHTML = 'Revert';
 	  _dom2.default.addClass(button3, 'button');
+<<<<<<< HEAD
 	  _dom2.default.addClass(button3, 'revert');
 
+=======
+		_dom2.default.addClass(button3, 'revert');
+		
+		var button4 = document.createElement('span');
+		button4.innerHTML = 'Undo';
+		_dom2.default.addClass(button4, 'button');
+		_dom2.default.addClass(button4, 'undo');
+
+		var button5 = document.createElement('span');
+		button5.innerHTML = 'Redo';
+		_dom2.default.addClass(button5, 'button');
+		_dom2.default.addClass(button5, 'redo');
+	
+>>>>>>> b55866fec09d0ec6e8db684d732b4c0fc608e858
 	  var select = gui.__preset_select = document.createElement('select');
 
 	  if (gui.load && gui.load.remembered) {
@@ -3757,8 +3772,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  div.appendChild(gears);
 	  div.appendChild(button);
 	  div.appendChild(button2);
+<<<<<<< HEAD
 	  div.appendChild(button3);
 
+=======
+		div.appendChild(button3);
+		div.appendChild(button4);
+		div.appendChild(button5);
+	
+>>>>>>> b55866fec09d0ec6e8db684d732b4c0fc608e858
 	  if (SUPPORTS_LOCAL_STORAGE) {
 	    var explain = document.getElementById('dg-local-explain');
 	    var localStorageCheckBox = document.getElementById('dg-local-storage');
@@ -3808,8 +3830,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _dom2.default.bind(button3, 'click', function () {
 	    gui.revert();
 	  });
+<<<<<<< HEAD
 
 	  // div.appendChild(button2);
+=======
+	
+		// div.appendChild(button2);
+		
+		_dom2.default.bind(button4, 'click', function () {
+	    gui.undo();
+		});
+		
+		_dom2.default.bind(button5, 'click', function () {
+	    gui.redo();
+		});
+		
+>>>>>>> b55866fec09d0ec6e8db684d732b4c0fc608e858
 	}
 
 	function addResizeHandle(gui) {

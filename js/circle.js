@@ -10,6 +10,8 @@ class DrawingCircle extends PaintFunction{
         this.contextDraft.fillStyle = fill_color;
         this.contextDraft.strokeStyle = boarder_color;
         this.contextReal.strokeStyle = boarder_color;
+        this.contextDraft.lineWidth = borderwidth;
+        this.contextReal.lineWidth = borderwidth;
         this.origX = coord[0];
         this.origY = coord[1];
     }
@@ -21,6 +23,7 @@ class DrawingCircle extends PaintFunction{
         this.contextDraft.arc(this.origX,this.origY,r,0,2*Math.PI);
         this.contextDraft.fill();
         this.contextDraft.stroke();
+    
     }
 
     onMouseMove(){}
