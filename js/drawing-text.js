@@ -58,6 +58,7 @@ class DrawingText extends PaintFunction{
           this.contextReal.fillText(text,coord[0],coord[1]);
           this.contextReal.stroke();
           this.contextReal.closePath();
+          drawImage();
         }
         onMouseLeave(){}
         onMouseEnter(){}

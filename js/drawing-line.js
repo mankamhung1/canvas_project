@@ -23,6 +23,7 @@ class DrawingLine extends PaintFunction{
         this.context.lineWidth=5;
         this.context.lineCap = 'butt';
         this.context.lineJoin = "butt";
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}
