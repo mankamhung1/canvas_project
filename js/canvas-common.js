@@ -18,12 +18,6 @@
     let rub_color = "white";
     let cPushArray = new Array();
     let cStep = -1;
-    // ctx = document.getElementById('myCanvas').getContext("2d");
-    function drawImage() {
-        var image = new Image();
-            contextReal.drawImage(image, 0, 0, 500, 200);
-            cPush();
-    }
     
     // ctx = document.getElementById('myCanvas').getContext("2d");
     function drawImage() {

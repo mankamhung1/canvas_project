@@ -103,7 +103,10 @@ var text = function () {
       uploadToFirebase(); };
     this.importFromLocal = function() {
       $('#fileToLoad').click(); };
+    this.importFromFirebase = function() {
+      downloadFromFirebase(); };
 };
+
 window.onload = function() {
 var json = `{
     "preset": "new",
@@ -524,9 +527,10 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     });
 
 // Folder 5 = Color
-var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true).name("Export (To Local Machine)");
-var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Export (To Firebase)");
-var canvas_importFromLocal = f6.add(canvas, 'importFromLocal', true).name("Import (From Local Machine)");
+var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true).name("To Local Machine");
+var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("To Firebase");
+var canvas_importFromLocal = f6.add(canvas, 'importFromLocal', true).name("From Local Machine");
+var canvas_importFromFirebase = f6.add(canvas, 'importFromFirebase', true).name("From Firebase");
 
 };
 
