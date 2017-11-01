@@ -21,7 +21,8 @@
       <div class="buttons">
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
           <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
-          </div>
+          <input type="file" id="fileToLoad" style="visibility:hidden">
+      </div>
 
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='920px' height='630px'></canvas>
@@ -69,10 +70,9 @@
 <script type='text/javascript' src="js/firebase.js"></script>
 <script type='text/javascript' src="js/drawCurve.js"></script>
 <script type='text/javascript' src="js/polygon.js"></script>
+<script type='text/javascript' src="js/importFromLocal.js"></script>
 
 <script type='text/javascript'>
-
-
 
 var text = function () {
     this.color = "#bf4444";
@@ -101,6 +101,8 @@ var text = function () {
       $('#download')[0].click(); };
     this.exportToFirebase = function() {
       uploadToFirebase(); };
+    this.importFromLocal = function() {
+      $('#fileToLoad').click(); };
 };
 window.onload = function() {
 var json = `{
@@ -179,12 +181,14 @@ var f2 = gui.addFolder('Tools');
 var f3 = gui.addFolder('Image');
 var f4 = gui.addFolder('Canvas');
 var f5 = gui.addFolder('Export');
+var f6 = gui.addFolder('Import');
 
 f1.open();
 f2.open();
 f3.open();
 f4.open();
 f5.open();
+f6.open();
 
 // Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
@@ -520,8 +524,9 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     });
 
 // Folder 5 = Color
-var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true);
-var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Export To Firebase");
+var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true).name("Export (To Local Machine)");
+var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Export (To Firebase)");
+var canvas_importFromLocal = f6.add(canvas, 'importFromLocal', true).name("Import (From Local Machine)");
 
 };
 
