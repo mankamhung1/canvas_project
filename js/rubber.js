@@ -21,6 +21,7 @@ class Rubber extends PaintFunction{
     onMouseMove(){}
     onMouseUp(){
         this.context.lineWidth = 5;
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

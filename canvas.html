@@ -427,81 +427,14 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5).listen();
         canvas.textBox = false;
     });
 
-// Folder 3 = Image
-var canvas_imageUpload = f3.add(canvas, 'imageUpload', false).listen();
-    canvas_imageUpload.onChange(function (value) {
-        imageUpload = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.canvasClear = false;
-        canvas.imageDownload = false;
-        canvas.imageResize = false;
-        canvas.imageFlip = false;
-        canvas.imageRotate = false;
-        canvas.imageUpload = true;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });
-var canvas_imageRotate = f3.add(canvas, 'imageRotate', false).listen();
-    canvas_imageRotate.onChange(function (value) {
-        imageRotate = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.imageDownload = false;
-        canvas.imageResize = false;
-        canvas.imageFlip = false;
-        canvas.imageRotate = true;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });
-var canvas_imageFlip = f3.add(canvas, 'imageFlip', false).listen();
-    canvas_imageFlip.onChange(function (value) {
-        imageFlip = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.imageDownload = false;
-        canvas.imageResize = false;
-        canvas.imageFlip = true;
-        canvas.imageRotate = false;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });
-var canvas_imageResize = f3.add(canvas, 'imageResize', false).listen();
-    canvas_imageResize.onChange(function (value) {
-        imageResize = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.imageDownload = false;
-        canvas.imageResize = true;
-        canvas.imageFlip = false;
-        canvas.imageRotate = false;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });
-var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
-    canvas_imageDownload.onChange(function (value) {
-        imageDownload = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.imageDownload = true;
-        canvas.imageResize = false;
-        canvas.imageFlip = false;
-        canvas.imageRotate = false;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });
-
 // Folder 4 = Canvas
 var canvas_canvasClear = f4.add(canvas, 'canvasClear').listen();
+<<<<<<< HEAD
+
+var canvas_canvasImages = f4.add(canvas, 'canvasImages').listen();
+    canvas_canvasImages.onChange(function (value){
+        
+=======
 /*
     canvas_canvasClear.onChange(function (value) {
         if(value == true){
@@ -520,6 +453,7 @@ var canvas_canvasClear = f4.add(canvas, 'canvasClear').listen();
         canvas.straightline = false;
         canvas.textBox = false;
     });*/
+>>>>>>> 5b42b5166693b719a09a0e4fe5cfd3960d988a26
 
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
