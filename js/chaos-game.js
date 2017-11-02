@@ -48,7 +48,7 @@ class ChaosGame extends PaintFunction{
             this.contextReal.closePath();
             this.state = 'finishpolygon';
             console.log(vertices);
-            drawChaosGame(coord[0],coord[1]); // this coord can be anywhere within the canvas.
+            drawChaosGame(this.origX,this.origY); // this coord can be anywhere within the canvas.
         }
     }
     onDragging(coord,event){
@@ -103,11 +103,16 @@ console.log("chaos");
   contextReal.beginPath();
   for (i=0; i<60000; i++) {
     console.log("loop");
-  var randomVertexDirection = getRandomInt(0,vertices.length);
+
+
+  var randomVertexDirection = getRandomInt2(0,vertices.length);
+  //console.log(randomVertexDirection);
+  //console.log(vertices[randomVertexDirection]);
+  //console.log(x +" "+ y);
   var dotX = x+(vertices[randomVertexDirection].x-x)*0.50;
   var dotY = y+(vertices[randomVertexDirection].y-y)*0.50;
-  contextReal.fillStyle = "black";
-  contextReal.fillRect(dotX,dotY,1,1);
+  contextReal.fillStyle = "rgba(0,0,0,0.7)";
+  contextReal.fillRect(dotX,dotY,2,2);
   x=dotX;
   y=dotY;
   contextReal.closePath();
@@ -116,7 +121,7 @@ console.log("chaos");
 
 }
 
-function getRandomInt(min, max) {
+function getRandomInt2(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive

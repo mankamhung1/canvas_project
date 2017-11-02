@@ -1,8 +1,7 @@
 #gui {
-  position: absolute; top: 0; right:0; 
+  top: 0; right:0;
 }
 .plusToggle {
-  position:absolute;
   left:0;
   top:0;
   opacity:0.4;
