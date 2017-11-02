@@ -1,4 +1,6 @@
-class DrawingPolygon extends PaintFunction{
+var isDrawing, vertices = [ ];
+var dx, dy, d;
+class ChaosGame extends PaintFunction{
     constructor(contextReal,contextDraft){
         super();
         this.contextDraft = contextDraft;
@@ -20,42 +22,36 @@ class DrawingPolygon extends PaintFunction{
         this.contextReal.lineWidth =line_width;
         this.origX = coord[0];
         this.origY = coord[1];
+        console.log(this.origX,this.origY);
         this.state = 'afterFirstClick';
 
+        vertices.push({ x: event.clientX, y: event.clientY });
         this.contextReal.beginPath();
         this.contextReal.moveTo(this.origX,this.origY);
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)>1001){
-            this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX2,this.origY2);
+  //          this.contextReal.beginPath();
+  //          this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextReal.fill();
             this.contextReal.stroke();
             this.origX2=coord[0];
             this.origY2=coord[1];
             this.state ='intermediate';
+
+            vertices.push({ x: event.clientX, y: event.clientY });
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)<1000){
-            this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX2,this.origY2);
+//            this.contextReal.beginPath();
+//            this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextReal.fill();
             this.contextReal.stroke();
             this.contextReal.closePath();
             this.state = 'finishpolygon';
+            console.log(vertices);
+            drawChaosGame(coord[0],coord[1]); // this coord can be anywhere within the canvas.
         }
     }
     onDragging(coord,event){
-
-        if(this.state === 'afterFirstClick'){
-            console.log('step2');
-            this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
-            this.contextDraft.beginPath();
-  this.contextDraft.moveTo(this.origX,this.origY);
-            this.contextDraft.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
-            this.contextDraft.stroke();
-          this.contextDraft.closePath();
-        }
-        
     }
 
     onMouseMove(coord,event){
@@ -65,15 +61,15 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX2,this.origY2);
             this.contextDraft.lineTo(coord[0],coord[1]);
-            this.contextReal.lineTo(coord[0],coord[1]);
+    //        this.contextReal.lineTo(coord[0],coord[1]);
             this.contextDraft.stroke();
          }
     }
     onMouseUp(coord,event){
         if(this.state ==='afterFirstClick'){
             console.log('step3');
-            this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX,this.origY);
+//            this.contextReal.beginPath();
+//            this.contextReal.moveTo(this.origX,this.origY);
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextReal.fill();
             this.contextReal.stroke();
@@ -97,4 +93,31 @@ class DrawingPolygon extends PaintFunction{
     onMouseLeave(){}
     onMouseEnter(){}
 
+}
+
+function drawChaosGame(x,y) {
+
+console.log("chaos");
+  contextReal.globalAlpha = 0.7;
+
+  contextReal.beginPath();
+  for (i=0; i<60000; i++) {
+    console.log("loop");
+  var randomVertexDirection = getRandomInt(0,vertices.length);
+  var dotX = x+(vertices[randomVertexDirection].x-x)*0.50;
+  var dotY = y+(vertices[randomVertexDirection].y-y)*0.50;
+  contextReal.fillStyle = "black";
+  contextReal.fillRect(dotX,dotY,1,1);
+  x=dotX;
+  y=dotY;
+  contextReal.closePath();
+  }
+
+
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }

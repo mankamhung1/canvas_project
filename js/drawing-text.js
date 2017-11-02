@@ -30,14 +30,14 @@ class DrawingText extends PaintFunction{
                 pastX = newTextBox.attr("left");
                 pastY = newTextBox.attr("right");
                 text = newTextBox["0"].value;
-                textDone=true;
+            //    textDone=true;
             }
             if (newTextBox["0"].value!="") {
               text = newTextBox["0"].value;
               textFont = newTextBox["0"].style.fontSize;
               newTextBox["0"].value="";
               $('#textBox').remove();
-              textDone = false;
+          //    textDone = false;
             }
             this.contextDraft.font = textFont+fontType;
             this.contextDraft.fillText(text,coord[0],coord[1]);
