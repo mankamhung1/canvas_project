@@ -73,6 +73,7 @@
 <script type='text/javascript' src="js/importFromLocal.js"></script>
 <script type='text/javascript' src="js/random-circle.js"></script>
 <script type='text/javascript' src="js/drawPixels.js"></script>
+<script type='text/javascript' src="js/spray.js"></script>
 
 <script type='text/javascript'>
 
@@ -200,21 +201,17 @@ f6.open();
 // Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
     canvas_color.onChange(function (value) {
-    console.log(value);
     changelineColor(value);
     });
     canvas_color.onFinishChange(function (value) {
-    console.log(value);
     changelineColor(value);
     });
 
 var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
     canvas_fillColor.onChange(function (value) {
-    console.log(value);
     changefillColor(value);
     });
     canvas_fillColor.onFinishChange(function (value) {
-    console.log(value);
     changefillColor(value);
     });
 
@@ -247,6 +244,8 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawRandomCircle();
         }else if(value =='colored pixel'){
             drawPixels();
+        }else if(value =='spray'){
+            spray();
         }
         canvas.lineType = "";
         canvas.shape = "";
@@ -294,7 +293,6 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','cu
 var canvas_borderWidth = f2.add(canvas, 'borderWidth', 1, 5).listen();
     canvas_borderWidth.onChange(function (value) {
         changeBorderWidth(value);
-        console.log(value);
         canvas.brushTool = "";
         canvas.lineType = "";
         canvas.canvasResize = false;
@@ -589,8 +587,11 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawRandomCircle(){
       currentFunction = new DrawingRandomCircles(contextReal,contextDraft);
   }
+  function spray(){
+      currentFunction = new Spray(contextReal,contextDraft);
+  }
   function drawPixels(){
-      currentFunction = new DrawingRandomPixels(contextReal,contextDraft);
+      currentFunction = new Spray(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
