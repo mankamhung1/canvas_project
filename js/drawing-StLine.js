@@ -41,6 +41,7 @@ class DrawingStLine extends PaintFunction{
         this.contextDraft.lineJoin = "butt";
         this.contextReal.lineCap = 'butt';
         this.contextReal.lineJoin = "butt";
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

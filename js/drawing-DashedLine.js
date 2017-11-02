@@ -38,6 +38,7 @@ class DrawingDashedLine extends PaintFunction{
         this.contextReal.lineWidth=5;
         this.contextDraft.line_width=5;
         this.contextReal.closePath();
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

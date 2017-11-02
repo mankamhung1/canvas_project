@@ -19,7 +19,9 @@ class DrawingBrush1 extends PaintFunction{
     }
 
     onMouseMove(){}
-    onMouseUp(){}
+    onMouseUp(){
+      drawImage();
+    }
     onMouseLeave(){}
     onMouseEnter(){}
 

@@ -56,6 +56,7 @@ class DrawingSketch1 extends PaintFunction{
       isDrawing = false;
       points.length = 0;
       this.context.globalAlpha = 1;
+      drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

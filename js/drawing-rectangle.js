@@ -36,6 +36,7 @@ class DrawingRectangle extends PaintFunction{
             this.contextReal.stroke();
             this.contextReal.closePath();
             this.contextDraft.closePath();
+            drawImage();
         }
         onMouseLeave(){}
         onMouseEnter(){}

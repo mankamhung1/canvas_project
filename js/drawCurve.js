@@ -50,6 +50,7 @@ class DrawingCurve extends PaintFunction{
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX,this.origY);
             this.contextDraft.quadraticCurveTo(coord[0],coord[1],this.origX2,this.origY2);
+            console.log(this.origX,this.origY,this.origX2,this.origY2);
             this.contextDraft.stroke();
             this.contextDraft.closePath();
          }
@@ -66,7 +67,7 @@ class DrawingCurve extends PaintFunction{
             this.origY2=coord[1];
             console.log(this.origX2,this.origY2);
             this.state = 'afterFirstRelease';
-            
+
         }else if(this.state ==='finishcurve'){
             console.log('finish curve');
             this.contextReal.lineWidth=5;
@@ -76,6 +77,7 @@ class DrawingCurve extends PaintFunction{
             this.contextDraft.lineCap = 'butt';
             this.contextDraft.lineJoin = "butt";
             this.state ='beforeClick';
+            drawImage();
         }
     }
     onMouseLeave(){}
