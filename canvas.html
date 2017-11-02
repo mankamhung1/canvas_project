@@ -71,6 +71,7 @@
 <script type='text/javascript' src="js/drawCurve.js"></script>
 <script type='text/javascript' src="js/polygon.js"></script>
 <script type='text/javascript' src="js/importFromLocal.js"></script>
+<script type='text/javascript' src="js/random-circle.js"></script>
 
 <script type='text/javascript'>
 
@@ -241,6 +242,8 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawWithPen();
         }else if (value == 'red circles') {
             drawRedCircles();
+        }else if(value =='random circles'){
+            drawRandomCircle();
         }
         canvas.lineType = "";
         canvas.shape = "";
@@ -579,6 +582,9 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
   function drawPolygon(){
       currentFunction = new DrawingPolygon(contextReal,contextDraft);
+  }
+  function drawRandomCircle(){
+      currentFunction = new DrawingRandomCircles(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
