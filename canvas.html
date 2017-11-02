@@ -19,8 +19,8 @@
 
     <body>
       <div class="buttons">
-          <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
           <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
+          <a href="#gui" class="btn btn-success plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
           </div>
 
       <div id="canvas-container">
@@ -47,6 +47,7 @@
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
+<script type="text/javascript" src="js/scotchPanels.js"></script>
 <script src="js/jquery.ruler.js"></script>
 <!--<script src=”https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js”></script>-->
 <script type="text/javascript" src="js/hammer.js"></script>
@@ -170,8 +171,14 @@ var json = `{
 // create dat-gui controls
 var canvas = new text();
 // create GUI
-var gui = new dat.GUI({ load: JSON.parse(json)});
+var gui = new dat.GUI({ load: JSON.parse(json), autoPlace: true});
+gui.domElement.id = 'gui';
 
+$('.plusToggle').click(function (){
+    $('#gui').animate({
+        width:['toggle','linear']
+        },350);
+});
 gui.remember(canvas);
 
 var f1 = gui.addFolder('Color');
