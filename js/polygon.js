@@ -21,37 +21,41 @@ class DrawingPolygon extends PaintFunction{
         this.origX = coord[0];
         this.origY = coord[1];
         this.state = 'afterFirstClick';
+
+        this.contextReal.beginPath();
+        this.contextReal.moveTo(this.origX,this.origY);
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)>1001){
-            this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX2,this.origY2);
+  //          this.contextReal.beginPath();
+  //          this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextReal.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
             this.origX2=coord[0];
             this.origY2=coord[1];
             this.state ='intermediate';
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)<1000){
-            this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX2,this.origY2);
+//            this.contextReal.beginPath();
+//            this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
+            this.contextReal.fill();
             this.contextReal.stroke();
             this.contextReal.closePath();
-            this.contextReal.fill();
             this.state = 'finishpolygon';
         }
     }
     onDragging(coord,event){
+      /*
         if(this.state === 'afterFirstClick'){
             console.log('step2');
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextDraft.beginPath();
-            this.contextDraft.moveTo(this.origX,this.origY);
+    //        this.contextDraft.moveTo(this.origX,this.origY);
             this.contextDraft.lineTo(coord[0],coord[1]);
             this.contextDraft.fill();
             this.contextDraft.stroke();
-            this.contextDraft.closePath();
+//            this.contextDraft.closePath();
         }
+        */
     }
 
     onMouseMove(coord,event){
@@ -61,19 +65,18 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.origX2,this.origY2);
             this.contextDraft.lineTo(coord[0],coord[1]);
+    //        this.contextReal.lineTo(coord[0],coord[1]);
             this.contextDraft.stroke();
-            this.contextDraft.closePath();
          }
     }
     onMouseUp(coord,event){
         if(this.state ==='afterFirstClick'){
             console.log('step3');
-            this.contextReal.beginPath();
-            this.contextReal.moveTo(this.origX,this.origY);
+//            this.contextReal.beginPath();
+//            this.contextReal.moveTo(this.origX,this.origY);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextDraft.fill();
+            this.contextReal.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
             this.origX2=coord[0];
             this.origY2=coord[1];
             console.log(this.origX2,this.origY2);
@@ -88,6 +91,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineCap = 'butt';
             this.contextDraft.lineJoin = "butt";
             this.state ='Start';
+            drawImage();
         }
     }
     onMouseLeave(){}

@@ -16,9 +16,9 @@
     let rubwidth;
     let font_size = "14px";
     let rub_color = "white";
-    var cPushArray = new Array();
-    var cStep = -1;
-
+    let cPushArray = new Array();
+    let cStep = -1;
+    
     // ctx = document.getElementById('myCanvas').getContext("2d");
     function drawImage() {
         var image = new Image();

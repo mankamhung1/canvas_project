@@ -20,7 +20,7 @@ class DrawingDashedLine extends PaintFunction{
     onDragging(coord,event){
         this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
         this.contextDraft.beginPath();
-        this.contextDraft.setLineDash([14,15]);
+        this.contextDraft.setLineDash([13,15]);
         this.contextDraft.moveTo(this.origX,this.origY);
         this.contextDraft.lineTo(coord[0],coord[1]);
         this.contextDraft.stroke();
@@ -30,7 +30,7 @@ class DrawingDashedLine extends PaintFunction{
     onMouseMove(){}
     onMouseUp(coord,event){
         this.contextReal.beginPath();
-        this.contextDraft.setLineDash([14,15]);
+        this.contextReal.setLineDash([13,15]);
         this.contextReal.moveTo(this.origX,this.origY);
         this.contextReal.lineTo(coord[0],coord[1]);
         this.contextReal.stroke();
@@ -38,6 +38,7 @@ class DrawingDashedLine extends PaintFunction{
         this.contextReal.lineWidth=5;
         this.contextDraft.line_width=5;
         this.contextReal.closePath();
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

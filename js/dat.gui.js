@@ -3135,8 +3135,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	GUI.CLASS_CLOSE_TOP = 'close-top';
 	GUI.CLASS_CLOSE_BOTTOM = 'close-bottom';
 	GUI.CLASS_DRAG = 'drag';
-	
-	GUI.DEFAULT_WIDTH = 300;
+
+	GUI.DEFAULT_WIDTH = 311;
 	GUI.TEXT_CLOSED = 'Close Controls';
 	GUI.TEXT_OPEN = 'Open Controls';
 

@@ -21,7 +21,8 @@
       <div class="buttons">
           <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
           <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
-          </div>
+          <input type="file" id="fileToLoad" style="visibility:hidden">
+      </div>
 
       <div id="canvas-container">
           <canvas id="canvas-real" class="canvas" width='920px' height='630px'></canvas>
@@ -62,15 +63,16 @@
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
-
+<script type='text/javascript' src="js/drawing-red circles.js"></script>
+<script type='text/javascript' src="js/drawing-DashedLine.js"></script>
+<script type='text/javascript' src="js/drawing-DottedLine.js"></script>
 <script type='text/javascript' src="js/drawing-StLine.js"></script>
 <script type='text/javascript' src="js/firebase.js"></script>
 <script type='text/javascript' src="js/drawCurve.js"></script>
 <script type='text/javascript' src="js/polygon.js"></script>
+<script type='text/javascript' src="js/importFromLocal.js"></script>
 
 <script type='text/javascript'>
-
-
 
 var text = function () {
     this.color = "#bf4444";
@@ -97,9 +99,12 @@ var text = function () {
     this.canvasBgcolor = "#F6E5E5";
     this.exportCanvas = function() {
       $('#download')[0].click(); };
-    this.exportToFirebase = function() {
-      uploadToFirebase(); };
+    this.exportToFirebase = "";
+    this.importFromLocal = function() {
+      $('#fileToLoad').click(); };
+    this.importFromFirebase = "";
 };
+
 window.onload = function() {
 var json = `{
     "preset": "new",
@@ -127,7 +132,9 @@ var json = `{
                 "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
-                "eraserSize" : 1
+                "eraserSize" : 1,
+                "exportToFirebase" : "",
+                "importFromFirebase" : ""
 
             }
             },
@@ -154,7 +161,9 @@ var json = `{
                 "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
-                "eraserSize" : 1
+                "eraserSize" : 1,
+                "exportToFirebase" : "",
+                "importFromFirebase" : ""
 
             }
           }
@@ -177,12 +186,14 @@ var f2 = gui.addFolder('Tools');
 var f3 = gui.addFolder('Image');
 var f4 = gui.addFolder('Canvas');
 var f5 = gui.addFolder('Export');
+var f6 = gui.addFolder('Import');
 
 f1.open();
 f2.open();
 f3.open();
 f4.open();
 f5.open();
+f6.open();
 
 // Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
@@ -220,7 +231,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'circle', 'random circles', 'spray']).listen();
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -228,6 +239,8 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawBrush1();
         }else if (value == 'pen'){
             drawWithPen();
+        }else if (value == 'red circles') {
+            drawRedCircles();
         }
         canvas.lineType = "";
         canvas.shape = "";
@@ -516,8 +529,14 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     });
 
 // Folder 5 = Color
-var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true);
-var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("Export To Firebase");
+var canvas_exportCanvas = f5.add(canvas, 'exportCanvas', true).name("To Local Machine");
+var canvas_exportToFirebase = f5.add(canvas, 'exportToFirebase', true).name("To Firebase").onFinishChange(function(value) {
+  if (value != "")
+  uploadToFirebase(value);});
+var canvas_importFromLocal = f6.add(canvas, 'importFromLocal', true).name("From Local Machine");
+var canvas_importFromFirebase = f6.add(canvas, 'importFromFirebase', true).name("From Firebase").onFinishChange(function(value) {
+  if (value != "")
+  downloadFromFirebase(value);});
 
 };
 
@@ -534,6 +553,9 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawWithPen(){
       currentFunction = new DrawingLine(contextReal,contextDraft);
   }
+  function drawRedCircles(){
+      currentFunction = new DrawingRedCircles(contextReal,contextDraft);
+  }
   function drawRect(){
       currentFunction = new DrawingRectangle(contextReal,contextDraft);
   }
@@ -544,7 +566,7 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
       currentFunction = new DrawingEllipse(contextReal,contextDraft);
   }
   function drawStLine(){
-      currentFunction = new  DrawingStLine(contextReal,contextDraft);
+      currentFunction = new DrawingStLine(contextReal,contextDraft);
   }
   function drawDottedLine(){
       currentFunction = new DrawingDottedLine(contextReal,contextDraft);
