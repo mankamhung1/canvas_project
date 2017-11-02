@@ -243,11 +243,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-<<<<<<< HEAD
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch 2','Chaos Game','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
-=======
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen',  'colored pixel', 'trail effect', 'random circles','random star', 'spray']).listen();
->>>>>>> a27ed363499a2b53f0991d076eb0175d95f0b80f
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch 2','Chaos Game','pen', 'colored pixel', 'trail effect', 'random circles','random star', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -259,11 +255,7 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawBrush1();
         } else if (value == 'pen'){
             drawWithPen();
-<<<<<<< HEAD
-        } else if (value == 'red circles') {
-=======
         }else if (value == 'trail effect') {
->>>>>>> a27ed363499a2b53f0991d076eb0175d95f0b80f
             drawRedCircles();
         }else if(value =='random circles'){
             drawRandomCircle();

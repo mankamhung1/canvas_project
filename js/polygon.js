@@ -44,7 +44,7 @@ class DrawingPolygon extends PaintFunction{
         }
     }
     onDragging(coord,event){
-      
+
         if(this.state === 'afterFirstClick'){
             console.log('step2');
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
@@ -55,7 +55,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.stroke();
           this.contextDraft.closePath();
         }
-        */
+        
     }
 
     onMouseMove(coord,event){
