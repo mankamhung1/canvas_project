@@ -74,6 +74,8 @@
 <script type='text/javascript' src="js/random-circle.js"></script>
 <script type='text/javascript' src="js/drawPixels.js"></script>
 <script type='text/javascript' src="js/spray.js"></script>
+<script type='text/javascript' src="js/draw-star.js"></script>
+
 
 <script type='text/javascript'>
 
@@ -230,7 +232,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen',  'colored pixel', 'red circles', 'random circles','random star', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -246,6 +248,8 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawPixels();
         }else if(value =='spray'){
             spray();
+        }else if(value =='random star'){
+            drawRandomStar();
         }
         canvas.lineType = "";
         canvas.shape = "";
@@ -587,11 +591,14 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawRandomCircle(){
       currentFunction = new DrawingRandomCircles(contextReal,contextDraft);
   }
+  function drawRandomStar(){
+      currentFunction = new DrawingStar(contextReal,contextDraft);
+  }
   function spray(){
       currentFunction = new Spray(contextReal,contextDraft);
   }
   function drawPixels(){
-      currentFunction = new Spray(contextReal,contextDraft);
+      currentFunction = new DrawingRandomPixels(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
