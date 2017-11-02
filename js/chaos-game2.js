@@ -1,6 +1,6 @@
 var isDrawing, vertices = [ ];
 var dx, dy, d;
-class ChaosGame extends PaintFunction{
+class ChaosGame2 extends PaintFunction{
     constructor(contextReal,contextDraft){
         super();
         this.contextDraft = contextDraft;
@@ -48,7 +48,7 @@ class ChaosGame extends PaintFunction{
             this.contextReal.closePath();
             this.state = 'finishpolygon';
             console.log(vertices);
-            drawChaosGame(this.origX,this.origY); // this coord can be anywhere within the canvas.
+            drawChaosGame2(this.origX,this.origY); // this coord can be anywhere within the canvas.
         }
     }
     onDragging(coord,event){
@@ -95,34 +95,22 @@ class ChaosGame extends PaintFunction{
 
 }
 
-function drawChaosGame(x,y) {
-
-console.log("chaos");
-  contextReal.globalAlpha = 0.7;
-
+function drawChaosGame2(x,y) {
+//  contextReal.globalAlpha = 0.7;
   contextReal.beginPath();
-  for (i=0; i<60000; i++) {
+  for (i=0; i<80000; i++) {
     console.log("loop");
-
-
   var randomVertexDirection = getRandomInt2(0,vertices.length);
-  //console.log(randomVertexDirection);
-  //console.log(vertices[randomVertexDirection]);
-  //console.log(x +" "+ y);
+  while (randomVertexDirection == previousVertex) {
+    randomVertexDirection = getRandomInt2(0,vertices.length);
+  }
   var dotX = x+(vertices[randomVertexDirection].x-x)*0.50;
   var dotY = y+(vertices[randomVertexDirection].y-y)*0.50;
-  contextReal.fillStyle = "rgba(0,0,0,0.7)";
-  contextReal.fillRect(dotX,dotY,2,2);
+  contextReal.fillStyle = "rgba(0,0,0,1)";
+  contextReal.fillRect(dotX,dotY,0.05,0.05);
   x=dotX;
   y=dotY;
+  var previousVertex = randomVertexDirection;
   contextReal.closePath();
   }
-
-
-}
-
-function getRandomInt2(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
