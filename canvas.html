@@ -104,6 +104,7 @@ var text = function () {
     this.eraser = false;
     this.eraserSize = 1;
     this.canvasClear = function(){
+        contextReal.fillStyle=bgcolor;
         contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         drawImage();
     };
@@ -489,6 +490,7 @@ contextReal.strokeStyle = bgcolor;
 contextReal.strokeRect(0,0,canvasReal.width,canvasReal.height);
 contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
 contextReal.stroke();
+drawImage();
 
 //currentFunction = new DrawingLine(contextReal,contextDraft);
 currentFunction = new DrawingSketch1(contextReal,contextDraft);
