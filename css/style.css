@@ -3,18 +3,9 @@
 
 }
 #canvas-real,#canvas-draft{
-<<<<<<< HEAD
     position:absolute; 
 }
 
-
-
-
-=======
-    position:absolute; top:0px; left:0px;
-}
-
->>>>>>> 5b42b5166693b719a09a0e4fe5cfd3960d988a26
 .ruler {
 	background: rgba(255,255,255,1);
 	color: #444;
