@@ -9,9 +9,9 @@ class DrawingSketch1 extends PaintFunction{
     }
 
     onMouseDown(coord,event){
-        console.log("here");
         this.context.strokeStyle = line_color;
         this.context.lineJoin = "round";
+        this.context.lineCap = "round";
         this.context.lineWidth = 1;
         this.context.beginPath();
 

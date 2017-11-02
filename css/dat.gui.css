@@ -92,7 +92,7 @@
     transition: overflow 0.1s linear; }
   .dg li:not(.folder) {
     cursor: auto;
-    height: 28px !important;
+    height: 28px;
     line-height: 27px;
     padding: 0 4px 0 5px; }
   .dg li.folder {

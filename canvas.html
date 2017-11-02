@@ -63,6 +63,8 @@
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
+<script type='text/javascript' src="js/drawing-sketch2.js"></script>
+<script type='text/javascript' src="js/chaos-game.js"></script>
 <script type='text/javascript' src="js/drawing-red circles.js"></script>
 <script type='text/javascript' src="js/drawing-DashedLine.js"></script>
 <script type='text/javascript' src="js/drawing-DottedLine.js"></script>
@@ -231,15 +233,19 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch 2','Chaos Game','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
+        } else if (value === 'Sketch 2') {
+            drawSketch2();
+        } else if(value == 'Chaos Game'){
+            chaosGame();
         } else if(value == 'Brush 1'){
             drawBrush1();
-        }else if (value == 'pen'){
+        } else if (value == 'pen'){
             drawWithPen();
-        }else if (value == 'red circles') {
+        } else if (value == 'red circles') {
             drawRedCircles();
         }
         canvas.lineType = "";
@@ -591,6 +597,12 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
   function drawSketch1(){
       currentFunction = new DrawingSketch1(contextReal,contextDraft);
+  }
+  function drawSketch2(){
+      currentFunction = new DrawingSketch2(contextReal,contextDraft);
+  }
+  function chaosGame(){
+      currentFunction = new ChaosGame(contextReal,contextDraft);
   }
   function resize(){
       currentFunction = new Resize(contextReal,contextDraft);
