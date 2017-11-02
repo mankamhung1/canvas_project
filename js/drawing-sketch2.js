@@ -1,5 +1,5 @@
 var isDrawing, points = [ ];
-opacity = 0.3; // default value when opacity is not modified.
+//opacity = 0.3; // default value when opacity is not modified.
 
 class DrawingSketch2 extends PaintFunction{
     constructor(contextReal){
