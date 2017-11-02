@@ -23,6 +23,7 @@ class DrawingStar extends PaintFunction{
     onMouseUp(coord,event){
         isDrawing = false;
         points.length = 0;
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

@@ -53,16 +53,10 @@ class DrawingRandomCircles extends PaintFunction{
         isDrawing = false;
         points.length = 0;
         this.context.globalAlpha ='1';
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}
-
-    draw(x,y){
-        this.context.lineTo(x,y);
-        this.context.moveTo(x,y);
-        this.context.stroke();
-        this.context.closePath();
-    }
     
 }
 /*function getRandomInt(min, max) {

@@ -35,6 +35,7 @@ class Spray extends PaintFunction{
     }
     onMouseUp(coord,event){
         isDrawing=false;
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}

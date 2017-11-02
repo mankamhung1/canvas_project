@@ -11,6 +11,7 @@ class Bgcolor extends PaintFunction{
         this.contextReal.strokeRect(0,0,canvasReal.width,canvasReal.height);
         this.contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         this.contextReal.stroke();
+        drawImage();
     }
     onDragging(){}
     onMouseMove(){}

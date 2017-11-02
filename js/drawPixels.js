@@ -24,6 +24,7 @@ class DrawingRandomPixels extends PaintFunction{
     }
     onMouseUp(){
         isDrawing = false;
+        drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}
