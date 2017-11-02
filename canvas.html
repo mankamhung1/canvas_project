@@ -100,7 +100,10 @@ var text = function () {
     this.imageDownload = false;
     this.eraser = false;
     this.eraserSize = 1;
-    this.canvasResize = false;
+    this.canvasClear = function(){
+        contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
+        drawImage();
+    };
     this.canvasBgcolor = "#F6E5E5";
     this.exportCanvas = function() {
       $('#download')[0].click(); };
@@ -134,7 +137,6 @@ var json = `{
                 "imageResize" : false,
                 "imageDownload" : false,
                 "brushSize" : 1,
-                "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
                 "eraserSize" : 1,
@@ -163,7 +165,6 @@ var json = `{
                 "imageResize" : false,
                 "imageDownload" : false,
                 "brushSize" : 2,
-                "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
                 "eraserSize" : 1,
@@ -232,7 +233,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen',  'colored pixel', 'red circles', 'random circles','random star', 'spray']).listen();
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen',  'colored pixel', 'trail effect', 'random circles','random star', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -240,7 +241,7 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
             drawBrush1();
         }else if (value == 'pen'){
             drawWithPen();
-        }else if (value == 'red circles') {
+        }else if (value == 'trail effect') {
             drawRedCircles();
         }else if(value =='random circles'){
             drawRandomCircle();
@@ -253,7 +254,6 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen', 
         }
         canvas.lineType = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -283,7 +283,6 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','cu
         }
         canvas.brushTool = "";
         canvas.lineType = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -299,7 +298,6 @@ var canvas_borderWidth = f2.add(canvas, 'borderWidth', 1, 5).listen();
         changeBorderWidth(value);
         canvas.brushTool = "";
         canvas.lineType = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -316,7 +314,7 @@ var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
         }
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
+        canvas.canvasClear = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -333,7 +331,6 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50).listen();
         changeFontSize(fontSize);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -347,7 +344,6 @@ var canvas_line = f2.add(canvas, 'straightline', false).listen();
         drawStLine();
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -361,7 +357,6 @@ var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5).listen();
         changeLineSize(value);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -381,7 +376,6 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted', 'dashed']).
         }
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -396,7 +390,6 @@ var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
         rubber();
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -411,7 +404,6 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5).listen();
         changeRubSize(value);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -427,7 +419,7 @@ var canvas_imageUpload = f3.add(canvas, 'imageUpload', false).listen();
         imageUpload = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
+        canvas.canvasClear = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -442,7 +434,6 @@ var canvas_imageRotate = f3.add(canvas, 'imageRotate', false).listen();
         imageRotate = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -457,7 +448,6 @@ var canvas_imageFlip = f3.add(canvas, 'imageFlip', false).listen();
         imageFlip = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = true;
@@ -472,7 +462,6 @@ var canvas_imageResize = f3.add(canvas, 'imageResize', false).listen();
         imageResize = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = true;
         canvas.imageFlip = false;
@@ -487,7 +476,6 @@ var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
         imageDownload = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = true;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -499,12 +487,16 @@ var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
     });
 
 // Folder 4 = Canvas
-var canvas_canvasResize = f4.add(canvas, 'canvasResize', false).listen();
-    canvas_canvasResize.onChange(function (value) {
-        canvasResize = value;
+var canvas_canvasClear = f4.add(canvas, 'canvasClear').listen();
+/*
+    canvas_canvasClear.onChange(function (value) {
+        if(value == true){
+            console.log('clear!');
+            contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
+        }
+        canvasClear = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = true;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -513,7 +505,7 @@ var canvas_canvasResize = f4.add(canvas, 'canvasResize', false).listen();
         canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = false;
-    });
+    });*/
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
@@ -525,7 +517,7 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
         changeRubColor(value);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
+        canvas.canvasClear = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;

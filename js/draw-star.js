@@ -13,7 +13,6 @@ class DrawingStar extends PaintFunction{
         
         this.addRandomPoint(coord);
         
-        this.context.clearRect(0, 0, canvasReal.width, canvasReal.height);
         for (var i = 0; i < points.length; i++) {
           this.drawStar(points[i]);
         }
@@ -33,7 +32,7 @@ class DrawingStar extends PaintFunction{
           x: coord[0], 
           y: coord[1], 
           angle: getRandomInt(0, 180),
-          width: getRandomInt(1,10),
+          width: getRandomInt(1,5),
           opacity: Math.random(),
           scale: getRandomInt(1, 20) / 10,
           color: ('rgb('+getRandomInt(0,255)+','+getRandomInt(0,255)+','+getRandomInt(0,255)+')')
@@ -65,58 +64,3 @@ class DrawingStar extends PaintFunction{
 
 
 }
-/**
- * function drawStar(options) {
-  var length = 15;
-  this.context.save();
-  this.context.translate(options.x, options.y);
-  this.context.beginPath();
-  this.context.globalAlpha = options.opacity;
-  this.context.rotate(Math.PI / 180 * options.angle);
-  this.context.scale(options.scale, options.scale);
-  this.context.strokeStyle = options.color;
-  this.context.lineWidth = options.width;
-  for (var i = 5; i--;) {
-    this.context.lineTo(0, length);
-    this.context.translate(0, length);
-    this.context.rotate((Math.PI * 2 / 10));
-    this.context.lineTo(0, -length);
-    this.context.translate(0, -length);
-    this.context.rotate(-(Math.PI * 6 / 10));
-  }
-  this.context.lineTo(0, length);
-  this.context.closePath();
-  this.context.stroke();
-  this.context.restore();
-}
-function addRandomPoint(e) {
-  points.push({ 
-    x: e.clientX, 
-    y: e.clientY, 
-    angle: getRandomInt(0, 180),
-    width: getRandomInt(1,10),
-    opacity: Math.random(),
-    scale: getRandomInt(1, 20) / 10,
-    color: ('rgb('+getRandomInt(0,255)+','+getRandomInt(0,255)+','+getRandomInt(0,255)+')')
-  });
-}
-
-el.onmousedown = function(e) {
-  isDrawing = true;
-  addRandomPoint(e);
-};
-el.onmousemove = function(e) {
-  if (!isDrawing) return;
-  
-  addRandomPoint(e);
-  
-  this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-  for (var i = 0; i < points.length; i++) {
-    drawStar(points[i]);
-  }
-};
-el.onmouseup = function() {
-  isDrawing = false;
-  points.length = 0;
-};
- */

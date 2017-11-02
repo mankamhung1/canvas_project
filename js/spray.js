@@ -20,13 +20,10 @@ class Spray extends PaintFunction{
         this.context.fillStyle = fill_color;
         isDrawing = true;
         this.context.moveTo(this.origX, this.origY);
-        console.log('run');
-        
     }
     onDragging(coord,event){
-        console.log('running');
         if (isDrawing) {
-            for (var i = this.density; i--; ) {console.log('running9');
+            for (var i = this.density; i--; ) {
               var radius = 20;
               var offsetX = getRandomInt(-radius, radius);
               var offsetY = getRandomInt(-radius, radius);
@@ -34,7 +31,6 @@ class Spray extends PaintFunction{
             }
         }
     }
-
     onMouseMove(coord,event){
     }
     onMouseUp(coord,event){
@@ -42,7 +38,4 @@ class Spray extends PaintFunction{
     }
     onMouseLeave(){}
     onMouseEnter(){}
-
-
-
 }

@@ -19,8 +19,8 @@ class DrawingRandomCircles extends PaintFunction{
 
         isDrawing = true;
         points.push({ 
-          x: event.clientX, 
-          y: event.clientY,
+          x: coord[0], 
+          y: coord[1],
           radius: getRandomInt(10, 30),
           opacity: Math.random()
         });
@@ -30,17 +30,19 @@ class DrawingRandomCircles extends PaintFunction{
     onDragging(coord,event){
         if (!isDrawing) return;
         points.push({ 
-          x: event.clientX, 
-          y: event.clientY,
+          x: coord[0], 
+          y: coord[1],
           radius: getRandomInt(5, 20),
           opacity: Math.random()
         });
         for (var i = 0; i < points.length; i++) {
           this.context.beginPath();
-          this.context.globalAlpha = points[i].opacity;
+          this.context.globalAlpha = (points[i].opacity);
+          console.log('opacity ='+points[i].opacity);
           this.context.arc(
             points[i].x, points[i].y, points[i].radius, 
             false, Math.PI * 2, false);
+            console.log('radius'+points[i].radius);
           this.context.fill();
         }
       }
