@@ -25,7 +25,6 @@
         contextReal.drawImage(image, 0, 0, canvasReal.width, canvasReal.height);
         cPush();
     }
-
     function cPush() {
         cStep++;
         if (cStep < cPushArray.length) { cPushArray.length = cStep; }

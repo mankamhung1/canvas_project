@@ -19,8 +19,9 @@
 
     <body>
       <div class="buttons">
-          <span class="btn btn-primary fa fa-square" id="resize" onclick="resize()">Resize</span>
           <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
+          <a href="#gui" class="btn btn-success plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
+          </div>
           <input type="file" id="fileToLoad" style="visibility:hidden">
       </div>
 
@@ -48,6 +49,7 @@
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
+<script type="text/javascript" src="js/scotchPanels.js"></script>
 <script src="js/jquery.ruler.js"></script>
 <!--<script src=”https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js”></script>-->
 <script type="text/javascript" src="js/hammer.js"></script>
@@ -73,6 +75,11 @@
 <script type='text/javascript' src="js/drawCurve.js"></script>
 <script type='text/javascript' src="js/polygon.js"></script>
 <script type='text/javascript' src="js/importFromLocal.js"></script>
+<script type='text/javascript' src="js/random-circle.js"></script>
+<script type='text/javascript' src="js/drawPixels.js"></script>
+<script type='text/javascript' src="js/spray.js"></script>
+<script type='text/javascript' src="js/draw-star.js"></script>
+
 
 <script type='text/javascript'>
 
@@ -97,7 +104,10 @@ var text = function () {
     this.imageDownload = false;
     this.eraser = false;
     this.eraserSize = 1;
-    this.canvasResize = false;
+    this.canvasClear = function(){
+        contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
+        drawImage();
+    };
     this.canvasBgcolor = "#F6E5E5";
     this.exportCanvas = function() {
       $('#download')[0].click(); };
@@ -131,7 +141,6 @@ var json = `{
                 "imageResize" : false,
                 "imageDownload" : false,
                 "brushSize" : 1,
-                "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
                 "eraserSize" : 1,
@@ -160,7 +169,6 @@ var json = `{
                 "imageResize" : false,
                 "imageDownload" : false,
                 "brushSize" : 2,
-                "canvasResize" : false,
                 "canvasBgcolor" : "#F6E5E5",
                 "eraser" : false,
                 "eraserSize" : 1,
@@ -179,8 +187,14 @@ var json = `{
 // create dat-gui controls
 var canvas = new text();
 // create GUI
-var gui = new dat.GUI({ load: JSON.parse(json)});
+var gui = new dat.GUI({ load: JSON.parse(json), autoPlace: true});
+gui.domElement.id = 'gui';
 
+$('.plusToggle').click(function (){
+    $('#gui').animate({
+        width:['toggle','linear']
+        },350);
+});
 gui.remember(canvas);
 
 var f1 = gui.addFolder('Color');
@@ -200,21 +214,17 @@ f6.open();
 // Folder 1 = Color
 var canvas_color = f1.addColor(canvas, 'color').listen();
     canvas_color.onChange(function (value) {
-    console.log(value);
     changelineColor(value);
     });
     canvas_color.onFinishChange(function (value) {
-    console.log(value);
     changelineColor(value);
     });
 
 var canvas_fillColor = f1.addColor(canvas, 'fillColor').listen();
     canvas_fillColor.onChange(function (value) {
-    console.log(value);
     changefillColor(value);
     });
     canvas_fillColor.onFinishChange(function (value) {
-    console.log(value);
     changefillColor(value);
     });
 
@@ -233,7 +243,11 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
+<<<<<<< HEAD
 var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch 2','Chaos Game','pen', 'pencil', 'marker', 'colored pixel', 'red circles', 'random circles', 'spray']).listen();
+=======
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','pen',  'colored pixel', 'trail effect', 'random circles','random star', 'spray']).listen();
+>>>>>>> a27ed363499a2b53f0991d076eb0175d95f0b80f
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -245,12 +259,23 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch
             drawBrush1();
         } else if (value == 'pen'){
             drawWithPen();
+<<<<<<< HEAD
         } else if (value == 'red circles') {
+=======
+        }else if (value == 'trail effect') {
+>>>>>>> a27ed363499a2b53f0991d076eb0175d95f0b80f
             drawRedCircles();
+        }else if(value =='random circles'){
+            drawRandomCircle();
+        }else if(value =='colored pixel'){
+            drawPixels();
+        }else if(value =='spray'){
+            spray();
+        }else if(value =='random star'){
+            drawRandomStar();
         }
         canvas.lineType = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -280,7 +305,6 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','cu
         }
         canvas.brushTool = "";
         canvas.lineType = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -294,10 +318,8 @@ var canvas_shape = f2.add(canvas, 'shape', ['rectangle', 'circle', 'ellipse','cu
 var canvas_borderWidth = f2.add(canvas, 'borderWidth', 1, 5).listen();
     canvas_borderWidth.onChange(function (value) {
         changeBorderWidth(value);
-        console.log(value);
         canvas.brushTool = "";
         canvas.lineType = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -314,7 +336,7 @@ var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
         }
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
+        canvas.canvasClear = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -331,7 +353,6 @@ var canvas_fontSize = f2.add(canvas, 'fontSize', 1, 50).listen();
         changeFontSize(fontSize);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -345,7 +366,6 @@ var canvas_line = f2.add(canvas, 'straightline', false).listen();
         drawStLine();
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -359,7 +379,6 @@ var canvas_lineWidth = f2.add(canvas, 'lineWidth', 1, 5).listen();
         changeLineSize(value);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -379,7 +398,6 @@ var canvas_lineType = f2.add(canvas, 'lineType', ['solid', 'dotted', 'dashed']).
         }
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -394,7 +412,6 @@ var canvas_eraser = f2.add(canvas, 'eraser', false).listen();
         rubber();
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -409,7 +426,6 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5).listen();
         changeRubSize(value);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -425,7 +441,7 @@ var canvas_imageUpload = f3.add(canvas, 'imageUpload', false).listen();
         imageUpload = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
+        canvas.canvasClear = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -440,7 +456,6 @@ var canvas_imageRotate = f3.add(canvas, 'imageRotate', false).listen();
         imageRotate = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -455,7 +470,6 @@ var canvas_imageFlip = f3.add(canvas, 'imageFlip', false).listen();
         imageFlip = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = true;
@@ -470,7 +484,6 @@ var canvas_imageResize = f3.add(canvas, 'imageResize', false).listen();
         imageResize = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = false;
         canvas.imageResize = true;
         canvas.imageFlip = false;
@@ -485,7 +498,6 @@ var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
         imageDownload = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
         canvas.imageDownload = true;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -497,12 +509,16 @@ var canvas_imageDownload = f3.add(canvas, 'imageDownload', false).listen();
     });
 
 // Folder 4 = Canvas
-var canvas_canvasResize = f4.add(canvas, 'canvasResize', false).listen();
-    canvas_canvasResize.onChange(function (value) {
-        canvasResize = value;
+var canvas_canvasClear = f4.add(canvas, 'canvasClear').listen();
+/*
+    canvas_canvasClear.onChange(function (value) {
+        if(value == true){
+            console.log('clear!');
+            contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
+        }
+        canvasClear = value;
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = true;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -511,7 +527,7 @@ var canvas_canvasResize = f4.add(canvas, 'canvasResize', false).listen();
         canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = false;
-    });
+    });*/
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
@@ -523,7 +539,7 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
         changeRubColor(value);
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasResize = false;
+        canvas.canvasClear = false;
         canvas.imageDownload = false;
         canvas.imageResize = false;
         canvas.imageFlip = false;
@@ -585,6 +601,18 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   }
   function drawPolygon(){
       currentFunction = new DrawingPolygon(contextReal,contextDraft);
+  }
+  function drawRandomCircle(){
+      currentFunction = new DrawingRandomCircles(contextReal,contextDraft);
+  }
+  function drawRandomStar(){
+      currentFunction = new DrawingStar(contextReal,contextDraft);
+  }
+  function spray(){
+      currentFunction = new Spray(contextReal,contextDraft);
+  }
+  function drawPixels(){
+      currentFunction = new DrawingRandomPixels(contextReal,contextDraft);
   }
   function rubber(){
       currentFunction = new Rubber(contextReal,contextDraft);
