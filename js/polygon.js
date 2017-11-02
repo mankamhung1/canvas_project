@@ -20,7 +20,6 @@ class DrawingPolygon extends PaintFunction{
         this.contextReal.lineWidth =line_width;
         this.origX = coord[0];
         this.origY = coord[1];
-        console.log(this.origX,this.origY);
         this.state = 'afterFirstClick';
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)>1001){
             this.contextReal.beginPath();
