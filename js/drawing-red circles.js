@@ -24,12 +24,11 @@ class DrawingRedCircles extends PaintFunction{
     onDragging(coord,event){
        // this.draw(coord[0],coord[1]);
        if (!isDrawing) return;
-       
        points.push({ x: event.clientX, y: event.clientY });
       // this.clearRect(0, 0, this.context.width, this.context.height);
        for (var i = 0; i < points.length; i++) {
          this.context.beginPath();
-         this.arc(points[i].x, points[i].y, radius, false, Math.PI * 2, false);
+         this.context.arc(points[i].x, points[i].y, radius, false, Math.PI * 2, false);
          this.context.fill();
          this.context.stroke();
     }
