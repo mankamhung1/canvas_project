@@ -58,7 +58,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.stroke();
             this.contextDraft.closePath();
         }
-        
+
     }
 
     onMouseMove(coord,event){
