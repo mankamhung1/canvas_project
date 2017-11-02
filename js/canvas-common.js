@@ -46,7 +46,7 @@
             canvasPic.onload = function () { contextReal.drawImage(canvasPic, 0, 0); }
         }
     }
-
+    function desktopMode(){
     $('#canvas-draft').mousedown(function(e){
         let mouseX = e.pageX - this.offsetLeft;
         let mouseY = e.pageY - this.offsetTop;
@@ -80,6 +80,51 @@
         currentFunction.onMouseEnter([mouseX,mouseY],e);
     });
 
+}
+
+    function mobileMode(){
+        var hammertime = new Hammer(canvasDraft);
+        hammertime.on('drag swipe tap press pan panup pandown', function(ev) {
+        //console.log(ev.type);
+        });
+        /*
+            hammertime.on('tap',function(ev){
+                let mouseX = ev.center.x - canvasDraft.offsetLeft;
+                let mouseY = ev.center.y - canvasDraft.offsetTop;
+                currentFunction.onMouseDown([mouseX,mouseY],ev);
+                //console.log(mouseX+":"+mouseY + ":"+ev.center.x + ","+ev.center.y);
+            })*/
+        hammertime.on('panstart',function(ev){
+            let mouseX = ev.center.x - canvasDraft.offsetLeft;
+            let mouseY = ev.center.y - canvasDraft.offsetTop;
+            currentFunction.onMouseDown([mouseX,mouseY],ev);
+            dragging = true;
+            //console.log(mouseX+":"+mouseY + ":"+ev.center.x + ","+ev.center.y);
+        })
+        hammertime.on('panmove',function(ev){
+            let mouseX = ev.center.x - canvasDraft.offsetLeft;
+            let mouseY = ev.center.y - canvasDraft.offsetTop;
+            currentFunction.onDragging([mouseX,mouseY],ev);
+        // currentFunction.onMouseMove([mouseX,mouseY],ev);
+        // console.log("panmove");
+        });
+        hammertime.on('panend',function(ev){
+            let mouseX = ev.center.x - canvasDraft.offsetLeft;
+            let mouseY = ev.center.y - canvasDraft.offsetTop;
+            currentFunction.onMouseUp([mouseX,mouseY],ev);
+        // console.log("panend");
+        });
+    }
+    
+    $(document).ready(function(){
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).width()<768) {
+            mobileMode();
+        }
+        else if ($(window).width()>767){
+            desktopMode();
+        }
+    });
+    
     class PaintFunction{
         constructor(){
             this.color = color;
