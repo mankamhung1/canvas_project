@@ -3887,7 +3887,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function setWidth(gui, w) {
 	  gui.domElement.style.width = w + 'px';
-		checkContainer (w);
+		//checkContainer (w);
 	  // Auto placed save-rows are position fixed, so we have to
 	  // set the width manually if we want it to bleed to the edge
 
