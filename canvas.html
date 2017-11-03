@@ -179,14 +179,22 @@ var canvas = new text();
 var gui = new dat.GUI({ load: JSON.parse(json), autoPlace: true});
 gui.domElement.id = 'gui';
 
+
 var toggleClick = 0;
 $('.plusToggle').click(function (){
     $('#gui').animate({
         width:['toggle']
         },350);
+    if (toggleClick == 0) {
     $('.plusToggle').animate({
-        marginLeft:"90vw"
-        },350);
+        marginLeft:"95vw"
+      },350);
+    $('.plusToggle').css("margin-left", "-=100px");
+  toggleClick = 1;}
+    if (toggleClick == 1) {
+    checkContainer("");
+    //toggleClick = 0;
+  }
 
 });
 gui.remember(canvas);
