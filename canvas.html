@@ -101,6 +101,7 @@ var text = function () {
     this.canvasClear = function(){
         contextReal.globalAlpha=1;
         contextReal.fillStyle=bgcolor;
+        contextReal.clearRect(0,0,canvasReal.width,canvasReal.height);
         contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         drawImage();
 
@@ -178,10 +179,15 @@ var canvas = new text();
 var gui = new dat.GUI({ load: JSON.parse(json), autoPlace: true});
 gui.domElement.id = 'gui';
 
+var toggleClick = 0;
 $('.plusToggle').click(function (){
     $('#gui').animate({
-        width:['toggle','linear']
+        width:['toggle']
         },350);
+    $('.plusToggle').animate({
+        marginLeft:"90vw"
+        },350);
+
 });
 gui.remember(canvas);
 
@@ -303,7 +309,6 @@ var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
         }
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasClear = false;
         canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = true;
@@ -370,24 +375,6 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5).listen();
 // Folder 4 = Canvas
 var canvas_canvasClear = f3.add(canvas, 'canvasClear').listen();
 
-/*
-    canvas_canvasClear.onChange(function (value) {
-        if(value == true){
-            console.log('clear!');
-            contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
-        }
-        canvasClear = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.imageDownload = false;
-        canvas.imageResize = false;
-        canvas.imageFlip = false;
-        canvas.imageRotate = false;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });*/
 var canvas_canvasBgcolor = f3.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
@@ -396,9 +383,9 @@ var canvas_canvasBgcolor = f3.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onFinishChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
+        drawImage();
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasClear = false;
         canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = false;
@@ -534,4 +521,22 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         showMousePos: true
     });
 });*/
+
+jQuery(document).ready(function() {
+  checkContainer("");
+});
+
+function checkContainer (w) {
+  if($('.save-row').is(':visible')) {
+    var panelWidth = $('.save-row')["0"].style.width;
+    //console.log("w"+w);
+    if (w!="")
+    {panelWidth = w;}
+    //  console.log ("~'calc(100vw - "+panelWidth+")'");
+      $('.plusToggle').css({"margin-left": "100vw"}).css("margin-left", "-="+panelWidth).css("margin-left", "-=50px");
+  } else {
+    setTimeout(function() {checkContainer("")}, 50);
+  }
+}
+
 </script>
