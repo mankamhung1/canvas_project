@@ -63,7 +63,7 @@ class DrawingPolygon extends PaintFunction{
 
     onMouseMove(coord,event){
          if(this.state === 'afterFirstRelease'||this.state ==='intermediate'){
-             
+
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.points[0].x,this.points[0].y);
@@ -82,8 +82,8 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.stroke();
             this.origX2=coord[0];
             this.origY2=coord[1];
-            this.state = 'afterFirstRelease';
-            this.points.push( {x: coord[0],y: coord[1]});
+            this.state='afterFirstRelease';
+            this.points.push({x: coord[0],y: coord[1]});
         }else if(this.state ==='intermediate'){
         }
         else if(this.state ==='finishpolygon'){
@@ -93,6 +93,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineJoin = "butt";
             this.state ='Start';
             this.points.length=0;
+            this.contextReal.closePath();
             drawImage();
         }
     }

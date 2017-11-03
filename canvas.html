@@ -24,8 +24,8 @@
       </div>
 
       <div class="buttons">
-          <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
           <a href="#gui" class="btn btn-success plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
+          <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
           </div>
           <input type="file" id="fileToLoad" style="visibility:hidden">
       </div>
@@ -49,11 +49,9 @@
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
-<<<<<<< HEAD
 
-=======
 <!--<script type="text/javascript" src="js/scotchPanels.js"></script>-->
->>>>>>> f49acb16d5094c6cb7f1a832279c372fc6370e9f
+
 <script src="js/jquery.ruler.js"></script>
 <!--<script src=”https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js”></script>-->
 <script type="text/javascript" src="js/hammer.js"></script>
@@ -64,10 +62,6 @@
 <script type='text/javascript' src="js/ellipse.js"></script>
 <script type='text/javascript' src="js/rubber.js"></script>
 <script type='text/javascript' src="js/drawing-text.js"></script>
-<<<<<<< HEAD
-
-=======
->>>>>>> f49acb16d5094c6cb7f1a832279c372fc6370e9f
 <script type='text/javascript' src="js/bgcolor.js"></script>
 <script type='text/javascript' src="js/drawing-brush1.js"></script>
 <script type='text/javascript' src="js/canvas_download.js"></script>
@@ -459,10 +453,7 @@ var canvas_canvasClear = f4.add(canvas, 'canvasClear').listen();
         canvas.straightline = false;
         canvas.textBox = false;
     });*/
-<<<<<<< HEAD
-=======
 
->>>>>>> f49acb16d5094c6cb7f1a832279c372fc6370e9f
 var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
@@ -620,4 +611,29 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
     });
 });*/
 
+jQuery(document).ready(function() {
+  checkContainer();
+});
+
+/*
+~"calc(30vh + 1px)"
+.css('width', '100%').css('width', '-=100px');
+*/
+
+function checkContainer (w) {
+  if($('.save-row').is(':visible')) { //if the container is visible on the page
+    var panelWidth = $('.save-row')["0"].style.width;
+    panelWidth = w;
+      console.log ("~'calc(100vw - "+panelWidth+")'");
+      $('.plusToggle').css({"margin-left": "100vh"}).css("margin-left", "-="+panelWidth).css("margin-left", "-=5px");
+  } else {
+    setTimeout(checkContainer, 50); //wait 50 ms, then try again
+  }
+}
+
+//  window.onload = function() {
+/*    var panelWidth = $('.save-row')["0"].style.width;
+  console.log (panelWidth);
+  $('.plusToggle').css({"margin-left": panelWidth - 100});}
+  */
 </script>
