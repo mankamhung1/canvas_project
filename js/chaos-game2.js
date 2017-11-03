@@ -10,8 +10,8 @@ class ChaosGame2 extends PaintFunction{
 
     onMouseDown(coord,event){
         if(this.state==='Start'){
-        this.contextReal.fillStyle = fill_color;
-        this.contextDraft.fillStyle = fill_color;
+  //      this.contextReal.fillStyle = fill_color;
+  //      this.contextDraft.fillStyle = fill_color;
         this.contextDraft.strokeStyle =line_color;
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
@@ -32,7 +32,7 @@ class ChaosGame2 extends PaintFunction{
   //          this.contextReal.beginPath();
   //          this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextReal.fill();
+  //          this.contextReal.fill();
             this.contextReal.stroke();
             this.origX2=coord[0];
             this.origY2=coord[1];
@@ -43,12 +43,13 @@ class ChaosGame2 extends PaintFunction{
 //            this.contextReal.beginPath();
 //            this.contextReal.moveTo(this.origX2,this.origY2);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextReal.fill();
+//            this.contextReal.fill();
             this.contextReal.stroke();
             this.contextReal.closePath();
             this.state = 'finishpolygon';
             console.log(vertices);
             drawChaosGame2(this.origX,this.origY); // this coord can be anywhere within the canvas.
+            vertices = [ ];
         }
     }
     onDragging(coord,event){
@@ -71,7 +72,7 @@ class ChaosGame2 extends PaintFunction{
 //            this.contextReal.beginPath();
 //            this.contextReal.moveTo(this.origX,this.origY);
             this.contextReal.lineTo(coord[0],coord[1]);
-            this.contextReal.fill();
+//            this.contextReal.fill();
             this.contextReal.stroke();
             this.origX2=coord[0];
             this.origY2=coord[1];
@@ -98,7 +99,7 @@ class ChaosGame2 extends PaintFunction{
 function drawChaosGame2(x,y) {
 //  contextReal.globalAlpha = 0.7;
   contextReal.beginPath();
-  for (i=0; i<80000; i++) {
+  for (i=0; i<100000; i++) {
     console.log("loop");
   var randomVertexDirection = getRandomInt2(0,vertices.length);
   while (randomVertexDirection == previousVertex) {
@@ -107,7 +108,7 @@ function drawChaosGame2(x,y) {
   var dotX = x+(vertices[randomVertexDirection].x-x)*0.50;
   var dotY = y+(vertices[randomVertexDirection].y-y)*0.50;
   contextReal.fillStyle = "rgba(0,0,0,1)";
-  contextReal.fillRect(dotX,dotY,0.05,0.05);
+  contextReal.fillRect(dotX,dotY,0.5,0.5);
   x=dotX;
   y=dotY;
   var previousVertex = randomVertexDirection;

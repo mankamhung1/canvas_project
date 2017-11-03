@@ -49,6 +49,7 @@ class ChaosGame1 extends PaintFunction{
             this.state = 'finishpolygon';
             console.log(vertices);
             drawChaosGame(this.origX,this.origY); // this coord can be anywhere within the canvas.
+            vertices = [ ];
         }
     }
     onDragging(coord,event){
