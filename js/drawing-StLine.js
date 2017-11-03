@@ -6,6 +6,9 @@ class DrawingStLine extends PaintFunction{
     }
 
     onMouseDown(coord,event){
+        this.contextDraft.globalAlpha = opacity;
+        this.contextReal.globalAlpha =opacity;
+        console.log(opacity);
         this.contextDraft.strokeStyle =line_color;
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
@@ -33,14 +36,7 @@ class DrawingStLine extends PaintFunction{
         this.contextReal.moveTo(this.origX,this.origY);
         this.contextReal.lineTo(coord[0],coord[1]);
         this.contextReal.stroke();
-        this.contextDraft.closePath();
         this.contextReal.closePath();
-        this.contextReal.lineWidth=5;
-        this.contextDraft.line_width=5;
-        this.contextDraft.lineCap = 'butt';
-        this.contextDraft.lineJoin = "butt";
-        this.contextReal.lineCap = 'butt';
-        this.contextReal.lineJoin = "butt";
         drawImage();
     }
     onMouseLeave(){}

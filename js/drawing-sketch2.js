@@ -52,7 +52,7 @@ class DrawingSketch2 extends PaintFunction{
     onMouseUp(){
       isDrawing = false;
       points.length = 0;
-      this.context.globalAlpha = 1;
+      //this.context.globalAlpha = 1;
       this.context.closePath();
       drawImage();
     }

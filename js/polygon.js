@@ -9,16 +9,18 @@ class DrawingPolygon extends PaintFunction{
 
     onMouseDown(coord,event){
         if(this.state==='Start'){
+            this.contextDraft.globalAlpha = opacity;
+            this.contextReal.globalAlpha =opacity;
             this.contextReal.fillStyle = fill_color;
             this.contextDraft.fillStyle = fill_color;
-            this.contextDraft.strokeStyle =line_color;
-            this.contextReal.strokeStyle =line_color;
+            this.contextDraft.strokeStyle =border_color;
+            this.contextReal.strokeStyle =border_color;
             this.contextDraft.lineCap = 'round';
             this.contextDraft.lineJoin = "round";
             this.contextReal.lineCap = 'round';
             this.contextReal.lineJoin = "round";
-            this.contextDraft.lineWidth =line_width;
-            this.contextReal.lineWidth =line_width;
+            this.contextDraft.lineWidth =borderwidth;
+            this.contextReal.lineWidth =borderwidth;
             this.points.push({x: coord[0],y: coord[1]});
             this.origX = coord[0];
             this.origY = coord[1];
@@ -35,17 +37,21 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineTo(this.points[i].x,this.points[i].y);
             }
             this.contextDraft.lineTo(coord[0],coord[1]);
-            this.contextDraft.closePath();
+            //this.contextDraft.closePath();
             this.contextDraft.fill();
             this.contextDraft.stroke();
             this.state ='intermediate';
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)<1000){
+            this.contextReal.beginPath();
+            this.contextReal.moveTo(this.points[0].x,this.points[0].y);
+            for(let i=1;i<this.points.length;i++){
+            this.contextReal.lineTo(this.points[i].x,this.points[i].y);
+            }
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextReal.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
+            //this.contextReal.closePath();
             this.state = 'finishpolygon';
-            console.log(this.points);
         }
     }
     onDragging(coord,event){
@@ -71,7 +77,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineTo(this.points[i].x,this.points[i].y);
             }
             this.contextDraft.lineTo(coord[0],coord[1]);
-            this.contextDraft.closePath();
+            //this.contextDraft.closePath();
             this.contextDraft.fill();
             this.contextDraft.stroke();
         }

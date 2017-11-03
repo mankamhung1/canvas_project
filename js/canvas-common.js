@@ -9,11 +9,12 @@
     let line_color = '#bf4444';
     let fill_color ='#e8ffea';
     let border_color = "#F6E5E5";
-    let bgcolor ='ff0000';
+    let bgcolor ;
     let color='#bf4444';
     let line_width = 5;
     let borderwidth = 5;
     let rubwidth;
+    let opacity = 1;
     let font_size = "14px";
     let rub_color = "white";
     let cPushArray = new Array();
