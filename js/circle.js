@@ -6,6 +6,8 @@ class DrawingCircle extends PaintFunction{
     }
 
     onMouseDown(coord,event){
+        this.contextDraft.globalAlpha = opacity;
+        this.contextReal.globalAlpha =opacity;
         this.contextReal.fillStyle = fill_color;
         this.contextDraft.fillStyle = fill_color;
         this.contextDraft.strokeStyle = border_color;

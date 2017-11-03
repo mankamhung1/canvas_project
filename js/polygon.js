@@ -9,16 +9,18 @@ class DrawingPolygon extends PaintFunction{
 
     onMouseDown(coord,event){
         if(this.state==='Start'){
+            this.contextDraft.globalAlpha = opacity;
+            this.contextReal.globalAlpha =opacity;
             this.contextReal.fillStyle = fill_color;
             this.contextDraft.fillStyle = fill_color;
-            this.contextDraft.strokeStyle =line_color;
-            this.contextReal.strokeStyle =line_color;
+            this.contextDraft.strokeStyle =border_color;
+            this.contextReal.strokeStyle =border_color;
             this.contextDraft.lineCap = 'round';
             this.contextDraft.lineJoin = "round";
             this.contextReal.lineCap = 'round';
             this.contextReal.lineJoin = "round";
-            this.contextDraft.lineWidth =line_width;
-            this.contextReal.lineWidth =line_width;
+            this.contextDraft.lineWidth =borderwidth;
+            this.contextReal.lineWidth =borderwidth;
             this.points.push({x: coord[0],y: coord[1]});
             this.origX = coord[0];
             this.origY = coord[1];

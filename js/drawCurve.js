@@ -8,6 +8,8 @@ class DrawingCurve extends PaintFunction{
 
     onMouseDown(coord,event){
         if(this.state==='beforeClick'){
+        this.contextDraft.globalAlpha = opacity;
+        this.contextReal.globalAlpha =opacity;
         this.contextDraft.strokeStyle =line_color;
         this.contextReal.strokeStyle =line_color;
         this.contextReal.lineCap = 'round';``

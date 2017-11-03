@@ -14,6 +14,7 @@
     let line_width = 5;
     let borderwidth = 5;
     let rubwidth;
+    let opacity = 1;
     let font_size = "14px";
     let rub_color = "white";
     let cPushArray = new Array();

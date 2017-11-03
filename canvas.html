@@ -99,11 +99,12 @@ var text = function () {
     this.eraser = false;
     this.eraserSize = 1;
     this.canvasClear = function(){
-        console.log('running');
+        contextReal.globalAlpha=1;
         contextReal.fillStyle=bgcolor;
-        console.log(bgcolor);
         contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         drawImage();
+
+        contextReal.globalAlpha =opacity;
     };
     this.canvasBgcolor = "#F6E5E5";
     this.exportCanvas = function() {
@@ -224,6 +225,7 @@ var canvas_borderColor = f1.addColor(canvas, 'borderColor').listen();
 var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     canvas_opacity.onChange(function (value) {
         opacity = value;
+        console.log(opacity);
     });
     canvas_opacity.onFinishChange(function (value) {
     });
@@ -413,7 +415,7 @@ var canvas_importFromFirebase = f5.add(canvas, 'importFromFirebase', true).name(
   downloadFromFirebase(value);});
 
 };
-
+opacity =1;
 changeBgColor("white");
 contextReal.beginPath();
 contextReal.fillStyle = bgcolor;
