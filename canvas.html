@@ -24,7 +24,7 @@
       </div>
 
       <div class="buttons">
-        <a href="#gui" class="btn btn-success plusToggle" style="margin-left:92vw"> <i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a href="#gui" class="btn plusToggle" style="margin-left:92vw"> <i id="plusToggleIcon" class="fa fa-minus" aria-hidden="true"></i></a>
         <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
         </div>
         <input type="file" id="fileToLoad" style="visibility:hidden">
@@ -179,14 +179,33 @@ var canvas = new text();
 var gui = new dat.GUI({ load: JSON.parse(json), autoPlace: true});
 gui.domElement.id = 'gui';
 
+
 var toggleClick = 0;
 $('.plusToggle').click(function (){
     $('#gui').animate({
         width:['toggle']
         },350);
- /*   $('.plusToggle').animate({
-        marginLeft:"90vw"
-        },350); */
+if (toggleClick == 0) {
+    $('#plusToggleIcon').attr('class', 'fa fa-plus');
+    toggleClick = 1;
+}
+else {
+    $('#plusToggleIcon').attr('class', 'fa fa-minus');
+    toggleClick = 0;
+}
+
+    /*
+    if (toggleClick == 0) {
+    $('.plusToggle').animate({
+        marginLeft:"95vw"
+      },350);
+    $('.plusToggle').css("margin-left", "-=100px");
+  toggleClick = 1;}
+    if (toggleClick == 1) {
+    checkContainer("");
+    //toggleClick = 0;
+  }
+  */
 
 });
 gui.remember(canvas);
@@ -521,6 +540,7 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         showMousePos: true
     });
 });*/
+
 /*
 jQuery(document).ready(function() {
   checkContainer("");
@@ -539,4 +559,5 @@ function checkContainer (w) {
   }
 }
 */
+
 </script>
