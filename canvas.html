@@ -50,7 +50,7 @@
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
-<script src="js/jquery.ruler.js"></script>
+<script type="text/javascript" src="js/jquery.ruler.js"></script>
 <script type="text/javascript" src="js/hammer.js"></script>
 <script type='text/javascript' src="js/canvas-common.js"></script>
 <script type='text/javascript' src="js/drawing-line.js"></script>
@@ -193,19 +193,6 @@ else {
     $('#plusToggleIcon').attr('class', 'fa fa-minus');
     toggleClick = 0;
 }
-
-    /*
-    if (toggleClick == 0) {
-    $('.plusToggle').animate({
-        marginLeft:"95vw"
-      },350);
-    $('.plusToggle').css("margin-left", "-=100px");
-  toggleClick = 1;}
-    if (toggleClick == 1) {
-    checkContainer("");
-    //toggleClick = 0;
-  }
-  */
 
 });
 gui.remember(canvas);
@@ -524,40 +511,4 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function changeLineSize(size){
       line_width=size*5;
   }
-
-
-/*  $(function() {
-    $('body').ruler({
-        vRuleSize: 18,
-        hRuleSize: 18,
-        showCrosshair : true,
-        showMousePos: true
-    });
-    $('#canvas-container').ruler({
-        vRuleSize: 18,
-        hRuleSize: 18,
-        showCrosshair : true,
-        showMousePos: true
-    });
-});*/
-
-/*
-jQuery(document).ready(function() {
-  checkContainer("");
-});
-
-function checkContainer (w) {
-  if($('.save-row').is(':visible')) {
-    var panelWidth = $('.save-row')["0"].style.width;
-    //console.log("w"+w);
-    if (w!="")
-    {panelWidth = w;}
-    //  console.log ("~'calc(100vw - "+panelWidth+")'");
-      $('.plusToggle').css({"margin-left": "100vw"}).css("margin-left", "-="+panelWidth).css("margin-left", "-=50px");
-  } else {
-    setTimeout(function() {checkContainer("")}, 50);
-  }
-}
-*/
-
 </script>
