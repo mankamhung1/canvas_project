@@ -516,4 +516,30 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         showMousePos: true
     });
 });*/
+
+jQuery(document).ready(function() {
+  checkContainer();
+});
+
+/*
+~"calc(30vh + 1px)"
+.css('width', '100%').css('width', '-=100px');
+*/
+
+function checkContainer (w) {
+  if($('.save-row').is(':visible')) { //if the container is visible on the page
+    var panelWidth = $('.save-row')["0"].style.width;
+    panelWidth = w;
+      console.log ("~'calc(100vw - "+panelWidth+")'");
+      $('.plusToggle').css({"margin-left": "100vh"}).css("margin-left", "-="+panelWidth).css("margin-left", "-=5px");
+  } else {
+    setTimeout(checkContainer, 50); //wait 50 ms, then try again
+  }
+}
+
+//  window.onload = function() {
+/*    var panelWidth = $('.save-row')["0"].style.width;
+  console.log (panelWidth);
+  $('.plusToggle').css({"margin-left": panelWidth - 100});}
+  */
 </script>
