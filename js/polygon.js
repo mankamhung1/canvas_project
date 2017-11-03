@@ -50,9 +50,8 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.lineTo(coord[0],coord[1]);
             this.contextReal.fill();
             this.contextReal.stroke();
-            this.contextReal.closePath();
+            //this.contextReal.closePath();
             this.state = 'finishpolygon';
-            console.log(this.points);
         }
     }
     onDragging(coord,event){

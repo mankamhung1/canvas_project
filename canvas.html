@@ -396,6 +396,7 @@ var canvas_canvasBgcolor = f3.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onFinishChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
+        drawImage();
         canvas.brushTool = "";
         canvas.shape = "";
         canvas.canvasClear = false;
