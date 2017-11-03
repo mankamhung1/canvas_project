@@ -3,7 +3,7 @@
 }
 .plusToggle {
   opacity:0.4;
-  border:black;
+  border-color:rgb(218,213,203) !important;
   background-color:rgb(218,213,203) !important;
 }
 .plusToggle:hover {
