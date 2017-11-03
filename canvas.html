@@ -24,10 +24,10 @@
       </div>
 
       <div class="buttons">
-          <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
-          <a href="#gui" class="btn btn-success plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
-          </div>
-          <input type="file" id="fileToLoad" style="visibility:hidden">
+        <a href="#gui" class="btn btn-success plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
+        </div>
+        <input type="file" id="fileToLoad" style="visibility:hidden">
       </div>
     </body>
 
@@ -102,7 +102,9 @@ var text = function () {
     this.eraser = false;
     this.eraserSize = 1;
     this.canvasClear = function(){
+        console.log('running');
         contextReal.fillStyle=bgcolor;
+        console.log(bgcolor);
         contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         drawImage();
     };
@@ -450,7 +452,6 @@ var canvas_canvasBgcolor = f4.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
-
     });
     canvas_canvasBgcolor.onFinishChange(function (value) {
         changeBgColor(value);
@@ -551,10 +552,6 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function chaosGame(){
       currentFunction = new ChaosGame(contextReal,contextDraft);
   }
-  function resize(){
-      currentFunction = new Resize(contextReal,contextDraft);
-      currentFunction.printImg();
-  }
   function changelineColor(newColor){
     line_color=newColor;
   }
@@ -599,5 +596,4 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         showMousePos: true
     });
 });*/
-
 </script>
