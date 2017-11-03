@@ -11,7 +11,6 @@ class ChaosGame2 extends PaintFunction{
 
     onMouseDown(coord,event){
         if(this.state==='Start'){
-<<<<<<< HEAD
             this.contextDraft.globalAlpha = opacity;
             this.contextReal.globalAlpha =opacity;
             this.contextReal.fillStyle = fill_color;
@@ -28,28 +27,11 @@ class ChaosGame2 extends PaintFunction{
             this.origX = coord[0];
             this.origY = coord[1];
             this.state = 'afterFirstClick';
-=======
-  //      this.contextReal.fillStyle = fill_color;
-  //      this.contextDraft.fillStyle = fill_color;
-        this.contextDraft.strokeStyle =line_color;
-        this.contextReal.strokeStyle =line_color;
-        this.contextDraft.lineCap = 'round';
-        this.contextDraft.lineJoin = "round";
-        this.contextReal.lineCap = 'round';
-        this.contextReal.lineJoin = "round";
-        this.contextDraft.lineWidth =line_width;
-        this.contextReal.lineWidth =line_width;
-        this.origX = coord[0];
-        this.origY = coord[1];
-        console.log(this.origX,this.origY);
-        this.state = 'afterFirstClick';
->>>>>>> 587e836ea78129195ae53d8ab168e675bff179d2
 
             vertices.push({ x: event.clientX, y: event.clientY });            
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.origX,this.origY);
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)>1001){
-<<<<<<< HEAD
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.points.push( {x: coord[0],y: coord[1]});
             vertices.push({ x: event.clientX, y: event.clientY });                        
@@ -62,15 +44,6 @@ class ChaosGame2 extends PaintFunction{
             //this.contextDraft.closePath();
             this.contextDraft.fill();
             this.contextDraft.stroke();
-=======
-  //          this.contextReal.beginPath();
-  //          this.contextReal.moveTo(this.origX2,this.origY2);
-            this.contextReal.lineTo(coord[0],coord[1]);
-  //          this.contextReal.fill();
-            this.contextReal.stroke();
-            this.origX2=coord[0];
-            this.origY2=coord[1];
->>>>>>> 587e836ea78129195ae53d8ab168e675bff179d2
             this.state ='intermediate';
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)<1000){
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
@@ -85,13 +58,7 @@ class ChaosGame2 extends PaintFunction{
             //this.contextReal.closePath();
             drawChaosGame2(this.origX,this.origY); // this coord can be anywhere within the canvas.            
             this.state = 'finishpolygon';
-<<<<<<< HEAD
             vertices =[ ];
-=======
-            console.log(vertices);
-            drawChaosGame2(this.origX,this.origY); // this coord can be anywhere within the canvas.
-            vertices = [ ];
->>>>>>> 587e836ea78129195ae53d8ab168e675bff179d2
         }
     }
     onDragging(coord,event){
@@ -125,10 +92,6 @@ class ChaosGame2 extends PaintFunction{
     onMouseUp(coord,event){
         if(this.state ==='afterFirstClick'){
             this.contextReal.lineTo(coord[0],coord[1]);
-<<<<<<< HEAD
-=======
-//            this.contextReal.fill();
->>>>>>> 587e836ea78129195ae53d8ab168e675bff179d2
             this.contextReal.stroke();
             this.origX2=coord[0];
             this.origY2=coord[1];
