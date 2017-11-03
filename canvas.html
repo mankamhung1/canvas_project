@@ -24,11 +24,10 @@
       </div>
 
       <div class="buttons">
-          
-          <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
-          <a href="#gui" class="btn btn-inverse plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
-          </div>
-          <input type="file" id="fileToLoad" style="visibility:hidden">
+        <a href="#gui" class="btn btn-success plusToggle"> <i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a id="download" download="canvas.png" style="visibility:hidden">Download as image</a>
+        </div>
+        <input type="file" id="fileToLoad" style="visibility:hidden">
       </div>
     </body>
 
@@ -52,7 +51,6 @@
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/dat.gui.js"></script>
 <script src="js/jquery.ruler.js"></script>
-<!--<script src=”https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js”></script>-->
 <script type="text/javascript" src="js/hammer.js"></script>
 <script type='text/javascript' src="js/canvas-common.js"></script>
 <script type='text/javascript' src="js/drawing-line.js"></script>
@@ -66,7 +64,8 @@
 <script type='text/javascript' src="js/canvas_download.js"></script>
 <script type='text/javascript' src="js/drawing-sketch1.js"></script>
 <script type='text/javascript' src="js/drawing-sketch2.js"></script>
-<script type='text/javascript' src="js/chaos-game.js"></script>
+<script type='text/javascript' src="js/chaos-game1.js"></script>
+<script type='text/javascript' src="js/chaos-game2.js"></script>
 <script type='text/javascript' src="js/drawing-red circles.js"></script>
 <script type='text/javascript' src="js/drawing-DashedLine.js"></script>
 <script type='text/javascript' src="js/drawing-DottedLine.js"></script>
@@ -87,7 +86,7 @@ var text = function () {
     this.color = "#bf4444";
     this.borderColor = "#F6E5E5";
     this.fillColor = "#e8ffea";
-    this.opacity = 0;
+    this.opacity = 1;
     this.brushTool = "Sketch 1";
     this.shape = "square";
     this.borderWidth = 1;
@@ -100,7 +99,9 @@ var text = function () {
     this.eraser = false;
     this.eraserSize = 1;
     this.canvasClear = function(){
+        console.log('running');
         contextReal.fillStyle=bgcolor;
+        console.log(bgcolor);
         contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         drawImage();
     };
@@ -122,7 +123,7 @@ var json = `{
                 "color": "#bf4444",
                 "borderColor" : "#F6E5E5",
                 "fillColor" : "#e8ffea",
-                "opacity" : 0,
+                "opacity" : 1,
                 "brushTool" : "Sketch 1",
                 "shape" : "square",
                 "borderWidth" : 1,
@@ -145,7 +146,7 @@ var json = `{
                 "color": "#bf4444",
                 "borderColor" : "##F6E5E5",
                 "fillColor" : "#e8ffea",
-                "opacity" : 0,
+                "opacity" : 1,
                 "brushTool" : "Sketch 1",
                 "shape" : "circle",
                 "borderWidth" : 1,
@@ -228,7 +229,7 @@ var canvas_opacity = f1.add(canvas, 'opacity', 0, 1).listen();
     });
 
 // Folder 2 = Tools
-var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch 2','Chaos Game','pen',  'colored pixel', 'trail effect', 'random circles','random star', 'spray']).listen();
+var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch 2','Chaos Game 1','Chaos Game 2', 'pen',  'colored pixel', 'trail effect', 'random circles','random star', 'spray']).listen();
     canvas_brushTool.onChange(function (value) {
         if (value === 'Sketch 1') {
             drawSketch1();
@@ -236,8 +237,10 @@ var canvas_brushTool = f2.add(canvas, 'brushTool', ['Brush 1','Sketch 1','Sketch
             drawSketch2();
         } else if(value == 'Brush 1'){
             drawBrush1();
-        } else if(value == 'Chaos Game'){
-            chaosGame();
+        } else if(value == 'Chaos Game 1'){
+            chaosGame1();
+        } else if(value == 'Chaos Game 2'){
+            chaosGame2();
         }else if (value == 'pen'){
             drawWithPen();
         }else if (value == 'trail effect') {
@@ -387,7 +390,6 @@ var canvas_canvasBgcolor = f3.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
         changeRubColor(value);
-
     });
     canvas_canvasBgcolor.onFinishChange(function (value) {
         changeBgColor(value);
@@ -480,12 +482,11 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
   function drawSketch2(){
       currentFunction = new DrawingSketch2(contextReal,contextDraft);
   }
-  function chaosGame(){
-      currentFunction = new ChaosGame(contextReal,contextDraft);
+  function chaosGame1(){
+      currentFunction = new ChaosGame1(contextReal,contextDraft);
   }
-  function resize(){
-      currentFunction = new Resize(contextReal,contextDraft);
-      currentFunction.printImg();
+  function chaosGame2(){
+      currentFunction = new ChaosGame2(contextReal,contextDraft);
   }
   function changelineColor(newColor){
     line_color=newColor;
@@ -531,9 +532,4 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
         showMousePos: true
     });
 });*/
-var uiWidth = $('.dg main').width;
-var wholeWidth = $( window ).width();
-
-var a = 400;
-   $('.plusToggle').css({"margin-left":a}); 
 </script>
