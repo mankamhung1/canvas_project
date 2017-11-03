@@ -101,6 +101,7 @@ var text = function () {
     this.canvasClear = function(){
         contextReal.globalAlpha=1;
         contextReal.fillStyle=bgcolor;
+        contextReal.clearRect(0,0,canvasReal.width,canvasReal.height);
         contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
         drawImage();
 
@@ -303,7 +304,6 @@ var canvas_textBox = f2.add(canvas, 'textBox', false).listen();
         }
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasClear = false;
         canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = true;
@@ -370,24 +370,6 @@ var canvas_eraserSize = f2.add(canvas, 'eraserSize', 1, 5).listen();
 // Folder 4 = Canvas
 var canvas_canvasClear = f3.add(canvas, 'canvasClear').listen();
 
-/*
-    canvas_canvasClear.onChange(function (value) {
-        if(value == true){
-            console.log('clear!');
-            contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
-        }
-        canvasClear = value;
-        canvas.brushTool = "";
-        canvas.shape = "";
-        canvas.imageDownload = false;
-        canvas.imageResize = false;
-        canvas.imageFlip = false;
-        canvas.imageRotate = false;
-        canvas.imageUpload = false;
-        canvas.eraser = false;
-        canvas.straightline = false;
-        canvas.textBox = false;
-    });*/
 var canvas_canvasBgcolor = f3.addColor(canvas, 'canvasBgcolor').listen();
     canvas_canvasBgcolor.onChange(function (value) {
         changeBgColor(value);
@@ -399,7 +381,6 @@ var canvas_canvasBgcolor = f3.addColor(canvas, 'canvasBgcolor').listen();
         drawImage();
         canvas.brushTool = "";
         canvas.shape = "";
-        canvas.canvasClear = false;
         canvas.eraser = false;
         canvas.straightline = false;
         canvas.textBox = false;

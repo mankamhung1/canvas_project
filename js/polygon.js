@@ -42,6 +42,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.stroke();
             this.state ='intermediate';
         }else if((coord[0]-this.origX)*(coord[0]-this.origX)+(coord[1]-this.origY)*(coord[1]-this.origY)<1000){
+            this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             this.contextReal.beginPath();
             this.contextReal.moveTo(this.points[0].x,this.points[0].y);
             for(let i=1;i<this.points.length;i++){
@@ -51,6 +52,7 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.fill();
             this.contextReal.stroke();
             //this.contextReal.closePath();
+            drawImage();
             this.state = 'finishpolygon';
         }
     }
@@ -99,7 +101,6 @@ class DrawingPolygon extends PaintFunction{
             this.contextDraft.lineJoin = "butt";
             this.state ='Start';
             this.points.length=0;
-            drawImage();
         }
     }
     onMouseLeave(){}
