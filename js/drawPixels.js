@@ -6,6 +6,7 @@ class DrawingRandomPixels extends PaintFunction{
 
     onMouseDown(coord,event){
         isDrawing = true;
+        this.context.globalAlpha =opacity;
     }
     onDragging(coord,event){
         if (!isDrawing) return;

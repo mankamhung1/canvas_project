@@ -3824,12 +3824,12 @@ return /******/ (function(modules) { // webpackBootstrap
 		// div.appendChild(button2);
 		//undo button
 		_dom2.default.bind(button4, 'click', function () {
-			console.log('undo');
+			console.log(cPushArray);
 	    cUndo();
 		});
 		//redo button
 		_dom2.default.bind(button5, 'click', function () {
-			console.log('redo');
+			console.log(cPushArray);
 	    cRedo();
 		});
 
@@ -3887,7 +3887,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function setWidth(gui, w) {
 	  gui.domElement.style.width = w + 'px';
-		//checkContainer (w);
+		// checkContainer (w);
 	  // Auto placed save-rows are position fixed, so we have to
 	  // set the width manually if we want it to bleed to the edge
 

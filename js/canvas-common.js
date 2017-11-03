@@ -36,7 +36,9 @@
             cStep--;
             var canvasPic = new Image();
             canvasPic.src = cPushArray[cStep];
-            canvasPic.onload = function () { contextReal.drawImage(canvasPic, 0, 0); }
+            canvasPic.onload = function () { 
+                contextReal.globalAlpha =1;
+                contextReal.drawImage(canvasPic, 0, 0); }
         }
     }
     function cRedo() {
@@ -44,7 +46,9 @@
             cStep++;
             var canvasPic = new Image();
             canvasPic.src = cPushArray[cStep];
-            canvasPic.onload = function () { contextReal.drawImage(canvasPic, 0, 0); }
+            canvasPic.onload = function () { 
+                contextReal.globalAlpha =1;
+                contextReal.drawImage(canvasPic, 0, 0); }
         }
     }
     function desktopMode(){

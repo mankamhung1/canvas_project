@@ -19,6 +19,7 @@ class DrawingRedCircles extends PaintFunction{
         this.context.fillStyle = fill_color;
         this.context.lineWidth = '1';
         this.context.beginPath();
+        this.context.globalAlpha =opacity;
 
         isDrawing = true;
         this.lastPoint = { x: coord[0], y: coord[1] };
