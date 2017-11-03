@@ -1,9 +1,10 @@
 #gui {
-  top: 0; right:0;
+  top: 0; margin-right:8vw;
 }
 .plusToggle {
   opacity:0.4;
   border:black;
+  background-color:rgb(218,213,203) !important;
 }
 .plusToggle:hover {
   opacity:0.2;
