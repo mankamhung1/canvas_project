@@ -178,10 +178,15 @@ var canvas = new text();
 var gui = new dat.GUI({ load: JSON.parse(json), autoPlace: true});
 gui.domElement.id = 'gui';
 
+var toggleClick = 0;
 $('.plusToggle').click(function (){
     $('#gui').animate({
-        width:['toggle','linear']
+        width:['toggle']
         },350);
+    $('.plusToggle').animate({
+        marginLeft:"90vw"
+        },350);
+
 });
 gui.remember(canvas);
 
@@ -537,28 +542,20 @@ currentFunction = new DrawingSketch1(contextReal,contextDraft);
 });*/
 
 jQuery(document).ready(function() {
-  checkContainer();
+  checkContainer("");
 });
 
-/*
-~"calc(30vh + 1px)"
-.css('width', '100%').css('width', '-=100px');
-*/
-
 function checkContainer (w) {
-  if($('.save-row').is(':visible')) { //if the container is visible on the page
+  if($('.save-row').is(':visible')) {
     var panelWidth = $('.save-row')["0"].style.width;
-    panelWidth = w;
-      console.log ("~'calc(100vw - "+panelWidth+")'");
-      $('.plusToggle').css({"margin-left": "100vh"}).css("margin-left", "-="+panelWidth).css("margin-left", "-=5px");
+    //console.log("w"+w);
+    if (w!="")
+    {panelWidth = w;}
+    //  console.log ("~'calc(100vw - "+panelWidth+")'");
+      $('.plusToggle').css({"margin-left": "100vw"}).css("margin-left", "-="+panelWidth).css("margin-left", "-=50px");
   } else {
-    setTimeout(checkContainer, 50); //wait 50 ms, then try again
+    setTimeout(function() {checkContainer("")}, 50);
   }
 }
 
-//  window.onload = function() {
-/*    var panelWidth = $('.save-row')["0"].style.width;
-  console.log (panelWidth);
-  $('.plusToggle').css({"margin-left": panelWidth - 100});}
-  */
 </script>
