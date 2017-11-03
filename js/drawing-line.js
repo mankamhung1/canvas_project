@@ -5,6 +5,7 @@ class DrawingLine extends PaintFunction{
     }
 
     onMouseDown(coord,event){
+        this.context.globalAlpha =opacity;
         this.context.strokeStyle = line_color;
         this.context.lineCap = 'round';
         this.context.lineJoin = "round";
@@ -20,15 +21,13 @@ class DrawingLine extends PaintFunction{
 
     onMouseMove(){}
     onMouseUp(){
-        this.context.lineWidth=5;
-        this.context.lineCap = 'butt';
-        this.context.lineJoin = "butt";
         drawImage();
     }
     onMouseLeave(){}
     onMouseEnter(){}
 
     draw(x,y){
+        this.context.globalAlpha =opacity;
         this.context.lineTo(x,y);
         this.context.moveTo(x,y);
         this.context.stroke();

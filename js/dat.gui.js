@@ -3824,12 +3824,12 @@ return /******/ (function(modules) { // webpackBootstrap
 		// div.appendChild(button2);
 		//undo button
 		_dom2.default.bind(button4, 'click', function () {
-			console.log('undo');
+			console.log(cPushArray);
 	    cUndo();
 		});
 		//redo button
 		_dom2.default.bind(button5, 'click', function () {
-			console.log('redo');
+			console.log(cPushArray);
 	    cRedo();
 		});
 
