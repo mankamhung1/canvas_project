@@ -8,7 +8,8 @@ class DrawingStLine extends PaintFunction{
     onMouseDown(coord,event){
         this.contextDraft.globalAlpha = opacity;
         this.contextReal.globalAlpha =opacity;
-        console.log(opacity);
+        this.contextDraft.setLineDash([]);
+        this.contextReal.setLineDash([]);
         this.contextDraft.strokeStyle =line_color;
         this.contextReal.strokeStyle =line_color;
         this.contextDraft.lineCap = 'round';
