@@ -2,28 +2,13 @@
   top: 0; right:0;
 }
 .plusToggle {
-  left:0;
-  top:0;
   opacity:0.4;
-  border:white;
+  border:black;
 }
 .plusToggle:hover {
   opacity:0.2;
 }
-.dg {
-  /** Clear list styles */
-  /* Auto-place container */
-  /* Auto-placed GUI's */
-  /* Line items that don't contain folders. */
-  /** Folder names */
-  /** Hides closed items */
-  /** Controller row */
-  /** Name-half (left) */
-  /** Controller-half (right) */
-  /** Controller placement */
-  /** Shorter number boxes when slider is present. */
-  /** Ensure the entire boolean and function row shows a hand */
-  /** allow overflow for color selector */ }
+
   .dg ul {
     list-style: none;
     margin: 0;
@@ -227,8 +212,6 @@
   /** Auto place */
   /* Controller row, <li> */
   /** Controllers */ }
-  .dg.main {
-    /** Scrollbar */ }
     .dg.main::-webkit-scrollbar {
       width: 5px;
       background: #1a1a1a; }
