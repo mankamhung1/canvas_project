@@ -1,2 +1,2 @@
 # canvas_project
-the best one in the world
+canvas painter app developed by jason, man and michelle
